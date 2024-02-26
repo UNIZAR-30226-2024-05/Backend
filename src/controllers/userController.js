@@ -37,10 +37,12 @@ exports.login = async (req, res) => {
         // Debería haber una mejor forma de hacerlo pero para tener un admin por defecto en la bd,
         // como no tiene la contraseña cifrada
         let passwordMatch;
-        if (username == "admin1") {
+        if (username == "defaultAdmin") {
             passwordMatch = user.password;
+            req.session.user = { username, role: 'admin' };
         } else {
             passwordMatch = await bcrypt.compare(password, user.password);
+            req.session.user = { username, role: 'normal' };
         }
 
         if (!passwordMatch) {
@@ -48,8 +50,6 @@ exports.login = async (req, res) => {
                 error: "Contraseña incorrecta"
             });
         }
-
-        req.session.user = { username, role: 'normal' };
 
         res.status(200).json({ 
             message: "Inicio de sesión exitoso", user: req.session.user 
