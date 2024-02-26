@@ -13,7 +13,9 @@ exports.register = async (req, res) => {
         }
 
         const newUser = await UserModel.createUser(username, mail, password);
-        res.status(200).json(newUser);
+        res.status(200).json({
+            message: "Usuario registrado correctamente", newUser
+        });
     } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
@@ -35,7 +37,7 @@ exports.login = async (req, res) => {
         // Debería haber una mejor forma de hacerlo pero para tener un admin por defecto en la bd,
         // como no tiene la contraseña cifrada
         let passwordMatch;
-        if (username == "defaultAdmin") {
+        if (username == "admin1") {
             passwordMatch = user.password;
         } else {
             passwordMatch = await bcrypt.compare(password, user.password);
