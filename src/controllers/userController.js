@@ -6,9 +6,14 @@ exports.register = async (req, res) => {
 
     try {
         const existingUser = await UserModel.getUserByUsername(username);
+        const existingMail = await UserModel.getUserByMail(mail);
         if (existingUser) {
             return res.status(409).json({ 
                 error: "El nombre de usuaio elegido ya existe. Por favor, seleccione otro" 
+            });
+        } else if (existingMail) {
+            return res.status(409).json({ 
+                error: "Existing email"
             });
         }
 

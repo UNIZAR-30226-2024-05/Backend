@@ -14,6 +14,11 @@ const UserModel = {
     async getUserByUsername(username) {
         const user = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
         return user.rows[0];
+    },
+
+    async getUserByMail(mail) {
+        const user = await pool.query("SELECT * FROM users WHERE mail = $1", [mail]);
+        return user.rows[0];
     }
 };
 
