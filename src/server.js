@@ -1,15 +1,14 @@
 const express = require("express");
 const cors = require('cors');
-const session = require('express-session');
+const sessions = require('client-sessions');
 const app = express();
 
 //Middleware
 app.use(cors());
 app.use(express.json());
-app.use(session({
-  secret: 'secret',
-  resave: false,
-  saveUninitialized: false
+app.use(sessions({
+  cookieName: 'session',
+  secret: 'secret'
 }));
 
 const userRoutes = require("./routes/userRoutes");
