@@ -61,3 +61,16 @@ exports.login = async (req, res) => {
         res.status(500).send("Server Error");
     }
 };
+
+exports.logout = async (req, res) => {
+    if (req.session && req.session.user) {
+        req.session.reset();
+        return res.json({
+            message: 'Closed session'
+        });
+    } else {
+        return res.status(409).json({
+            error: "No session"
+        });
+    }
+};
