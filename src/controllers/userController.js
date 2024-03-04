@@ -9,7 +9,7 @@ exports.register = async (req, res) => {
         const existingMail = await UserModel.getUserByMail(mail);
         if (existingUser) {
             return res.status(409).json({ 
-                error: "El nombre de usuaio elegido ya existe. Por favor, seleccione otro" 
+                error: "Existing username" 
             });
         } else if (existingMail) {
             return res.status(409).json({ 
@@ -19,7 +19,7 @@ exports.register = async (req, res) => {
 
         const newUser = await UserModel.createUser(username, mail, password);
         res.status(200).json({
-            message: "Usuario registrado correctamente", newUser
+            message: "OK", newUser
         });
     } catch (err) {
         console.error(err.message);
@@ -53,7 +53,7 @@ exports.login = async (req, res) => {
         }
 
         res.status(200).json({ 
-            message: "Inicio de sesión exitoso", user: req.session.user 
+            message: "OK", user: req.session.user 
         });
         
     } catch (err) {
