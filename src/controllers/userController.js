@@ -74,3 +74,27 @@ exports.logout = async (req, res) => {
         });
     }
 };
+
+exports.changePass = async (req, res) => {
+    const { oldPassword, newPassword } = req.body;
+    const { username } = req.session.user;
+
+    try {
+        const user = await UserModel.getUserByUsername(username);
+
+        const passwordMatch = await bcrypt.compare(oldPassword, user.password);
+            if (passwordMatch) {
+                UserModel.changePass(username, newPassword);
+                return res.status(200).json({
+                    message: "Password changed"
+                });
+            } else {
+                return res.status(401).json({
+                    error: "Incorrect password"
+                });
+            }
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+};
