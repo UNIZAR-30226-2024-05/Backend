@@ -1,7 +1,7 @@
 const pool = require('../db');
 
 const AudiolibrosModel = {
-    async getAudiolibroByGenero(genero) {
+    async getAudiolibrosByGenero(genero) {
         try {
             const audiolibros = await pool.query(`
                 SELECT a.*
@@ -13,6 +13,29 @@ const AudiolibrosModel = {
             return audiolibros.rows;
         } catch (error) {
             console.error("Error al obtener los audiolibros por género:", error);
+            throw error;
+        }
+    },
+
+    async getAudiolibroById(id) {
+        try {
+            const audiolibros = await pool.query('SELECT * FROM audiolibros WHERE id = $1', [id]);
+            return audiolibros.rows[0];
+        } catch (error) {
+            console.error("Error al obtener audiolibro por id:", error);
+            throw error;
+        }
+    },
+
+    async getGenerosOfAudiolibro(id) {
+        try {
+            const generos = await pool.query(`SELECT g.nombre 
+                                            FROM generos g 
+                                            INNER JOIN (SELECT * FROM genero_audiolibro WHERE audiolibro = $1) AS ga 
+                                            ON g.id = ga.genero`, [id]);
+            return JSON.stringify(generos.rows); //Revisar
+        } catch (error) {
+            console.error("Error al obtener audiolibro por id:", error);
             throw error;
         }
     }
