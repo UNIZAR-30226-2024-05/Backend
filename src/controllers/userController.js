@@ -63,16 +63,11 @@ exports.login = async (req, res) => {
 };
 
 exports.logout = async (req, res) => {
-    if (req.session && req.session.user) {
-        req.session.reset();
-        return res.json({
-            message: 'Closed session'
-        });
-    } else {
-        return res.status(409).json({
-            error: "No session"
-        });
-    }
+    req.session.reset();
+    return res.json({
+        message: 'Closed session'
+    });
+    
 };
 
 exports.changePass = async (req, res) => {
