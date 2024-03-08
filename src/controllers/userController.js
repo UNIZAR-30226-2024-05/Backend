@@ -93,3 +93,20 @@ exports.changePass = async (req, res) => {
         res.status(500).send("Server Error");
     }
 };
+
+exports.profile = async (req, res) => {
+    const { username } = req.session.user;
+
+    try {
+        const user = await UserModel.getUserByUsername(username);
+        console.log(user)
+        return res.status(200).json({
+            username: user.username,
+            mail: user.mail
+        });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+
+};
