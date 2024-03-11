@@ -1,5 +1,9 @@
 INSERT INTO users (username, mail, password, admin) VALUES
-('defaultAdmin', 'defaultAdmin@gmail.com', 'passwdAdmin', true);
+('defaultAdmin', 'defaultAdmin@gmail.com', 'passwdAdmin', true),
+('usuario1', 'usuario1@example.com', 'contraseña123', false),
+('usuario2', 'usuario2@example.com', 'contraseña456', false),
+('usuario3', 'usuario3@example.com', 'contraseña789', false);
+
 
 INSERT INTO autores (nombre) VALUES
 ('Lope de Vega'),
@@ -34,6 +38,14 @@ INSERT INTO capitulos (numero, nombre, audiolibro, audio) VALUES
 (2, 'Capítulo 2', 1, 'audio2.mp3'),
 (1, 'Capítulo 1', 2, 'audio3.mp3');
 
+INSERT INTO marcapaginas (titulo, capitulo, usuario, tipo, fecha) VALUES
+('Marcador Capítulo 1', 1, 1, '1', '12:00:00'),
+('Marcador Capítulo 2', 2, 1, '0', '12:00:00'),
+('Marcador Capítulo 3', 1, 2, '0', '13:30:00'),
+('Marcador Capítulo 4', 2, 2, '1', '12:00:00'),
+('Marcador Capítulo 5', 2, 3, '0', '12:00:00'),
+('Marcador Capítulo 6', 1, 5, '0', '13:30:00');
+
 /*
 INSERT INTO amigos (user1, user2) VALUES
 (1, 2),
@@ -55,10 +67,7 @@ INSERT INTO club_lectura (nombre, audiolibro, descripcion) VALUES
 ('Club de Lectura 1', 1, 'Club para discutir el audiolibro 1'),
 ('Club de Lectura 2', 2, 'Club para discutir varios audiolibros');
 
-INSERT INTO marcapaginas (titulo, capitulo, usuario, tipo, fecha) VALUES
-('Marcador Capítulo 1', 1, 1, '0', '12:00:00'),
-('Marcador Capítulo 2', 2, 1, '0', '12:00:00'),
-('Marcador Capítulo 1', 1, 2, '1', '13:30:00');
+
 
 INSERT INTO miembros_club (club, usuario) VALUES
 (1, 1),
