@@ -47,6 +47,12 @@ CREATE TABLE genero_audiolibro (
     genero INTEGER REFERENCES generos(id) ON DELETE CASCADE
 );
 
+CREATE TABLE audiolibros_usuarios (
+    audiolibro INTEGER REFERENCES audiolibros(id) ON DELETE CASCADE,
+    usuario INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    PRIMARY KEY(audiolibro, usuario)
+);
+
 CREATE TABLE capitulos (
     id SERIAL PRIMARY KEY,
     numero SMALLINT NOT NULL,
@@ -81,12 +87,12 @@ CREATE TABLE club_lectura (
    1 - momento de un libro que no es el último leído
    2 - momentos personalizados que guarda el usuario */
 CREATE TABLE marcapaginas (
-  id SERIAL PRIMARY KEY,
-  titulo VARCHAR(50) NOT NULL,
-  capitulo INTEGER REFERENCES capitulos(id) ON DELETE CASCADE,
-  usuario INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  tipo CHAR(1) NOT NULL CHECK (tipo IN ('0', '1', '2')),
-  fecha TIME NOT NULL
+    id SERIAL PRIMARY KEY,
+    titulo VARCHAR(50) NOT NULL,
+    capitulo INTEGER REFERENCES capitulos(id) ON DELETE CASCADE,
+    usuario INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    tipo CHAR(1) NOT NULL CHECK (tipo IN ('0', '1', '2')),
+    fecha TIME NOT NULL
 );
 
 CREATE TABLE miembros_club (
@@ -104,10 +110,10 @@ CREATE TABLE mensajes (
 );
 
 CREATE TABLE colecciones (
- id SERIAL PRIMARY KEY,
- titulo VARCHAR(30) NOT NULL,
- propietario INTEGER REFERENCES users(id) ON DELETE CASCADE,
- UNIQUE (titulo, propietario )
+    id SERIAL PRIMARY KEY,
+    titulo VARCHAR(30) NOT NULL,
+    propietario INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    UNIQUE (titulo, propietario )
 );
 
 CREATE TABLE colecciones_usuarios (
