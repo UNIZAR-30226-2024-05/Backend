@@ -1,4 +1,5 @@
 const marcapaginasModel = require("../models/marcapaginasModel");
+const userModel = require("../models/userModel");
 
 exports.getUltimoAudiolibro = async (req, res) => {
     const { username } = req.params;
@@ -23,9 +24,11 @@ exports.getUltimoAudiolibro = async (req, res) => {
 };
 
 exports.crearMarcapaginas = async (req, res) => {
-    const { userID, titulo, capitulo, tiempo } = req.body;
-
+    const { titulo, capitulo, tiempo } = req.body;
+    const { username } = req.session.user;
     try {
+        user = await userModel.getUserByUsername(username);
+        userID = user.id;
         const newMarcapaginas = await marcapaginasModel.CrearMarcapaginas(userID, titulo,capitulo, tiempo);
         res.status(200).json({
             message: "OK", newMarcapaginas
@@ -37,8 +40,12 @@ exports.crearMarcapaginas = async (req, res) => {
 };
 
 exports.BorrarMarcapaginas = async (req, res) => {
-    const { userID, marcapaginasID } = req.body;
+    const { marcapaginasID } = req.body;
+    const { username } = req.session.user;
+    
     try {
+        user = await userModel.getUserByUsername(username);
+        userID = user.id;
         const existingMarcapaginas = await marcapaginasModel.getMarcapaginasByID(marcapaginasID);
         const pertenece = await marcapaginasModel.getMarcapaginasByID_User(marcapaginasID,userID);
         if (!existingMarcapaginas) {
@@ -61,11 +68,14 @@ exports.BorrarMarcapaginas = async (req, res) => {
 };
 
 exports.ActualizarMarcapaginas = async (req, res) => {
-    const { userID, marcapaginasID, titulo, capitulo, tiempo } = req.body;
+    const { marcapaginasID, titulo, capitulo, tiempo } = req.body;
+    const { username } = req.session.user;
     tituloprob = titulo;
     capituloprob = capitulo;
     tiempoprob = tiempo;
     try {
+        user = await userModel.getUserByUsername(username);
+        userID = user.id;
         const existingMarcapaginas = await marcapaginasModel.getMarcapaginasByID(marcapaginasID);
         const pertenece = await marcapaginasModel.getMarcapaginasByID_User(marcapaginasID,userID);
         if (!existingMarcapaginas) {
