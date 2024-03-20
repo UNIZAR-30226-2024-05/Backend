@@ -9,7 +9,7 @@ exports.getUserAudiolibros = async (req, res) => {
         res.status(200).json({
             message: "OK", userAudiobooks
         });
-    } catch (error) {
+    } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
     }
@@ -24,7 +24,7 @@ exports.getUserFavoritos = async (req, res) => {
         res.status(200).json({
             message: "OK", userAudiobooks
         });
-    } catch (error) {
+    } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
     }
@@ -35,25 +35,27 @@ exports.getUserCollections = async (req, res) => {
     
     try {
         const collections = await BibliotecaModel.getUserCollections(username);
-        const filteredCollections = collections.filter(collection => collection.titulo !== 'Biblioteca' && collection.titulo !== 'Favoritos');
         res.status(200).json({
-            message: "OK", filteredCollections
+            message: "OK", collections
         });
-    } catch (error) {
+    } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
     }
 };
 
 exports.createUserCollection = async (req, res) => {
-    const { title, owner } = req.body;
+    const { owner } = req.session.user;
+    const { title } = req.body;
+    
+    console.log(owner);
 
     try {
         const newCollection = await BibliotecaModel.createUserCollection(title, owner);
         res.status(200).json({
             message: "OK", newCollection
         });
-    } catch (error) {
+    } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
     }
@@ -67,12 +69,12 @@ exports.deleteUserCollection = async (req, res) => {
         res.status(200).json({
             message: "OK", deletedCollection
         });
-    } catch (error) {
+    } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
     }
 }
-
+/*
 exports.addfriendCollection = async (req, res) => {
     const { title, owner } = req.body;
 
@@ -81,7 +83,7 @@ exports.addfriendCollection = async (req, res) => {
         res.status(200).json({
             message: "OK", newCollection
         });
-    } catch (error) {
+    } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
     }
@@ -95,8 +97,9 @@ exports.removeFriendCollection = async (req, res) => {
         res.status(200).json({
             message: "OK", deletedCollection
         });
-    } catch (error) {
+    } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
     }
 }
+*/

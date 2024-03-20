@@ -28,7 +28,12 @@ const BibliotecaModel = {
     async getUserCollections(username) {
         try {
             const audiolibros = await pool.query(
-                `SELECT colecciones.*
+                `SELECT *
+                FROM colecciones
+                WHERE propietario = (SELECT id FROM users WHERE username = $1)
+                AND titulo NOT IN ('Biblioteca', 'Favoritos')
+                UNION
+                SELECT colecciones.*
                 FROM colecciones
                 INNER JOIN colecciones_usuarios 
                 ON colecciones.id = colecciones_usuarios.coleccion
@@ -43,7 +48,7 @@ const BibliotecaModel = {
         }
     },
 
-    async createCollection(title, owner) {
+    async createUserCollection(title, owner) {
         try {
             const newCollection = await pool.query(
                 `INSERT INTO colecciones (titulo, propietario)
