@@ -3,11 +3,11 @@ const router = express.Router();
 const bibliotecaController = require("../controllers/bibliotecaController");
 const authMiddleware = require('../middlewares/authMiddleware');
 
-router.get('/audiolibros', authMiddleware.isAuthenticated, bibliotecaController.getAllAudiolibros);
-router.get('/favoritos', authMiddleware.isAuthenticated, bibliotecaController.getAllAudiolibros);
-router.get('/colecciones', authMiddleware.isAuthenticated, bibliotecaController.getAllCollections);
+router.get('/audiolibros', authMiddleware.isAuthenticated, bibliotecaController.getUserAudiolibros);
+router.get('/favoritos', authMiddleware.isAuthenticated, bibliotecaController.getUserFavoritos);
+router.get('/colecciones', authMiddleware.isAuthenticated, bibliotecaController.getUserCollections);
 
-router.post('/colecciones/create', authMiddleware.isAuthenticated, bibliotecaController.createCollection);
-router.post('/colecciones/delete', authMiddleware.isAuthenticated, bibliotecaController .deleteCollection);
+router.post('/colecciones/create', authMiddleware.isAuthenticated, bibliotecaController.createUserCollection);
+router.post('/colecciones/delete', authMiddleware.isAuthenticated, bibliotecaController.deleteUserCollection);
 
 module.exports = router;

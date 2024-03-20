@@ -1,6 +1,3 @@
-INSERT INTO users (username, mail, password, admin) VALUES
-('defaultAdmin', 'defaultAdmin@gmail.com', 'passwdAdmin', true);
-
 INSERT INTO autores (nombre) VALUES
 ('Lope de Vega'),
 ('Julio Verne'),

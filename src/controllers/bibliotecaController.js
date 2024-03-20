@@ -15,33 +15,88 @@ exports.getUserAudiolibros = async (req, res) => {
     }
 };
 
-exports.createCollection = async (req, res) => {
-    const { title, ownerId } = req.body;
-
-    if (!title || !ownerId) {
-        return res.status(400).json({ error: "Please provide title and owner id" });
-    }
-
+exports.getUserFavoritos = async (req, res) => {
+    const { username } = req.session.user;
+    const collectionTitle = 'Favoritos';
+    
     try {
-        const newCollection = await UserModel.createCollection(title, ownerId);
-        res.status(201).json(newCollection);
+        const userAudiobooks = await BibliotecaModel.getAudiolibrosColeccion(username, collectionTitle);
+        res.status(200).json({
+            message: "OK", userAudiobooks
+        });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Failed to create collection" });
+        console.error(err.message);
+        res.status(500).send("Server Error");
     }
 };
 
-exports.deleteCollection = async (req, res) => {
-    const collectionId = req.params.collectionId;
+exports.getUserCollections = async (req, res) => {
+    const { username } = req.session.user;
+    
+    try {
+        const collections = await BibliotecaModel.getUserCollections(username);
+        const filteredCollections = collections.filter(collection => collection.titulo !== 'Biblioteca' && collection.titulo !== 'Favoritos');
+        res.status(200).json({
+            message: "OK", filteredCollections
+        });
+    } catch (error) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+};
+
+exports.createUserCollection = async (req, res) => {
+    const { title, owner } = req.body;
 
     try {
-        const deletedCollection = await UserModel.deleteCollection(collectionId);
-        if (!deletedCollection) {
-            return res.status(404).json({ error: "Collection not found" });
-        }
-        res.status(200).json({ message: "Collection deleted successfully" });
+        const newCollection = await BibliotecaModel.createUserCollection(title, owner);
+        res.status(200).json({
+            message: "OK", newCollection
+        });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Failed to delete collection" });
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+};
+
+exports.deleteUserCollection = async (req, res) => {
+    const { title, owner } = req.body;
+
+    try {
+        const deletedCollection = await BibliotecaModel.deleteUserCollection(title, owner);
+        res.status(200).json({
+            message: "OK", deletedCollection
+        });
+    } catch (error) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+}
+
+exports.addfriendCollection = async (req, res) => {
+    const { title, owner } = req.body;
+
+    try {
+        const newCollection = await BibliotecaModel.createUserCollection(title, owner);
+        res.status(200).json({
+            message: "OK", newCollection
+        });
+    } catch (error) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+};
+
+exports.removeFriendCollection = async (req, res) => {
+    const { title, owner } = req.body;
+
+    try {
+        const deletedCollection = await BibliotecaModel.deleteUserCollection(title, owner);
+        res.status(200).json({
+            message: "OK", deletedCollection
+        });
+    } catch (error) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
     }
 }
