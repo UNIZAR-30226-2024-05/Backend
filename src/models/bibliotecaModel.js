@@ -1,5 +1,4 @@
 const pool = require('../db');
-const UserModel = require('./userModel')
 
 const BibliotecaModel = {
     async getAudiolibrosColeccion(username, coleccion) {
@@ -61,18 +60,56 @@ const BibliotecaModel = {
             throw error;
         }
     },
+
+    async getCollectionOwner(collectionId) {
+        try {
+            const collection = await pool.query(
+                `SELECT u.username
+                FROM colecciones c
+                JOIN users u ON c.propietario = u.id
+                WHERE c.id = $1`,
+                [collectionId]
+            );
+            return collection.rows[0];
+        } catch (error) {
+            throw error;
+        }
+    },
     
-    async deleteUserCollection(title, owner) {
+    async deleteUserCollection(collectionId) {
         try {
             const deletedCollection = await pool.query(
                 `DELETE FROM colecciones
-                WHERE titulo = $1
-                AND propietario = (
-                    SELECT id FROM users WHERE username = $2
-                )`,
-                [title, owner]
+                WHERE id = $1`,
+                [collectionId]
             );
             return deletedCollection.rows[0];
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    async removeFriendCollection(collectionId) {
+        try {
+            const deletedCollection = await pool.query(
+                `DELETE FROM colecciones_usuarios
+                WHERE coleccion = $1`,
+                [collectionId]
+            );
+            return deletedCollection.rows[0];
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    async addFriendCollection(collectionId, username) {
+        try {
+            const newCollection = await pool.query(
+                `INSERT INTO colecciones_usuarios
+                VALUES ($1, (SELECT id FROM users WHERE username = $2))`,
+                [collectionId, username]
+            );
+            return newCollection.rows[0];
         } catch (error) {
             throw error;
         }

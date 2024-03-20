@@ -44,16 +44,14 @@ exports.getUserCollections = async (req, res) => {
     }
 };
 
-exports.createUserCollection = async (req, res) => {
-    const { owner } = req.session.user;
-    const { title } = req.body;
+exports.getAudiolibrosCollection = async (req, res) => {
+    const { username } = req.session.user;
+    const { titulo } = req.params;
     
-    console.log(owner);
-
     try {
-        const newCollection = await BibliotecaModel.createUserCollection(title, owner);
+        const audiolibros = await BibliotecaModel.getAudiolibrosColeccion(username, titulo);
         res.status(200).json({
-            message: "OK", newCollection
+            message: "OK", audiolibros
         });
     } catch (err) {
         console.error(err.message);
@@ -61,25 +59,52 @@ exports.createUserCollection = async (req, res) => {
     }
 };
 
-exports.deleteUserCollection = async (req, res) => {
-    const { title, owner } = req.body;
+exports.createUserCollection = async (req, res) => {
+    const { username } = req.session.user;
+    const { title } = req.body;
 
     try {
-        const deletedCollection = await BibliotecaModel.deleteUserCollection(title, owner);
+        const newCollection = await BibliotecaModel.createUserCollection(title, username);
         res.status(200).json({
-            message: "OK", deletedCollection
+            message: "OK", newCollection
+        });
+    } catch (err) {
+        if (err.code === '23505') {
+            res.status(400).send("Título existente");
+        } else {
+            console.error(err.message);
+            res.status(500).send("Server Error");
+        }
+    }
+};
+
+exports.removeCollection = async (req, res) => {
+    const { username } = req.session.user;
+    const { collectionId } = req.body;
+
+    try {
+        const collectionOwner = await BibliotecaModel.getCollectionOwner(collectionId);
+        if (collectionOwner.username == username) {
+            await BibliotecaModel.deleteUserCollection(collectionId);
+        } else {
+            await BibliotecaModel.removeFriendCollection(collectionId);
+        }
+
+        res.status(200).json({
+            message: "OK"
         });
     } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
     }
 }
-/*
+
 exports.addfriendCollection = async (req, res) => {
-    const { title, owner } = req.body;
+    const { username } = req.session.user;
+    const { collectionId } = req.body;
 
     try {
-        const newCollection = await BibliotecaModel.createUserCollection(title, owner);
+        const newCollection = await BibliotecaModel.addFriendCollection(collectionId, username);
         res.status(200).json({
             message: "OK", newCollection
         });
@@ -88,18 +113,3 @@ exports.addfriendCollection = async (req, res) => {
         res.status(500).send("Server Error");
     }
 };
-
-exports.removeFriendCollection = async (req, res) => {
-    const { title, owner } = req.body;
-
-    try {
-        const deletedCollection = await BibliotecaModel.deleteUserCollection(title, owner);
-        res.status(200).json({
-            message: "OK", deletedCollection
-        });
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send("Server Error");
-    }
-}
-*/
