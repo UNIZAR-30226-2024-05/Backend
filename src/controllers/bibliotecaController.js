@@ -1,13 +1,17 @@
 const BibliotecaModel = require("../models/bibliotecaModel");
 
-exports.getAllAudiolibros = async (req, res) => {
+exports.getUserAudiolibros = async (req, res) => {
     const { username } = req.session.user;
+    const collectionTitle = 'Biblioteca';
+    
     try {
-        const userAudiobooks = await AudiobookModel.getUserAudiobooksByUsername(username);
-        res.status(200).json(userAudiobooks);
+        const userAudiobooks = await BibliotecaModel.getAudiolibrosColeccion(username, collectionTitle);
+        res.status(200).json({
+            message: "OK", userAudiobooks
+        });
     } catch (error) {
-        console.error('Error fetching user audiobooks:', error);
-        res.status(500).json({ error: 'Failed to fetch user audiobooks' });
+        console.error(err.message);
+        res.status(500).send("Server Error");
     }
 };
 

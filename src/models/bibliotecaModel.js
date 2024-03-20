@@ -1,21 +1,25 @@
 const pool = require('../db');
 
 const BibliotecaModel = {
-    async getAudiolibros(username) {
+    async getAudiolibrosColeccion(username, coleccion) {
         try {
             const audiolibros = await pool.query(
                 `SELECT audiolibros.*
-                 FROM audiolibros
-                 INNER JOIN audiolibros_usuarios 
-                 ON audiolibros.id = audiolibros_usuarios.audiolibro
-                 INNER JOIN users
-                 ON audiolibros_usuarios.usuario = users.id
-                 WHERE users.username = $1`,
-                [username]
+                FROM audiolibros
+                INNER JOIN colecciones_audiolibros 
+                ON audiolibros.id = colecciones_audiolibros.audiolibro
+                INNER JOIN colecciones
+                ON colecciones_audiolibros.coleccion = colecciones.id
+                INNER JOIN colecciones_usuarios
+                ON colecciones.id = colecciones_usuarios.coleccion
+                INNER JOIN users
+                ON colecciones_usuarios.usuario = users.id
+                WHERE users.username = $1
+                AND colecciones.titulo = $2`,
+                [username, coleccion]
             );
             return audiolibros.rows;
         } catch (error) {
-            console.error("Error al obtener los audiolibros", error);
             throw error;
         }
     },
