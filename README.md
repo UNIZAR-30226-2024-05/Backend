@@ -1,4 +1,25 @@
-# Contenedor Docker PostgreSQL
+# Servidor en la nube
+
+Haz solicitudes a http://20.199.84.234:8000
+
+## Conexión ssh
+
+1. ssh carol@20.199.84.234:
+    Con usuario y contraseña
+
+2. ssh -i <ruta_a_clave_privada> carol@20.199.84.234
+
+## Encender servidor si está caído
+
+1. Reiniciar:
+   ```bash
+   sudo systemctl restart startServer.service
+
+2. Comprobar funcionamiento:
+    ```bash
+   sudo systemctl status startServer.service
+
+# Servidor en local
 
 Este repositorio contiene un contenedor Docker configurado con PostgreSQL, listo para ser ejecutado con datos de muestra.
 

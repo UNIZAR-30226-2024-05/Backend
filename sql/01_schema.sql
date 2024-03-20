@@ -47,12 +47,6 @@ CREATE TABLE genero_audiolibro (
     genero INTEGER REFERENCES generos(id) ON DELETE CASCADE
 );
 
-CREATE TABLE audiolibros_usuarios (
-    audiolibro INTEGER REFERENCES audiolibros(id) ON DELETE CASCADE,
-    usuario INTEGER REFERENCES users(id) ON DELETE CASCADE,
-    PRIMARY KEY(audiolibro, usuario)
-);
-
 CREATE TABLE capitulos (
     id SERIAL PRIMARY KEY,
     numero SMALLINT NOT NULL,
