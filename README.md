@@ -6,7 +6,7 @@ Haz solicitudes a http://20.199.84.234:8000
 
 1. ssh carol@20.199.84.234:
     Con usuario y contraseña
-
+    
 2. ssh -i <ruta_a_clave_privada> carol@20.199.84.234
 
 ## Encender servidor si está caído
