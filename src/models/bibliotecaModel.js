@@ -105,11 +105,48 @@ const BibliotecaModel = {
     async addFriendCollection(collectionId, username) {
         try {
             const newCollection = await pool.query(
-                `INSERT INTO colecciones_usuarios
+                `INSERT INTO colecciones_usuarios (coleccion, usuario)
                 VALUES ($1, (SELECT id FROM users WHERE username = $2))`,
                 [collectionId, username]
             );
             return newCollection.rows[0];
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    async addAudiolibroColeccion(audiolibroId, coleccionId, username) {
+        try {
+            collectionOwner = this.getCollectionOwner(coleccionId);
+
+            if (collectionOwner == username) {
+                await pool.query(
+                    `INSERT INTO colecciones_audiolibros (coleccion, audiolibro)
+                    VALUES ($1, $2)`,
+                    [coleccionId, audiolibroId]
+                );
+                return 0;
+            } else {
+                return -1;
+            }
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    async removeAudiolibroColeccion(audiolibroId, coleccionId, username) {
+        try {
+            collectionOwner = this.getCollectionOwner(coleccionId);
+
+            if (collectionOwner == username) {
+                await pool.query(
+                    `DELETE FROM colecciones_audiolibros WHERE audiolibro = $1`,
+                    [audiolibroId]
+                );
+                return 0;
+            } else {
+                return -1;
+            }
         } catch (error) {
             throw error;
         }

@@ -97,7 +97,7 @@ exports.removeCollection = async (req, res) => {
         console.error(err.message);
         res.status(500).send("Server Error");
     }
-}
+};
 
 exports.addfriendCollection = async (req, res) => {
     const { username } = req.session.user;
@@ -108,6 +108,44 @@ exports.addfriendCollection = async (req, res) => {
         res.status(200).json({
             message: "OK", newCollection
         });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+};
+
+exports.addAudiolibroColeccion = async (req, res) => {
+    const { username } = req.session.user;
+    const { audiolibroId, coleccionId } = req.body;
+
+    try {
+        const ok = await BibliotecaModel.addAudiolibroColeccion(audiolibroId, coleccionId, username);
+        if (ok) {
+            res.status(200).json({
+                message: "OK"
+            });
+        } else {
+            res.status(400).send("No propietario");
+        }
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+};
+
+exports.removeAudiolibroColeccion = async (req, res) => {
+    const { username } = req.session.user;
+    const { audiolibroId, coleccionId } = req.body;
+
+    try {
+        const ok = await BibliotecaModel.removeAudiolibroColeccion(audiolibroId, coleccionId, username);
+        if (ok) {
+            res.status(200).json({
+                message: "OK"
+            });
+        } else {
+            res.status(400).send("No propietario");
+        }
     } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
