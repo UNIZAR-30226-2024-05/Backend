@@ -16,11 +16,13 @@ app.use(sessions({
 
 const userRoutes = require("./routes/userRoutes");
 const audiolibrosRoutes = require("./routes/audiolibrosRoutes");
+const reviewRoutes = require("./routes/reviewRoutes");
 
 const PORT = process.env.PORT || 8000;
 
 app.use("/users", userRoutes);
 app.use("/audiolibros", audiolibrosRoutes);
+app.use("/review", reviewRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
