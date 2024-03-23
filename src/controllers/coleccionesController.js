@@ -1,40 +1,10 @@
-const BibliotecaModel = require("../models/bibliotecaModel");
-
-exports.getUserAudiolibros = async (req, res) => {
-    const { username } = req.session.user;
-    const collectionTitle = 'Biblioteca';
-    
-    try {
-        const userAudiobooks = await BibliotecaModel.getAudiolibrosColeccion(username, collectionTitle);
-        res.status(200).json({
-            message: "OK", userAudiobooks
-        });
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send("Server Error");
-    }
-};
-
-exports.getUserFavoritos = async (req, res) => {
-    const { username } = req.session.user;
-    const collectionTitle = 'Favoritos';
-    
-    try {
-        const userAudiobooks = await BibliotecaModel.getAudiolibrosColeccion(username, collectionTitle);
-        res.status(200).json({
-            message: "OK", userAudiobooks
-        });
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send("Server Error");
-    }
-};
+const ColeccionesModel = require("../models/coleccionesModel");
 
 exports.getUserCollections = async (req, res) => {
     const { username } = req.session.user;
     
     try {
-        const collections = await BibliotecaModel.getUserCollections(username);
+        const collections = await ColeccionesModel.getUserCollections(username);
         res.status(200).json({
             message: "OK", collections
         });
@@ -49,7 +19,7 @@ exports.getAudiolibrosCollection = async (req, res) => {
     const { titulo } = req.params;
     
     try {
-        const audiolibros = await BibliotecaModel.getAudiolibrosColeccion(username, titulo);
+        const audiolibros = await ColeccionesModel.getAudiolibrosColeccion(username, titulo);
         res.status(200).json({
             message: "OK", audiolibros
         });
@@ -64,7 +34,7 @@ exports.createUserCollection = async (req, res) => {
     const { title } = req.body;
 
     try {
-        const newCollection = await BibliotecaModel.createUserCollection(title, username);
+        const newCollection = await ColeccionesModel.createUserCollection(title, username);
         res.status(200).json({
             message: "OK", newCollection
         });
@@ -83,11 +53,11 @@ exports.removeCollection = async (req, res) => {
     const { collectionId } = req.body;
 
     try {
-        const collectionOwner = await BibliotecaModel.getCollectionOwner(collectionId);
+        const collectionOwner = await ColeccionesModel.getCollectionOwner(collectionId);
         if (collectionOwner.username == username) {
-            await BibliotecaModel.deleteUserCollection(collectionId);
+            await ColeccionesModel.deleteUserCollection(collectionId);
         } else {
-            await BibliotecaModel.removeFriendCollection(collectionId);
+            await ColeccionesModel.removeFriendCollection(collectionId);
         }
 
         res.status(200).json({
@@ -104,7 +74,7 @@ exports.addfriendCollection = async (req, res) => {
     const { collectionId } = req.body;
 
     try {
-        const newCollection = await BibliotecaModel.addFriendCollection(collectionId, username);
+        const newCollection = await ColeccionesModel.addFriendCollection(collectionId, username);
         res.status(200).json({
             message: "OK", newCollection
         });
@@ -119,7 +89,7 @@ exports.addAudiolibroColeccion = async (req, res) => {
     const { audiolibroId, coleccionId } = req.body;
 
     try {
-        const ok = await BibliotecaModel.addAudiolibroColeccion(audiolibroId, coleccionId, username);
+        const ok = await ColeccionesModel.addAudiolibroColeccion(audiolibroId, coleccionId, username);
         if (ok) {
             res.status(200).json({
                 message: "OK"
@@ -138,7 +108,7 @@ exports.removeAudiolibroColeccion = async (req, res) => {
     const { audiolibroId, coleccionId } = req.body;
 
     try {
-        const ok = await BibliotecaModel.removeAudiolibroColeccion(audiolibroId, coleccionId, username);
+        const ok = await ColeccionesModel.removeAudiolibroColeccion(audiolibroId, coleccionId, username);
         if (ok) {
             res.status(200).json({
                 message: "OK"

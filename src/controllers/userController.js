@@ -18,7 +18,6 @@ exports.register = async (req, res) => {
         }
 
         const newUser = await UserModel.createUser(username, mail, password);
-        await BibliotecaModel.createUserCollection('Biblioteca', username);
         await BibliotecaModel.createUserCollection('Favoritos', username);
         res.status(200).json({
             message: "OK", newUser

@@ -3,7 +3,6 @@ const cors = require('cors');
 const sessions = require('client-sessions');
 const app = express();
 
-//Middleware
 app.use(cors({
   origin: true,
   credentials: true
@@ -16,14 +15,13 @@ app.use(sessions({
 
 const userRoutes = require("./routes/userRoutes");
 const audiolibrosRoutes = require("./routes/audiolibrosRoutes");
-const bibliotecaRoutes = require("./routes/bibliotecaRoutes");
-
-const PORT = process.env.PORT || 8000;
+const coleccionesRoutes = require("./routes/coleccionesRoutes");
 
 app.use("/users", userRoutes);
 app.use("/audiolibros", audiolibrosRoutes);
-app.use("/biblioteca", bibliotecaRoutes);
+app.use("/colecciones", coleccionesRoutes);
 
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
+  console.log(`Server started on port ${PORT}`);  
 });

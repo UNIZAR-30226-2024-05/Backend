@@ -1,6 +1,28 @@
 const pool = require('../db');
 
 const BibliotecaModel = {
+    async getUserCollections(username) {
+        try {
+            const audiolibros = await pool.query(
+                `SELECT *
+                FROM colecciones
+                WHERE propietario = (SELECT id FROM users WHERE username = $1)
+                UNION
+                SELECT colecciones.*
+                FROM colecciones
+                INNER JOIN colecciones_usuarios 
+                ON colecciones.id = colecciones_usuarios.coleccion
+                INNER JOIN users
+                ON colecciones_usuarios.usuario = users.id
+                WHERE users.username = $1`,
+                [username]
+            );
+            return audiolibros.rows;
+        } catch (error) {
+            throw error;
+        }
+    },
+
     async getAudiolibrosColeccion(username, coleccion) {
         try {
             const audiolibros = await pool.query(
@@ -17,29 +39,6 @@ const BibliotecaModel = {
                 WHERE users.username = $1
                 AND colecciones.titulo = $2`,
                 [username, coleccion]
-            );
-            return audiolibros.rows;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    async getUserCollections(username) {
-        try {
-            const audiolibros = await pool.query(
-                `SELECT *
-                FROM colecciones
-                WHERE propietario = (SELECT id FROM users WHERE username = $1)
-                AND titulo NOT IN ('Biblioteca', 'Favoritos')
-                UNION
-                SELECT colecciones.*
-                FROM colecciones
-                INNER JOIN colecciones_usuarios 
-                ON colecciones.id = colecciones_usuarios.coleccion
-                INNER JOIN users
-                ON colecciones_usuarios.usuario = users.id
-                WHERE users.username = $1`,
-                [username]
             );
             return audiolibros.rows;
         } catch (error) {
