@@ -106,3 +106,35 @@ exports.ActualizarMarcapaginas = async (req, res) => {
         res.status(500).send("Server Error");
     }
 };
+
+exports.ActualizarUltimoAudiolibro = async (req, res) => {
+    const { titulo, capitulo, tiempo } = req.body;
+    const { username } = req.session.user;
+    try {
+        user = await userModel.getUserByUsername(username);
+        userID = user.id;
+        // 4 casos. No existia previo ultimo||Datos actualizados del ultimo audiolibro || Datos actualizados de un libro previamente empezado(tipo 1) || Datos nuevo audiolibro
+        ultimo = await marcapaginasModel.getUltimoAudiolibro(username);
+        if(!ultimo){ //Caso no existia ningun marcapaginas tipo 0
+             await marcapaginasModel.CrearUltimoAudiolibro(userID, titulo,capitulo, tiempo);
+        }else{ 
+              const comparar = await marcapaginasModel.AudiolibroDelCapitulo(capitulo); 
+             if(ultimo.audiolibro == comparar.audiolibro){ // Caso son datos del mismo audiolibro asi que solo hay que actualizarlos
+                await marcapaginasModel.ActualizarMarcapaginas(ultimo.id, titulo, tiempo,capitulo);
+             }else{  //caso no era del mismo audiolibro(comprueba si hay que borrar algun 1)
+            await marcapaginasModel.CambiarUltimoMarcapaginas(ultimo.id);
+            PreviamenteEmpezado = marcapaginasModel.ExistiaAudiolibroEmpezadoByAudiolibro(comparar.audiolibro, userID); 
+                  if(PreviamenteEmpezado){ //Existia previamente como ya empezado
+                  await marcapaginasModel.BorrarMarcapaginas(PreviamenteEmpezado.id);
+                  }
+                   await marcapaginasModel.CrearUltimoAudiolibro(userID, titulo,capitulo, tiempo);
+            }
+    }
+        res.status(200).json({
+            message: "OK"
+        });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+};

@@ -7,5 +7,6 @@ router.get('/last/:username', marcapaginasController.getUltimoAudiolibro);
 router.post('/create',authMiddleware.isAuthenticated, marcapaginasController.crearMarcapaginas);
 router.post('/delete',authMiddleware.isAuthenticated, marcapaginasController.BorrarMarcapaginas);
 router.post('/update',authMiddleware.isAuthenticated, marcapaginasController.ActualizarMarcapaginas);
+router.post('/listening',authMiddleware.isAuthenticated, marcapaginasController.ActualizarUltimoAudiolibro);
 
 module.exports = router;
