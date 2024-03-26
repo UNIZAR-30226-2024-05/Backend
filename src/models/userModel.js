@@ -10,6 +10,11 @@ const UserModel = {
         );
     },
 
+    async getUserById(user_id) {
+        const user = await pool.query("SELECT * FROM users WHERE id = $1", [user_id]);
+        return user.rows[0];
+    },
+
     async getUserByUsername(username) {
         const user = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
         return user.rows[0];
