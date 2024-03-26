@@ -101,7 +101,6 @@ exports.profile = async (req, res) => {
 
     try {
         const user = await UserModel.getUserById(user_id);
-        console.log(user)
         return res.status(200).json({
             username: user.username,
             mail: user.mail
