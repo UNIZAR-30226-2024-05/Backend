@@ -4,11 +4,10 @@ const bcrypt = require("bcrypt");
 const UserModel = {
     async createUser(username, mail, password) {
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = await pool.query(
+        await pool.query(
             "INSERT INTO users (username, mail, password, admin) VALUES ($1, $2, $3, false)",
             [username, mail, hashedPassword]
         );
-        return newUser.rows[0];
     },
 
     async getUserByUsername(username) {
@@ -21,9 +20,9 @@ const UserModel = {
         return user.rows[0];
     },
 
-    async changePass(username, newPassword) {
+    async changePass(user_id, newPassword) {
         const hashedPassword = await bcrypt.hash(newPassword, 10);
-        const updatedUser = await pool.query("UPDATE users SET password = $1 WHERE username = $2", [hashedPassword, username]);
+        const updatedUser = await pool.query("UPDATE users SET password = $1 WHERE id = $2", [hashedPassword, user_id]);
         return updatedUser.rowCount;
     }
 };
