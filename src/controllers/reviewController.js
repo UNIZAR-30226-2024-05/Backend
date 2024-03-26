@@ -1,13 +1,19 @@
 const ReviewModel = require("../models/reviewModel");
 
 exports.postReview = async (req, res) => {
-    const { username } = req.session.user;
-    const user_id = 7;
+    const { user_id } = req.session.user;
     const { id_audiolibro, comentario, puntuacion, visibilidad } = req.body;
 
     try {
-        const review = await ReviewModel.createReview(id_audiolibro, user_id, comentario, puntuacion, visibilidad);
-        res.status(200).json(review);
+        const existingReview = await ReviewModel.alreadyExistingReview(id_audiolibro, user_id);
+        if (existingReview) {
+            return res.status(409).json({ 
+                error: "Already existing review for audiolibro"
+            });
+        } else {
+            const review = await ReviewModel.createReview(id_audiolibro, user_id, comentario, puntuacion, visibilidad);
+            res.status(200).json(review);
+        }
     } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
@@ -15,8 +21,7 @@ exports.postReview = async (req, res) => {
 };
 
 exports.editReview = async (req, res) => {
-    const { username } = req.session.user;
-    const user_id = 7;
+    const { user_id } = req.session.user;
     const { id_review, comentario, puntuacion, visibilidad } = req.body;
 
     try {
@@ -50,8 +55,7 @@ exports.editReview = async (req, res) => {
 };
 
 exports.deleteReview = async (req, res) => {
-    const { username } = req.session.user;
-    const user_id = 7;
+    const { user_id } = req.session.user;
     const { id_review } = req.body;
     try {
         const exists = await ReviewModel.getReviewById(id_review, user_id)
