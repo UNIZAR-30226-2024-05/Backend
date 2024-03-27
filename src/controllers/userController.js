@@ -47,9 +47,9 @@ exports.login = async (req, res) => {
             });
         } else {
             if (user.admin) {
-                req.session.user = { username, role: 'admin' };
+                req.session.user = { user_id: user.id, username, role: 'admin' };
             } else {
-                req.session.user = { username, role: 'normal' };
+                req.session.user = { user_id: user.id, username, role: 'normal' };
             }
         }
 

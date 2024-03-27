@@ -20,6 +20,6 @@ exports.getAudiolibrosByGenero = async (req, res) => {
         res.status(200).json(audiolibros);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Server Error" });
+        res.status(500).send("Server Error");
     }
 };

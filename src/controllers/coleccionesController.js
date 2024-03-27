@@ -1,10 +1,10 @@
 const ColeccionesModel = require("../models/coleccionesModel");
 
 exports.getUserCollections = async (req, res) => {
-    const { username } = req.session.user;
+    const { user_id } = req.session.user;
     
     try {
-        const collections = await ColeccionesModel.getUserCollections(username);
+        const collections = await ColeccionesModel.getUserCollections(user_id);
         res.status(200).json({
             message: "OK", collections
         });
@@ -29,13 +29,13 @@ exports.getAudiolibrosCollection = async (req, res) => {
 };
 
 exports.createUserCollection = async (req, res) => {
-    const { username } = req.session.user;
+    const { user_id } = req.session.user;
     const { title } = req.body;
 
     try {
-        const newCollection = await ColeccionesModel.createUserCollection(title, username);
+        await ColeccionesModel.createUserCollection(title, user_id);
         res.status(200).json({
-            message: "OK", newCollection
+            message: "OK"
         });
     } catch (err) {
         if (err.code === '23505') {
@@ -48,15 +48,15 @@ exports.createUserCollection = async (req, res) => {
 };
 
 exports.removeCollection = async (req, res) => {
-    const { username } = req.session.user;
+    const { user_id } = req.session.user;
     const { collectionId } = req.body;
 
     try {
         const collectionOwner = await ColeccionesModel.getCollectionOwner(collectionId);
-        if (collectionOwner.username == username) {
+        if (collectionOwner.id == user_id) {
             await ColeccionesModel.deleteUserCollection(collectionId);
         } else {
-            await ColeccionesModel.removeFriendCollection(collectionId);
+            await ColeccionesModel.removeFriendCollection(collectionId, user_id);
         }
 
         res.status(200).json({
@@ -69,13 +69,13 @@ exports.removeCollection = async (req, res) => {
 };
 
 exports.addfriendCollection = async (req, res) => {
-    const { username } = req.session.user;
+    const { user_id } = req.session.user;
     const { collectionId } = req.body;
 
     try {
-        const newCollection = await ColeccionesModel.addFriendCollection(collectionId, username);
+        await ColeccionesModel.addFriendCollection(collectionId, user_id);
         res.status(200).json({
-            message: "OK", newCollection
+            message: "OK"
         });
     } catch (err) {
         console.error(err.message);
@@ -84,11 +84,11 @@ exports.addfriendCollection = async (req, res) => {
 };
 
 exports.addAudiolibroColeccion = async (req, res) => {
-    const { username } = req.session.user;
+    const { user_id } = req.session.user;
     const { audiolibroId, coleccionId } = req.body;
 
     try {
-        const ok = await ColeccionesModel.addAudiolibroColeccion(audiolibroId, coleccionId, username);
+        const ok = await ColeccionesModel.addAudiolibroColeccion(audiolibroId, coleccionId, user_id);
         if (ok) {
             res.status(200).json({
                 message: "OK"
@@ -103,11 +103,11 @@ exports.addAudiolibroColeccion = async (req, res) => {
 };
 
 exports.removeAudiolibroColeccion = async (req, res) => {
-    const { username } = req.session.user;
+    const { user_id } = req.session.user;
     const { audiolibroId, coleccionId } = req.body;
 
     try {
-        const ok = await ColeccionesModel.removeAudiolibroColeccion(audiolibroId, coleccionId, username);
+        const ok = await ColeccionesModel.removeAudiolibroColeccion(audiolibroId, coleccionId, user_id);
         if (ok) {
             res.status(200).json({
                 message: "OK"
