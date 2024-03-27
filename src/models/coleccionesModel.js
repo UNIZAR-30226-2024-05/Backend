@@ -23,22 +23,14 @@ const BibliotecaModel = {
         }
     },
 
-    async getAudiolibrosColeccion(username, coleccion) {
+    async getAudiolibrosColeccion(coleccionId) {
         try {
             const audiolibros = await pool.query(
                 `SELECT audiolibros.*
                 FROM audiolibros
-                INNER JOIN colecciones_audiolibros 
-                ON audiolibros.id = colecciones_audiolibros.audiolibro
-                INNER JOIN colecciones
-                ON colecciones_audiolibros.coleccion = colecciones.id
-                INNER JOIN colecciones_usuarios
-                ON colecciones.id = colecciones_usuarios.coleccion
-                INNER JOIN users
-                ON colecciones_usuarios.usuario = users.id
-                WHERE users.username = $1
-                AND colecciones.titulo = $2`,
-                [username, coleccion]
+                INNER JOIN colecciones_audiolibros ON audiolibros.id = colecciones_audiolibros.audiolibro
+                WHERE colecciones_audiolibros.coleccion = $1`,
+                [coleccionId]
             );
             return audiolibros.rows;
         } catch (error) {
@@ -116,17 +108,16 @@ const BibliotecaModel = {
 
     async addAudiolibroColeccion(audiolibroId, coleccionId, username) {
         try {
-            collectionOwner = this.getCollectionOwner(coleccionId);
-
-            if (collectionOwner == username) {
+            collectionOwner = await this.getCollectionOwner(coleccionId);
+            if (collectionOwner.username == username) {
                 await pool.query(
                     `INSERT INTO colecciones_audiolibros (coleccion, audiolibro)
                     VALUES ($1, $2)`,
                     [coleccionId, audiolibroId]
                 );
-                return 0;
+                return 1;
             } else {
-                return -1;
+                return 0;
             }
         } catch (error) {
             throw error;

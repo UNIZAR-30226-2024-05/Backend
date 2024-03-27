@@ -15,11 +15,10 @@ exports.getUserCollections = async (req, res) => {
 };
 
 exports.getAudiolibrosCollection = async (req, res) => {
-    const { username } = req.session.user;
-    const { titulo } = req.params;
+    const { coleccionId } = req.params;
     
     try {
-        const audiolibros = await ColeccionesModel.getAudiolibrosColeccion(username, titulo);
+        const audiolibros = await ColeccionesModel.getAudiolibrosColeccion(coleccionId);
         res.status(200).json({
             message: "OK", audiolibros
         });

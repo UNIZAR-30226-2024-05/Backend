@@ -4,12 +4,12 @@ const coleccionesController = require("../controllers/coleccionesController");
 const authMiddleware = require('../middlewares/authMiddleware');
 
 router.get('/', authMiddleware.isAuthenticated, coleccionesController.getUserCollections);
-router.get('/:titulo', authMiddleware.isAuthenticated, coleccionesController.getAudiolibrosCollection);
+router.get('/:coleccionId', authMiddleware.isAuthenticated, coleccionesController.getAudiolibrosCollection);
 
 router.post('/create', authMiddleware.isAuthenticated, coleccionesController.createUserCollection);
 router.post('/remove', authMiddleware.isAuthenticated, coleccionesController.removeCollection);
 router.post('/friend', authMiddleware.isAuthenticated, coleccionesController.addfriendCollection);
-router.post('/audiolibros/añadir', authMiddleware.isAuthenticated, coleccionesController.addAudiolibroColeccion);
-router.post('/audiolibros/eliminar', authMiddleware.isAuthenticated, coleccionesController.removeAudiolibroColeccion);
+router.post('/anadirAudiolibro', authMiddleware.isAuthenticated, coleccionesController.addAudiolibroColeccion);
+router.post('/eliminarAudiolibro', authMiddleware.isAuthenticated, coleccionesController.removeAudiolibroColeccion);
 
 module.exports = router;
