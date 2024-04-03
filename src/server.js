@@ -1,3 +1,4 @@
+const https = require('https');
 const express = require("express");
 const cors = require('cors');
 const sessions = require('client-sessions');
@@ -26,6 +27,6 @@ const PORT = process.env.PORT || 8000;
 app.use("/users", userRoutes);
 app.use("/audiolibros", audiolibrosRoutes);
 
-app.listen(PORT, () => {
+https.createServer(app).listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
