@@ -11,7 +11,11 @@ app.use(cors({
 app.use(express.json());
 app.use(sessions({
   cookieName: 'session',
-  secret: 'secret'
+  secret: 'secret',
+  cookie: {
+    sameSite: 'none',
+    secure: true
+  }
 }));
 
 const userRoutes = require("./routes/userRoutes");
