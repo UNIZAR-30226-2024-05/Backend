@@ -4,6 +4,12 @@ exports.sendPeticion = async (req, res) => {
     const { other_id } = req.body;
     const { user_id } = req.session.user;
 
+    if (user_id == other_id) {
+        return res.status(409).json({ 
+            error: "Can't send itself"
+        });
+    }
+
     try {
         const hayAmistad = await AmistadModel.hayAmistad(user_id, other_id);
         if (hayAmistad) {
@@ -157,6 +163,44 @@ exports.removeAmistad = async (req, res) => {
         await AmistadModel.removeAmistad(user_id, other_id);
         res.status(200).json({ 
             message: "Friendship removed"
+        });
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+};
+
+exports.getPeticiones = async (req, res) => {
+    const { user_id } = req.session.user;
+
+    try {
+        const enviadas = await AmistadModel.getPeticionesEnviadas(user_id);
+        const recibidas = await AmistadModel.getPeticionesRecibidas(user_id);
+        const aceptadas = await AmistadModel.getPeticionesAceptadas(user_id);
+        const rechazadas = await AmistadModel.getPeticionesRechazadas(user_id);
+
+        res.status(200).json({ 
+            enviadas: enviadas,
+            recibidas: recibidas,
+            aceptadas: aceptadas,
+            rechazadas: rechazadas
+        });
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+};
+
+exports.getAmigos = async (req, res) => {
+    const { user_id } = req.session.user;
+
+    try {
+        const amigos = await AmistadModel.getAmigos(user_id);
+
+        res.status(200).json({ 
+            amigos: amigos
         });
 
     } catch (err) {
