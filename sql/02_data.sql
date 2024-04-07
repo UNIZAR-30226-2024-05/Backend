@@ -2,7 +2,8 @@ INSERT INTO autores (nombre) VALUES
 ('J. K. Rowling'),
 ('Homero'),
 ('Jane Austen'),
-('Stephen King');
+('Stephen King'),
+('Agatha Christie');
 
 INSERT INTO generos (nombre) VALUES
 ('Romance'),
@@ -11,7 +12,7 @@ INSERT INTO generos (nombre) VALUES
 ('Ciencia ficción'),
 ('Terror'),
 ('Comedia'),
-('Suspense'),
+('Misterio'),
 ('Arte y literatura');
 
 INSERT INTO audiolibros (titulo, autor, descripcion, img) VALUES
@@ -30,7 +31,22 @@ Harry Potter nunca ha oído hablar de Hogwarts hasta que empiezan a caer cartas 
 'https://narrativesarchivos.blob.core.windows.net/imagenes/Popsy.jpg'),
 ('Un Trago De Despedida', 4, 'Cierta noche de invierno, en un bar, varios parroquianos mantienen sus charlas habituales. Cuando están a punto de cerrar, un hombre muy alarmado entra pidiendo ayuda: su coche ha quedado atrapado por la nieve en la carretera que conduce a Jerusalem’s Lot (o Salem’s lot), un pueblo «aparentemente» abandonado.
 Lo que sobrecoge a esos parroquianos es que la mujer y la hija del conductor han quedado en el interior del vehículo. Inmediatamente se ponen en marcha, aunque quizá cuando lleguen sea tarde.', 
-'https://narrativesarchivos.blob.core.windows.net/imagenes/ElUmbralDeLaNoche.jpg');
+'https://narrativesarchivos.blob.core.windows.net/imagenes/ElUmbralDeLaNoche.jpg'),
+('Asesinato en el campo de golf', 5, 'Hércules Poirot recibe una carta de Paul Renauld, quien le dice que teme por su vida y le urge a que acuda en su ayuda. Así, junto con su amigo el capitán Hastings, el detective se dirige rápido al norte de Francia para prestar sus servicios al nuevo cliente. Sin embargo, llegan demasiado tarde: el cuerpo de Renauld yace apuñalado en medio de un campo de golf.
+Mientras Poirot investiga la escena del crimen y a los posibles sospechosos, descubre otro cuerpo asesinado de la misma manera que el primero, y con la misma arma. ¿Qué tienen en común estos hombres? ¿Quién los ha matado? ¿Y por qué Poirot no deja de pensar en un crimen cometido años atrás?', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/AsesinatoEnElCampoDeGolf.jpg'),
+('Muerte en el Nilo', 5, 'Un célebre caso que pone a prueba la extrema lucidez de Hércules Poirot.
+Durante unas placenteras vacaciones en Egipto, el detective Hércules Poirot coincide con Linnet y Simon, unos conocidos suyos que están de luna de miel en el país de los faraones.
+El encanto de tan maravillosos días se rompe cuando una mañana, en el transcurso de un crucero por el Nilo, la bella Linnet aparece muerta de un disparo en la cabeza.
+¿Será capaz Poirot de encontrar al asesino de la joven esposa? ¿Será capaz de discernir entre imaginación y realidad, aun estando a bordo la ex pareja de Simon, empeñada desde el mismo día de la boda en arruinar su matrimonio con la desafortunada Linnet?
+El misterio está servido.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/MuerteEnElNilo.jpg'),
+('El misterio del tren azul', 5, 'El Tren Azul con destino a Niza transporta una valiosa carga: el mayor rubí del mundo, el "Corazón de Fuego", un regalo de un magnate americano del petróleo para su querida hija, Ruth Kettering. Pero al llegar a la Costa Azul, se descubre que la propietaria de la joya ha sido brutalmente asesinada y que el rubí ha desaparecido. El millonario Rufus Van Aldin, muy afectado por la muerte de su heredera, contrata al detective Hercule Poirot para que resuelva el estremecedor suceso. El caso irá adquiriendo una creciente complejidad a medida que Poirot descubra el turbulento pasado de la víctima: su recientemente frustrado matrimonio, la tensa relación que mantenía con su padre y la existencia de un ex pretendiente con quien debía encontrarse en Niza. Es un caso aparentemente imposible de resolver, donde todos son sospechosos y ningún indicio conduce al culpable. Una historia de intriga apasionante donde nada es lo que parece que mantendrá al lector sin aliento hasta la última página. "Hercule Poirot no es un toxicómano atormentado, como Sherlock Holmes, o un glotón desencantado, como Pepe Carvalho, o un alcohólico cínico, como Philip Marlowe. Es un sibarita que vive como un pachá e idolatra el clasismo británico." Del Prólogo de Enric González', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/ElMisterioDelTrenAzul.jpg'),
+('La señorita de compañía', 5, 'El Tren Azul con destino a Niza transporta una valiosa carga: el mayor rubí del mundo, el "Corazón de Fuego", un regalo de un magnate americano del petróleo para su querida hija, Ruth Kettering. Pero al llegar a la Costa Azul, se descubre que la propietaria de la joya ha sido brutalmente asesinada y que el rubí ha desaparecido. El millonario Rufus Van Aldin, muy afectado por la muerte de su heredera, contrata al detective Hercule Poirot para que resuelva el estremecedor suceso. El caso irá adquiriendo una creciente complejidad a medida que Poirot descubra el turbulento pasado de la víctima: su recientemente frustrado matrimonio, la tensa relación que mantenía con su padre y la existencia de un ex pretendiente con quien debía encontrarse en Niza. Es un caso aparentemente imposible de resolver, donde todos son sospechosos y ningún indicio conduce al culpable. Una historia de intriga apasionante donde nada es lo que parece que mantendrá al lector sin aliento hasta la última página. "Hercule Poirot no es un toxicómano atormentado, como Sherlock Holmes, o un glotón desencantado, como Pepe Carvalho, o un alcohólico cínico, como Philip Marlowe. Es un sibarita que vive como un pachá e idolatra el clasismo británico." Del Prólogo de Enric González', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/LaSeñoritaDeCompañia.jpg');
+('Un dios solitario y otros relatos', 5, 'Como muchos de sus contemporáneos, Agatha Christie escribió relatos para diversas revistas en los años veinte y treinta, y casi todos ellos acabaron incluidos más tarde en libros recopilatorios. Este libro, casi una pieza de coleccionista, muestra a la maestra del crimen en su etapa de formación, y sus lectores podrán comprobar una vez más su gran dominio de la caracterización y su habilidad para los desenlaces imprevistos', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/UnDiosSolitarioYOtrosRelatos.jpg');
 
 INSERT INTO genero_audiolibro (audiolibro, genero) VALUES
 (3, 1),
@@ -39,6 +55,11 @@ INSERT INTO genero_audiolibro (audiolibro, genero) VALUES
 (5, 5),
 (6, 5),
 (7, 5),
+(8, 7),
+(9, 7),
+(10, 7),
+(11, 7),
+(12, 7),
 (2, 8);
 
 INSERT INTO capitulos (numero, nombre, audiolibro, audio) VALUES
@@ -147,4 +168,9 @@ INSERT INTO capitulos (numero, nombre, audiolibro, audio) VALUES
 (1, 'El Coco', 4, 'https://narrativesarchivos.blob.core.windows.net/audios/ElCoco.mp3'),
 (1, 'El Hombre Del Traje Negro', 5, 'https://narrativesarchivos.blob.core.windows.net/audios/ElHombreDelTrajeNegro.mp3'),
 (1, 'Popsy', 6, 'https://narrativesarchivos.blob.core.windows.net/audios/Popsy.mp3'),
-(1, 'Un Trago De Despedida', 7, 'https://narrativesarchivos.blob.core.windows.net/audios/UnTragoDeDespedida.mp3');
+(1, 'Un Trago De Despedida', 7, 'https://narrativesarchivos.blob.core.windows.net/audios/UnTragoDeDespedida.mp3'),
+(1, 'Asesinato en el campo de golf', 8, 'https://narrativesarchivos.blob.core.windows.net/audios/AsesinatoEnElCampoDeGolf.mp3'),
+(1, 'Muerte en el Nilo', 9, 'https://narrativesarchivos.blob.core.windows.net/audios/MuerteEnElNilo.mp3'),
+(1, 'El misterio del tren azul', 10, 'https://narrativesarchivos.blob.core.windows.net/audios/ElMisterioDelTrenAzul.mp3'),
+(1, 'La señorita de compañía', 11, 'https://narrativesarchivos.blob.core.windows.net/audios/LaSeñoritaDeCompañia.mp3'),
+(1, 'Un dios solitario y otros relatos', 12, 'https://narrativesarchivos.blob.core.windows.net/audios/UnDiosSolitarioYOtrosRelatos.mp3');
