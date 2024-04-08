@@ -3,7 +3,8 @@ INSERT INTO autores (nombre) VALUES
 ('Homero'),
 ('Jane Austen'),
 ('Stephen King'),
-('Agatha Christie');
+('Agatha Christie'),
+('Arthur Conan Doyle');
 
 INSERT INTO generos (nombre) VALUES
 ('Romance'),
@@ -43,10 +44,16 @@ El misterio está servido.',
 'https://narrativesarchivos.blob.core.windows.net/imagenes/MuerteEnElNilo.jpg'),
 ('El misterio del tren azul', 5, 'El Tren Azul con destino a Niza transporta una valiosa carga: el mayor rubí del mundo, el "Corazón de Fuego", un regalo de un magnate americano del petróleo para su querida hija, Ruth Kettering. Pero al llegar a la Costa Azul, se descubre que la propietaria de la joya ha sido brutalmente asesinada y que el rubí ha desaparecido. El millonario Rufus Van Aldin, muy afectado por la muerte de su heredera, contrata al detective Hercule Poirot para que resuelva el estremecedor suceso. El caso irá adquiriendo una creciente complejidad a medida que Poirot descubra el turbulento pasado de la víctima: su recientemente frustrado matrimonio, la tensa relación que mantenía con su padre y la existencia de un ex pretendiente con quien debía encontrarse en Niza. Es un caso aparentemente imposible de resolver, donde todos son sospechosos y ningún indicio conduce al culpable. Una historia de intriga apasionante donde nada es lo que parece que mantendrá al lector sin aliento hasta la última página. "Hercule Poirot no es un toxicómano atormentado, como Sherlock Holmes, o un glotón desencantado, como Pepe Carvalho, o un alcohólico cínico, como Philip Marlowe. Es un sibarita que vive como un pachá e idolatra el clasismo británico." Del Prólogo de Enric González', 
 'https://narrativesarchivos.blob.core.windows.net/imagenes/ElMisterioDelTrenAzul.jpg'),
-('La señorita de compañía', 5, 'El Tren Azul con destino a Niza transporta una valiosa carga: el mayor rubí del mundo, el "Corazón de Fuego", un regalo de un magnate americano del petróleo para su querida hija, Ruth Kettering. Pero al llegar a la Costa Azul, se descubre que la propietaria de la joya ha sido brutalmente asesinada y que el rubí ha desaparecido. El millonario Rufus Van Aldin, muy afectado por la muerte de su heredera, contrata al detective Hercule Poirot para que resuelva el estremecedor suceso. El caso irá adquiriendo una creciente complejidad a medida que Poirot descubra el turbulento pasado de la víctima: su recientemente frustrado matrimonio, la tensa relación que mantenía con su padre y la existencia de un ex pretendiente con quien debía encontrarse en Niza. Es un caso aparentemente imposible de resolver, donde todos son sospechosos y ningún indicio conduce al culpable. Una historia de intriga apasionante donde nada es lo que parece que mantendrá al lector sin aliento hasta la última página. "Hercule Poirot no es un toxicómano atormentado, como Sherlock Holmes, o un glotón desencantado, como Pepe Carvalho, o un alcohólico cínico, como Philip Marlowe. Es un sibarita que vive como un pachá e idolatra el clasismo británico." Del Prólogo de Enric González', 
-'https://narrativesarchivos.blob.core.windows.net/imagenes/LaSeñoritaDeCompañia.jpg'),
 ('Un dios solitario y otros relatos', 5, 'Como muchos de sus contemporáneos, Agatha Christie escribió relatos para diversas revistas en los años veinte y treinta, y casi todos ellos acabaron incluidos más tarde en libros recopilatorios. Este libro, casi una pieza de coleccionista, muestra a la maestra del crimen en su etapa de formación, y sus lectores podrán comprobar una vez más su gran dominio de la caracterización y su habilidad para los desenlaces imprevistos', 
-'https://narrativesarchivos.blob.core.windows.net/imagenes/UnDiosSolitarioYOtrosRelatos.jpg');
+'https://narrativesarchivos.blob.core.windows.net/imagenes/UnDiosSolitarioYOtrosRelatos.jpg'),
+('Miss Marple y 13 problemas', 5, '"¿Qué le parece si formásemos un club? Lo llamaremos el Club de los Martes. Nos reuniremos y cada uno deberá exponer un problema real y los demás competiremos para solucionarlo". A partir de esta conversación nacen trece magníficas historias policíacas.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/MissMarpleY13Problemas.jpg'),
+('Un escándalo en Bohemia', 6, 'Escándalo en Bohemia es el primero de los 56 relatos cortos sobre Sherlock Holmes escrito por Arthur Conan Doyle y la primera historia de Sherlock Holmes ilustrada por Sidney Paget. Fue publicado originalmente en The Strand Magazine y posteriormente recogido en la colección Las aventuras de Sherlock Holmes. Sherlock Holmes es llamado por un caballero enmascarado. Se presenta como el conde Von Kramm, un agente de un cliente adinerado, pero Holmes deduce rápidamente que se trata de Wilhelm Gottsreich Sigismond von Ormstein, gran duque de Cassel-Felstein y rey hereditario de Bohemia. El rey, arrancándose la máscara, lo admite.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/UnEscandaloEnBohemia.jpg'),
+('El aristócrata solterón', 6, 'El Aristócrata Solterón relata el caso de la extraña desaparición de la rica heredera Hatty Doran. Hija única del multimillonario Aloysius Doran, se ha esfumado tras su matrimonio con el citado Lord St. Simon, segundo hijo del duque de Balmoral y perteneciente a la más rancia aristocracia de Inglaterra. A pesar de la poca simpatía que inspira a Holmes el estirado personaje, el caso le interesa, y se hace cargo de él.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/ElAristocrataSolteron.jpg'),
+('El misterio de Cooper Beeches', 6, 'Violet Hunter acude a la consulta de Holmes después de que le ofrezcan un puesto de institutriz sujeto a raras condiciones, incluyendo una que la obliga a cortarse el pelo. El sueldo es extremadamente elevado, de 120 libras, y, por ende, decide aceptarlo, aunque Holmes le aconseja que le llame si lo necesita. Tras varios sucesos extraños, incluido el descubrimiento de una zona sellada de la casa, se decide a llamarle. Holmes descubre que habían mantenido a alguien preso en esa parte de la propiedad, pero, cuando entra acompañado de Watson y la propia Hunter, se topa con que está vacía. Los acusan de liberar a la prisionera, que era la hija de la empleador de Hunter, y este manda al perro a perseguirlos; sin embargo, el animal lo ataca a él. Se descubre que a Hunter la habían contratado para hacerse pasar por la hija de su empleador, de modo que su prometido se creyera que ella ya no estaba interesada en verla; la hija, no obstante, se había escapado y conseguido casarse.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/ElMisterioDeCooperBeeches.jpg');
 
 INSERT INTO genero_audiolibro (audiolibro, genero) VALUES
 (3, 1),
@@ -60,6 +67,9 @@ INSERT INTO genero_audiolibro (audiolibro, genero) VALUES
 (10, 7),
 (11, 7),
 (12, 7),
+(13, 7),
+(14, 7),
+(15, 7),
 (2, 8);
 
 INSERT INTO capitulos (numero, nombre, audiolibro, audio) VALUES
@@ -172,5 +182,20 @@ INSERT INTO capitulos (numero, nombre, audiolibro, audio) VALUES
 (1, 'Asesinato en el campo de golf', 8, 'https://narrativesarchivos.blob.core.windows.net/audios/AsesinatoEnElCampoDeGolf.mp3'),
 (1, 'Muerte en el Nilo', 9, 'https://narrativesarchivos.blob.core.windows.net/audios/MuerteEnElNilo.mp3'),
 (1, 'El misterio del tren azul', 10, 'https://narrativesarchivos.blob.core.windows.net/audios/ElMisterioDelTrenAzul.mp3'),
-(1, 'La señorita de compañía', 11, 'https://narrativesarchivos.blob.core.windows.net/audios/LaSeñoritaDeCompañia.mp3'),
-(1, 'Un dios solitario y otros relatos', 12, 'https://narrativesarchivos.blob.core.windows.net/audios/UnDiosSolitarioYOtrosRelatos.mp3');
+(1, 'Un dios solitario y otros relatos', 11, 'https://narrativesarchivos.blob.core.windows.net/audios/UnDiosSolitarioYOtrosRelatos.mp3'),
+(1, 'El club de los martes', 12, 'https://narrativesarchivos.blob.core.windows.net/audios/MissMarpleY13Problemas_1.mp3'),
+(2, 'La casa del ídolo de Astarté', 12, 'https://narrativesarchivos.blob.core.windows.net/audios/MissMarpleY13Problemas_2.mp3'),
+(3, 'Lingotes de oro', 12, 'https://narrativesarchivos.blob.core.windows.net/audios/MissMarpleY13Problemas_3.mp3'),
+(4, 'Manchas de sangre', 12, 'https://narrativesarchivos.blob.core.windows.net/audios/MissMarpleY13Problemas_4.mp3'),
+(5, 'Móvil versus oportunidad', 12, 'https://narrativesarchivos.blob.core.windows.net/audios/MissMarpleY13Problemas_5.mp3'),
+(6, 'La huella del pulgar de san Pedro', 12, 'https://narrativesarchivos.blob.core.windows.net/audios/MissMarpleY13Problemas_6.mp3'),
+(7, 'El geranio azul', 12, 'https://narrativesarchivos.blob.core.windows.net/audios/MissMarpleY13Problemas_7.mp3'),
+(8, 'La señorita de compañía', 12, 'https://narrativesarchivos.blob.core.windows.net/audios/MissMarpleY13Problemas_8.mp3'),
+(9, 'Los cuatro sospechosos', 12, 'https://narrativesarchivos.blob.core.windows.net/audios/MissMarpleY13Problemas_9.mp3'),
+(10, 'Tragedia navideña', 12, 'https://narrativesarchivos.blob.core.windows.net/audios/MissMarpleY13Problemas_10.mp3'),
+(11, 'La hierba mortal', 12, 'https://narrativesarchivos.blob.core.windows.net/audios/MissMarpleY13Problemas_11.mp3'),
+(12, 'El caso del bungalow', 12, 'https://narrativesarchivos.blob.core.windows.net/audios/MissMarpleY13Problemas_12.mp3'),
+(13, 'La ahogada', 12, 'https://narrativesarchivos.blob.core.windows.net/audios/MissMarpleY13Problemas_13.mp3'),
+(1, 'Un escándalo en Bohemia', 13, 'https://narrativesarchivos.blob.core.windows.net/audios/UnEscandaloEnBohemia.mp3'),
+(1, 'El aristócrata solterón', 14, 'https://narrativesarchivos.blob.core.windows.net/audios/ElAristocrataSolteron.mp3'),
+(1, 'El misterio de Cooper Beeches', 15, 'https://narrativesarchivos.blob.core.windows.net/audios/ElMisterioDeCooperBeeches.mp3');
