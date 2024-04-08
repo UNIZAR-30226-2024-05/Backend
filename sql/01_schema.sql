@@ -27,8 +27,7 @@ CREATE TABLE autores (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL UNIQUE,
     informacion VARCHAR(1000),
-    nacimiento date,
-    img TEXT
+    nacimiento date
 );
 
 CREATE TABLE generos (
