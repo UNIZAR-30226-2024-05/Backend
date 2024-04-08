@@ -1,16 +1,6 @@
 const pool = require('../db');
 
 const AudiolibrosModel = {
-    async getAllAudiolibros() {
-        try {
-            const audiolibros = await pool.query('SELECT * FROM audiolibros');
-            return audiolibros.rows;
-        } catch (error) {
-            console.error("Error al obtener los audiolibros", error);
-            throw error;
-        }
-    },
-
     async getAudiolibroByGenero(genero) {
         try {
             const audiolibros = await pool.query(`
