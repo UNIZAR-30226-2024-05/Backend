@@ -1,4 +1,5 @@
-const express = require('express');
+const express = require("express");
+const http = require('http');
 
 const cors = require('cors');
 const sessions = require('client-sessions');
@@ -17,6 +18,19 @@ app.use(sessions({
   secret: 'secret'
 }));
 
+const server = http.createServer(app);
+
+const io = require("socket.io")(server, {
+  cors: {
+    origin: true,
+    methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],
+    credentials: true
+  }
+});
+
+module.exports = io;
+
 const userRoutes = require("./routes/userRoutes");
 const audiolibrosRoutes = require("./routes/audiolibrosRoutes");
 const coleccionesRoutes = require("./routes/coleccionesRoutes");
@@ -27,6 +41,6 @@ app.use("/users", userRoutes);
 app.use("/audiolibros", audiolibrosRoutes);
 app.use("/colecciones", coleccionesRoutes);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
