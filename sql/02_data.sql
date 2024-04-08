@@ -12,9 +12,14 @@ INSERT INTO generos (nombre) VALUES
 ('Fantasía'),
 ('Ciencia ficción'),
 ('Terror'),
-('Comedia'),
+('Infantil'),
 ('Misterio'),
-('Arte y literatura');
+('Histórico'),
+('Mitología'),
+('Humor'),
+('Autoayuda'),
+('Poesía'),
+('Aventura');
 
 INSERT INTO audiolibros (titulo, autor, descripcion, img) VALUES
 ('Harry Potter y la piedra filosofal', 1, '«Con las manos temblorosas, Harry le dio la vuelta al sobre y vio un sello de lacre púrpura con un escudo de armas: un león, un águila, un tejón y una serpiente, que rodeaban una gran letra H.»
