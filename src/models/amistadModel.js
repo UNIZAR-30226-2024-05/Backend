@@ -79,11 +79,13 @@ const AmistadModel = {
     },
 
     async rejectPeticion(user_id, other_id) {
-        await pool.query(
+        const peticion = await pool.query(
             `UPDATE peticiones SET estado = 2, fecha = NOW()
-            WHERE sender = $2 and receiver = $1 and estado = '0'`,
+            WHERE sender = $2 and receiver = $1 and estado = '0'
+            RETURNING receiver, (SELECT username FROM users WHERE id = receiver)`,
             [user_id, other_id]
         );
+        return peticion.rows[0];
     },
 
     async cancelPeticion(user_id, other_id) {

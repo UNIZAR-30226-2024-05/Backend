@@ -111,9 +111,10 @@ exports.rejectPeticion = async (req, res) => {
             });
         }
 
-        await AmistadModel.rejectPeticion(user_id, other_id);
+        const peticion = await AmistadModel.rejectPeticion(user_id, other_id);
 
         // Notificar a other_id de que la petición fue rechazada
+        sendMessageToUser(other_id, 'peticionRejected', peticion);
 
         res.status(200).json({ 
             message: "Rejected request"
@@ -138,8 +139,6 @@ exports.cancelPeticion = async (req, res) => {
         }
 
         await AmistadModel.cancelPeticion(user_id, other_id);
-
-        // Notificar a other_id de que la petición fue cancelada
 
         res.status(200).json({ 
             message: "Canceled request"
