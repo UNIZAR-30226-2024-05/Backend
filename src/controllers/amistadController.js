@@ -1,8 +1,5 @@
 const AmistadModel = require("../models/amistadModel");
-<<<<<<< Updated upstream
-=======
 const { sendMessageToUser } = require('../sockets.js');
->>>>>>> Stashed changes
 
 exports.sendPeticion = async (req, res) => {
     const { other_id } = req.body;
@@ -36,16 +33,10 @@ exports.sendPeticion = async (req, res) => {
             });
         }
 
-<<<<<<< Updated upstream
-        await AmistadModel.addPeticion(user_id, other_id);
-
-        // Notificar a other_id de petición enviada
-=======
         const peticion = await AmistadModel.addPeticion(user_id, other_id);
 
         // Notificar a other_id de petición enviada
         sendMessageToUser(other_id, 'peticionReceived', peticion);
->>>>>>> Stashed changes
 
         res.status(200).json({ 
             message: "Request sent"
@@ -69,7 +60,6 @@ exports.acceptPeticion = async (req, res) => {
             });
         }
 
-<<<<<<< Updated upstream
         await AmistadModel.addAmistad(user_id, other_id);
         res.status(200).json({ 
             message: "Accepted request"
@@ -93,17 +83,11 @@ exports.acceptPeticion = async (req, res) => {
             });
         }
 
-        await AmistadModel.acceptPeticion(user_id, other_id);
-        await AmistadModel.addAmistad(user_id, other_id);
-
-        // Notificar a other_id de que la petición fue aceptada
-=======
         const peticion = await AmistadModel.acceptPeticion(user_id, other_id);
         await AmistadModel.addAmistad(user_id, other_id);
 
         // Notificar a other_id de que la petición fue aceptada
         sendMessageToUser(other_id, 'peticionAccepted', peticion);
->>>>>>> Stashed changes
 
         res.status(200).json({ 
             message: "Accepted request"
