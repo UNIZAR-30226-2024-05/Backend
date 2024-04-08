@@ -6,14 +6,12 @@ exports.register = async (req, res) => {
 
     try {
         const existingUser = await UserModel.getUserByUsername(username);
+        const existingMail = await UserModel.getUserByMail(mail);
         if (existingUser) {
             return res.status(409).json({ 
-                error: "Existing username"
+                error: "Existing username" 
             });
-        }
-        
-        const existingMail = await UserModel.getUserByMail(mail);
-        if (existingMail) {
+        } else if (existingMail) {
             return res.status(409).json({ 
                 error: "Existing email"
             });
@@ -22,7 +20,7 @@ exports.register = async (req, res) => {
         const newUser = await UserModel.createUser(username, mail, password);
         await BibliotecaModel.createUserCollection('Favoritos', username);
         res.status(200).json({
-            message: "OK"
+            message: "OK", newUser
         });
     } catch (err) {
         console.error(err.message);
@@ -75,14 +73,14 @@ exports.logout = async (req, res) => {
 
 exports.changePass = async (req, res) => {
     const { oldPassword, newPassword } = req.body;
-    const { user_id } = req.session.user;
+    const { username } = req.session.user;
 
     try {
-        const user = await UserModel.getUserById(user_id);
+        const user = await UserModel.getUserByUsername(username);
 
         const passwordMatch = await bcrypt.compare(oldPassword, user.password);
             if (passwordMatch) {
-                await UserModel.changePass(user_id, newPassword);
+                UserModel.changePass(username, newPassword);
                 return res.status(200).json({
                     message: "Password changed"
                 });
@@ -98,10 +96,11 @@ exports.changePass = async (req, res) => {
 };
 
 exports.profile = async (req, res) => {
-    const { user_id } = req.session.user;
+    const { username } = req.session.user;
 
     try {
-        const user = await UserModel.getUserById(user_id);
+        const user = await UserModel.getUserByUsername(username);
+        console.log(user)
         return res.status(200).json({
             username: user.username,
             mail: user.mail
