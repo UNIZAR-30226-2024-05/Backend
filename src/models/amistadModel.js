@@ -59,6 +59,7 @@ const AmistadModel = {
     },
 
     async addPeticion(sender_id, receiver_id) {
+<<<<<<< Updated upstream
         await pool.query(
             `INSERT INTO peticiones (sender, receiver, estado, fecha)
             VALUES ($1, $2, '0', NOW())`, 
@@ -71,6 +72,25 @@ const AmistadModel = {
             WHERE sender = $2 and receiver = $1 and estado = '0'`,
             [user_id, other_id]
         );
+=======
+        const peticion = await pool.query(
+            `INSERT INTO peticiones (sender, receiver, estado, fecha)
+            VALUES ($1, $2, '0', NOW()) 
+            RETURNING sender, (SELECT username FROM users WHERE id = sender)`, 
+            [sender_id, receiver_id]
+        );
+            return peticion.rows[0];
+    },
+
+    async acceptPeticion(user_id, other_id) {
+        const peticion = await pool.query(
+            `UPDATE peticiones SET estado = 1, fecha = NOW()
+            WHERE sender = $2 and receiver = $1 and estado = '0'
+            RETURNING receiver, (SELECT username FROM users WHERE id = receiver)`,
+            [user_id, other_id]
+        );
+        return peticion.rows[0];
+>>>>>>> Stashed changes
     },
 
     async rejectPeticion(user_id, other_id) {
