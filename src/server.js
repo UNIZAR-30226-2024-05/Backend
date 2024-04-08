@@ -1,5 +1,4 @@
 const express = require('express');
-const http = require('http');
 
 const cors = require('cors');
 const sessions = require('client-sessions');
@@ -17,19 +16,6 @@ app.use(sessions({
   cookieName: 'session',
   secret: 'secret'
 }));
-
-const server = http.createServer(app);
-
-const io = require("socket.io")(server, {
-  cors: {
-    origin: true,
-    methods: ["GET", "POST"],
-    allowedHeaders: ["my-custom-header"],
-    credentials: true
-  }
-});
-
-module.exports = io;
 
 const userRoutes = require("./routes/userRoutes");
 const audiolibrosRoutes = require("./routes/audiolibrosRoutes");
