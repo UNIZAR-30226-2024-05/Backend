@@ -14,16 +14,13 @@ exports.getUserCollections = async (req, res) => {
     }
 };
 
-exports.getInfoCollection = async (req, res) => {
-    const { user_id } = req.session.user;
+exports.getAudiolibrosCollection = async (req, res) => {
     const { coleccionId } = req.params;
     
     try {
-        const guardada = await ColeccionesModel.coleccionGuardada(user_id, coleccionId);
-        const info = await ColeccionesModel.getInfoColeccion(coleccionId);
         const audiolibros = await ColeccionesModel.getAudiolibrosColeccion(coleccionId);
         res.status(200).json({
-            message: "OK", info, guardada, audiolibros
+            message: "OK", audiolibros
         });
     } catch (err) {
         console.error(err.message);

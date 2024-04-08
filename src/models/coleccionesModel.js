@@ -20,33 +20,6 @@ const BibliotecaModel = {
         }
     },
 
-    async coleccionGuardada(user_id, coleccionId) {
-        try {
-            const audiolibros = await pool.query(
-                `SELECT * FROM colecciones_usuarios WHERE usuario = $1 AND coleccion = $2`,
-                [user_id, coleccionId]
-            );
-            return audiolibros.rows.length > 0;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    async getInfoColeccion(coleccionId) {
-        try {
-            const audiolibros = await pool.query(
-                `SELECT c.*, u.username AS nombre_propietario
-                FROM colecciones c
-                JOIN users u ON c.propietario = u.id
-                WHERE c.id = $1`,
-                [coleccionId]
-            );
-            return audiolibros.rows;
-        } catch (error) {
-            throw error;
-        }
-    },
-
     async getAudiolibrosColeccion(coleccionId) {
         try {
             const audiolibros = await pool.query(

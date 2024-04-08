@@ -4,7 +4,7 @@ const coleccionesController = require("../controllers/coleccionesController");
 const authMiddleware = require('../middlewares/authMiddleware');
 
 router.get('/', authMiddleware.isAuthenticated, coleccionesController.getUserCollections);
-router.get('/:coleccionId', authMiddleware.isAuthenticated, coleccionesController.getInfoCollection);
+router.get('/:coleccionId', authMiddleware.isAuthenticated, coleccionesController.getAudiolibrosCollection);
 
 router.post('/create', authMiddleware.isAuthenticated, coleccionesController.createUserCollection);
 router.post('/remove', authMiddleware.isAuthenticated, coleccionesController.removeCollection);
