@@ -1,4 +1,5 @@
 const UserModel = require("../models/userModel");
+const ColeccionesModel = require("../models/coleccionesModel");
 const bcrypt = require("bcrypt");
 
 exports.register = async (req, res) => {
@@ -19,8 +20,10 @@ exports.register = async (req, res) => {
             });
         }
 
-        const newUser = await UserModel.createUser(username, mail, password);
-        await BibliotecaModel.createUserCollection('Favoritos', username);
+        await UserModel.createUser(username, mail, password);
+        const newUser = await UserModel.getUserByUsername(username); 
+        await ColeccionesModel.createUserCollection('Favoritos', newUser.id);
+        await ColeccionesModel.createUserCollection('Escuchar mas tarde', newUser.id);
         res.status(200).json({
             message: "OK"
         });
