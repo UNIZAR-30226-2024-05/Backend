@@ -25,7 +25,9 @@ CREATE TABLE peticiones (
 
 CREATE TABLE autores (
     id SERIAL PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL UNIQUE
+    nombre VARCHAR(50) NOT NULL UNIQUE,
+    fNacimiento DATE,
+    informacion TEXT
 );
 
 CREATE TABLE generos (
