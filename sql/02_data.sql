@@ -1,15 +1,15 @@
-INSERT INTO autores (nombre) VALUES
-('Anónimo'),
-('J. K. Rowling'),
-('Homero'),
-('Jane Austen'),
-('Stephen King'),
-('Agatha Christie'),
-('Arthur Conan Doyle'),
-('Charles Perrault'),
-('Hermanos Grimm'),
-('Oscar Wilde'),
-('Hans Christian Andersen');
+INSERT INTO autores (nombre, ciudadNacimiento, informacion) VALUES
+('Anónimo', 'null', 'null'),
+('J. K. Rowling', 'Yate, Gloucestershire, Reino Unido', 'Joanne Rowling (31 de julio de 1965), quien escribe bajo los seudónimos de J. K. Rowling y Robert Galbraith, es una escritora, productora de cine y guionista británica, conocida por ser la autora de la serie de libros Harry Potter, que han superado los quinientos millones de ejemplares vendidos.'),
+('Homero', 'null', 'Homero (en griego homérico, Ὅμηρος Hómērŏs; en griego moderno, Όμηρος [Hómirŏs]; en latín, Homerus; ca. siglo VIII a. C.) es el nombre dado al aedo a quien tradicionalmente se atribuye la autoría de los principales poemas épicos griegos: la Ilíada y la Odisea. Desde el período helenístico se ha cuestionado que el autor de ambas obras fuera la misma persona; sin embargo, antes no solo no existían estas dudas, sino que la Ilíada y la Odisea eran considerados relatos históricos reales.'),
+('Jane Austen', 'Winchester, Inglaterra', 'Jane Austen (18 de julio de 1817) fue una novelista británica que vivió durante la época georgiana. La ironía que empleaba para dotar de comicidad a sus novelas hace que Jane Austen sea considerada entre los clásicos de la novela inglesa, a la vez que su recepción va, incluso en la actualidad, más allá del interés académico, siendo sus obras leídas por un público más amplio.'),
+('Stephen King', 'Portland Maine, Estados Unidos', 'Stephen Edwin King (21 de septiembre de 1947), más conocido como Stephen King y ocasionalmente por su pseudónimo Richard Bachman, es un escritor estadounidense de novelas de terror, ficción sobrenatural, misterio, ciencia ficción y literatura fantástica. Sus libros han vendido más de 500 millones de ejemplares, y en su mayoría han sido adaptados al cine y a la televisión. Ha publicado 65 novelas, once colecciones de relatos y novelas cortas, y siete libros de no ficción, además de un guion cinematográfico, entre otras obras.'),
+('Agatha Christie', 'Torquay, Devon, Reino Unido de Gran Bretaña e Irlanda', 'Agatha Mary Clarissa Miller (15 de septiembre de 1890), conocida como Agatha Christie, fue una escritora y dramaturga británica especializada en el género policial, por cuyo trabajo obtuvo reconocimiento a nivel internacional. A lo largo de su carrera, publicó 66 novelas policiales, 6 novelas rosas y 14 cuentos —con el pseudónimo de Mary Westmacott—, además de incursionar como autora teatral en obras como La ratonera o Testigo de cargo.'),
+('Arthur Conan Doyle', 'Edimburgo, Escocia, Reino Unido', 'Arthur Ignatius Conan Doyle (22 de mayo de 1859) fue un escritor y médico británico de ascendencia irlandesa, creador del célebre detective de ficción Sherlock Holmes. Fue un autor prolífico cuya obra incluye relatos de ciencia ficción, novela histórica, teatro y poesía.'),
+('Charles Perrault', 'París, Reino de Francia', 'Charles Perrault (12 de enero de 1628) fue un escritor francés, principalmente reconocido por haber dado forma literaria a cuentos clásicos infantiles como Piel de asno, Pulgarcito, Barba Azul, La Cenicienta, La bella durmiente, Caperucita Roja y El Gato con Botas, atemperando en muchos casos la crudeza de las versiones orales, la mayoría de sus cuentos son infantiles y de fantasía.'),
+('Hermanos Grimm', 'Hanau, Hesse, Alemania', 'Los hermanos Grimm, Jacob Grimm (4 de enero de 1785) y Wilhelm Grimm (22 de febrero de 1786), fueron eruditos, filólogos, mitólogos, investigadores culturales, lexicógrafos y escritores alemanes que coleccionaron y publicaron juntos folclore y libros durante el siglo xix. Están entre los primeros y más conocidos coleccionistas de cuentos porque popularizaron relatos orales tradicionales como La Cenicienta, El príncipe rana, La pastora de ocas, Hansel y Gretel, Rapunzel, Rumpelstiltskin, La bella durmiente y Blancanieves.'),
+('Oscar Wilde', 'Dublín, Irlanda, Reino Unido', 'Oscar Fingal OFlahertie Wills Wilde (16 de octubre de 1854), conocido como Oscar Wilde, fue un escritor, poeta y dramaturgo de origen irlandés. Wilde es considerado uno de los dramaturgos más destacados del Londres victoriano tardío. Además, fue una celebridad de la época debido a su gran y aguzado ingenio. Hoy en día, es recordado por sus epigramas, sus cuentos, sus obras de teatro, su única novela, El retrato de Dorian Gray, y la tragedia de su encarcelamiento, seguida de su muerte prematura.'),
+('Hans Christian Andersen', 'Odense, Dinamarca', 'Hans Christian Andersen (2 de abril de 1805) fue un escritor y poeta danés famoso por sus cuentos para niños ilustrados por Vilhelm Pedersen. Hijo de un humilde zapatero, pronto aprendió diversos oficios; pero no finalizó ninguno. Con catorce años, huyó con poco dinero a Copenhague dispuesto a hacer fortuna como actor y cantante; escribió algunas obras y después de privaciones y desengaños, consiguió despertar el interés de personalidades del país que se ocuparon de su formación. Andersen siempre sintió que su origen humilde era un lastre y fantaseaba que era el hijo ilegítimo de un gran señor.');
 
 INSERT INTO generos (nombre) VALUES
 ('Romance'),
