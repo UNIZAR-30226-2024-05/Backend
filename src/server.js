@@ -1,5 +1,5 @@
 const express = require("express");
-const http = require('http');
+const https = require('https');
 
 const cors = require('cors');
 const sessions = require('client-sessions');
@@ -15,10 +15,15 @@ app.use(express.json());
 
 app.use(sessions({
   cookieName: 'session',
-  secret: 'secret'
+  secret: 'secret',
+  cookie: {
+    path: '/',
+    secure: true,
+    sameSite: 'none'
+  }
 }));
 
-const server = http.createServer(app);
+const server = https.createServer(app);
 
 const io = require("socket.io")(server, {
   cors: {
