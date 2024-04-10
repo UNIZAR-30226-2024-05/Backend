@@ -275,4 +275,4 @@ INSERT INTO capitulos (numero, nombre, audiolibro, audio) VALUES
 (1, 'Los tres cerditos y el lobo', 28, 'https://narrativesarchivos.blob.core.windows.net/audios/ElMisterioDeCooperBeeches.mp3'),
 (1, 'El hombre del saco', 29, 'https://narrativesarchivos.blob.core.windows.net/audios/ElMisterioDeCooperBeeches.mp3'),
 (1, 'Las tres naranjitas', 30, 'https://narrativesarchivos.blob.core.windows.net/audios/ElMisterioDeCooperBeeches.mp3'),
-(1, 'Los ladrones arrepentidos', 31, 'https://narrativesarchivos.blob.core.windows.net/audios/ElMisterioDeCooperBeeches.mp3'),
+(1, 'Los ladrones arrepentidos', 31, 'https://narrativesarchivos.blob.core.windows.net/audios/ElMisterioDeCooperBeeches.mp3');
