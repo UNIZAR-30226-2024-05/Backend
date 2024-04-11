@@ -1,7 +1,7 @@
 const autoresModel = require("../models/autoresModel");
 
 exports.CrearAutor = async (req, res) => {
-    const { nombre, info} = req.body;
+    const { nombre, info, ciudad} = req.body;
     existe = await autoresModel.getAutor(nombre);
     if (existe){
         return res.status(409).json({ 
@@ -9,7 +9,7 @@ exports.CrearAutor = async (req, res) => {
         });
     }
     try {
-        const newAutor = await autoresModel.CrearAutor(nombre, info);
+        const newAutor = await autoresModel.CrearAutor(nombre, info,ciudad);
         res.status(200).json({
             message: "OK"
         });
@@ -39,7 +39,7 @@ exports.BorrarAutor = async (req, res) => {
 };
 
 exports.ActualizarAutor = async (req, res) => {
-    const { id, nombre, info } = req.body;
+    const { id, nombre, info, ciudad  } = req.body;
     try {
         existe = await autoresModel.getAutorByID(id);
         if (!existe){
@@ -47,7 +47,7 @@ exports.ActualizarAutor = async (req, res) => {
                 error: "Not Existing autor" 
             });
         }
-    const actualizar = await autoresModel.ActualizarAutor(id, nombre,info);
+    const actualizar = await autoresModel.ActualizarAutor(id, nombre,info,ciudad);
     res.status(200).json({
         message: "OK"
     }); 
@@ -60,30 +60,29 @@ exports.ActualizarAutor = async (req, res) => {
 exports.getDatosAutor = async (req, res) => {
     const { id } = req.params;
     try {
-        existe = await autoresModel.getAutorByID(id);
-        if (!existe){
+        autor = await autoresModel.getAutorByID(id);
+        if (!autor){
             return res.status(404).json({ 
                 error: "Not Existing autor" 
             });
         }
-    
-    //obtener datos 
-
-    //mandar respuesta correcta
+        audiolibros = await autoresModel.getAudiolibrosPorAutor(id); 
+        genero = await autoresModel.getGeneroMasEscrito(id);
+        //media reviews
+        res.status(200).json({ autor, generoMasEscrito: genero.genero, audiolibros});
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Server Error" });
     }
 };
 
-
+/*
 Base de datos:
 
-nombre
-wikipedia
-fecha nacimiento
-foto del autor
+-nombre
+-wikipedia
+-ciudad nacimiento
 ----------------------------
 Consultas extra
--media nota reviews de sus audiolibros
--Genero mas escrito
+media nota reviews de sus audiolibros
+-Genero mas escrito */

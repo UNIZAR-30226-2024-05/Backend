@@ -3,11 +3,11 @@ const pool = require('../db');
 const autoresModel = {
    
 
-    async CrearAutor(nombre, info) {
+    async CrearAutor(nombre, info,ciudad) {
         try {
             const newAutor = await pool.query(
-            "INSERT INTO marcapaginas (nombre, info) VALUES ($1, $2)"
-            , [nombre, info]);
+            "INSERT INTO autores (nombre, informacion, ciudadNacimiento) VALUES ($1, $2,$3)"
+            , [nombre, info,ciudad]);
             return newAutor.rows[0];
         } catch (error) {
             console.error("Error al crear el autor:", error);
@@ -17,7 +17,7 @@ const autoresModel = {
 
     async BorrarAutor(id) {
         try {
-            const borrado = await pool.query(`DELETE FROM marcapaginas WHERE id = $1;
+            const borrado = await pool.query(`DELETE FROM autores WHERE id = $1;
             `, [id]);
             return borrado.rows[0];
         } catch (error) {
@@ -26,10 +26,10 @@ const autoresModel = {
         }
     },
 
-    async ActualizarAutor(id, nombre, info) {
+    async ActualizarAutor(id, nombre, info,ciudad) {
         try {
-            const audiolibros = await pool.query("UPDATE marcapaginas SET nombre = $2, info = $3  WHERE id = $1;",
-            [id, nombre, info]);
+            const audiolibros = await pool.query("UPDATE autores SET nombre = $2, informacion = $3, ciudadNacimiento = $4  WHERE id = $1;",
+            [id, nombre, info,ciudad]);
             return audiolibros.rows[0];
         } catch (error) {
             console.error("Error al actualizar el autor del usuario:", error);
@@ -69,6 +69,25 @@ const autoresModel = {
             const autor = await pool.query(`SELECT DISTINCT autores.*
             FROM autores
             WHERE   autores.id = $1;
+            `, [id]);
+            return autor.rows[0];
+        } catch (error) {
+            console.error("Error al obtener los datos del autor:", error);
+            throw error;
+        }
+    },
+    async getGeneroMasEscrito(id) {
+        try {
+            const autor = await pool.query(`
+            SELECT generos.nombre AS genero, COUNT(*) AS conteo
+            FROM autores
+            JOIN audiolibros ON autores.id = audiolibros.autor
+            JOIN genero_audiolibro ON audiolibros.id = genero_audiolibro.audiolibro
+            JOIN generos ON genero_audiolibro.genero = generos.id
+            WHERE autores.id = $1
+            GROUP BY generos.nombre
+            ORDER BY conteo DESC
+            LIMIT 1;
             `, [id]);
             return autor.rows[0];
         } catch (error) {
