@@ -1,5 +1,6 @@
 const express = require("express");
-const http = require('http');
+const https = require('https');
+const fs = require('fs');
 
 const cors = require('cors');
 const sessions = require('client-sessions');
@@ -18,7 +19,12 @@ app.use(sessions({
   secret: 'secret'
 }));
 
-const server = http.createServer(app);
+const httpsOptions = {
+  cert: fs.readFileSync('/etc/letsencrypt/live/server.narratives.es/fullchain.pem'),
+  key: fs.readFileSync('/etc/letsencrypt/live/server.narratives.es/privkey.pem')
+};
+
+const server = https.createServer(httpsOptions, app);
 
 const io = require("socket.io")(server, {
   cors: {

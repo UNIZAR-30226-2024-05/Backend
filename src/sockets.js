@@ -4,22 +4,25 @@ const io = require('./server'); // Importa el 'io' ya existente
 const users = {};
 
 io.on('connection', (socket) => {
-    console.log(socket);
-    //Comprobar si tiene cookie
-    const sessionCookie = socket.handshake.headers.cookie.substring('session='.length);
+    try {
+        const sessionCookie = socket.handshake.headers.cookie.substring('session='.length);
 
-    const sessionData = sessions.util.decode({
-            cookieName: 'session',
-            secret: 'secret'
-        }, sessionCookie);
+        const sessionData = sessions.util.decode({
+                cookieName: 'session',
+                secret: 'secret'
+            }, sessionCookie);
 
-    const user_id = sessionData.content.user.user_id;
-    console.log('Usuario autenticado:', user_id);
+        const user_id = sessionData.content.user.user_id;
+        console.log('Usuario autenticado:', user_id);
 
-    if (!users[user_id]) {
-        users[user_id] = [];
+        if (!users[user_id]) {
+            users[user_id] = [];
+        }
+        users[user_id].push(socket);
+    } catch(error) {
+        socket.emit('error', 'No session');
+        socket.disconnect();
     }
-    users[user_id].push(socket);
 
     socket.on('disconnect', () => {
         for (const user_id in users) {
