@@ -84,7 +84,7 @@ const marcapaginasModel = {
     async getMarcapaginasPersonalizadosByAudiolibro(username, audiobookId) {
         try {
             const audiolibros = await pool.query(`
-                SELECT DISTINCT audiolibros.*, capitulos.*, marcapaginas.*
+                SELECT DISTINCT  marcapaginas.*
                 FROM audiolibros
                 JOIN capitulos ON audiolibros.id = capitulos.audiolibro
                 JOIN marcapaginas ON capitulos.id = marcapaginas.capitulo
