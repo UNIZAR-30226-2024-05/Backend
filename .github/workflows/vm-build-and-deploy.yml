@@ -1,0 +1,33 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main # Cambiar por el nombre de tu rama principal si es diferente
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-20
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: SSH into Azure VM and update code
+        uses: appleboy/ssh-action@master
+        with:
+          host: 20.199.84.234
+          username: carol
+          password: ${{ secrets.AZURE_VM_PASSWORD }}
+          script: |
+            cd /home/carol/Backend
+            git pull origin main
+          
+      - name: Restart server
+        uses: appleboy/ssh-action@master
+        with:
+          host: 20.199.84.234
+          username: carol
+          password: ${{ secrets.AZURE_VM_PASSWORD }}
+          script: sudo systemctl restart startServer.service
+        env:
+          AZURE_VM_PASSWORD: ${{ secrets.AZURE_VM_PASSWORD }}
