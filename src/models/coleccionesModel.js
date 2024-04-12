@@ -158,6 +158,27 @@ const BibliotecaModel = {
         } catch (error) {
             throw error;
         }
+    },
+
+    // Devuelve las colecciones propiedad de un usuario e indica si el audiolibro
+    //  está en cada colección (columna con true/false)
+    async audiolibroPerteneceColecciones(audiolibroId, user_id) {
+        try {
+            const colecciones = await pool.query(
+                `SELECT c.id, c.titulo,
+                    CASE 
+                        WHEN ca.coleccion IS NOT NULL THEN TRUE 
+                        ELSE FALSE 
+                    END AS pertenece
+                FROM colecciones c
+                    LEFT JOIN colecciones_audiolibros ca ON c.id = ca.coleccion AND ca.audiolibro = $1
+                WHERE c.propietario = $2`,
+                [audiolibroId, user_id]
+            );
+            return colecciones.rows;
+        } catch (error) {
+            throw error;
+        }
     }
 };
 
