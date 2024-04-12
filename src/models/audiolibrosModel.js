@@ -33,9 +33,21 @@ const AudiolibrosModel = {
                                             FROM generos g 
                                             INNER JOIN (SELECT * FROM genero_audiolibro WHERE audiolibro = $1) AS ga 
                                             ON g.id = ga.genero`, [id]);
-            return JSON.stringify(generos.rows); //Revisar
+            return generos.rows;
         } catch (error) {
             console.error("Error al obtener audiolibro por id:", error);
+            throw error;
+        }
+    },
+
+    async getCapitulosOfAudiolibro(id) {
+        try {
+            const capitulos = await pool.query(`SELECT id, numero, nombre, audio 
+                                            FROM capitulos WHERE audiolibro = $1`
+                                            [id]);
+            return capitulos.rows;
+        } catch (error) {
+            console.error("Error al obtener los capitulos:", error);
             throw error;
         }
     }
