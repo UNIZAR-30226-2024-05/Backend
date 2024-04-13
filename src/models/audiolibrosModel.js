@@ -3,26 +3,17 @@ const pool = require('../db');
 const AudiolibrosModel = {
     async getAllAudiolibros() {
         try {
-            const audiolibros = await pool.query('SELECT * FROM audiolibros');
+            const audiolibros = await pool.query(`
+                SELECT a.*, g.nombre AS genero, ROUND(AVG(r.puntuacion)::numeric, 2) AS puntuacion
+                FROM audiolibros a
+                JOIN genero_audiolibro ga ON a.id = ga.audiolibro
+                JOIN generos g ON ga.genero = g.id
+                LEFT JOIN reviews r ON a.id = r.audiolibro
+                GROUP BY a.id, g.nombre
+            `);
             return audiolibros.rows;
         } catch (error) {
             console.error("Error al obtener los audiolibros", error);
-            throw error;
-        }
-    },
-
-    async getAudiolibroByGenero(genero) {
-        try {
-            const audiolibros = await pool.query(`
-                SELECT a.*
-                FROM audiolibros a
-                INNER JOIN genero_audiolibro ga ON a.id = ga.audiolibro
-                INNER JOIN generos g ON ga.genero = g.id
-                WHERE g.nombre = $1
-            `, [genero]);
-            return audiolibros.rows;
-        } catch (error) {
-            console.error("Error al obtener los audiolibros por género:", error);
             throw error;
         }
     }

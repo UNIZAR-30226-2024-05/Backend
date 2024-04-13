@@ -11,15 +11,3 @@ exports.getAllAudiolibros = async (req, res) => {
         res.status(500).send("Server Error");
     }
 };
-
-exports.getAudiolibrosByGenero = async (req, res) => {
-    const { genero } = req.params;
-
-    try {
-        const audiolibros = await AudiolibrosModel.getAudiolibroByGenero(genero);
-        res.status(200).json(audiolibros);
-    } catch (error) {
-        console.error(error);
-        res.status(500).send("Server Error");
-    }
-};
