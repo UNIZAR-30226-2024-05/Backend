@@ -47,6 +47,12 @@ exports.ActualizarAutor = async (req, res) => {
                 error: "Not Existing autor" 
             });
         }
+        duplicado = await autoresModel.getAutor(nombre);
+        if (duplicado && duplicado.id != existe.id){
+            return res.status(409).json({ 
+                error: "Estas modificando el nombre a un autor ya existente" 
+            });
+        }
     const actualizar = await autoresModel.ActualizarAutor(id, nombre,info,ciudad);
     res.status(200).json({
         message: "OK"
@@ -68,21 +74,11 @@ exports.getDatosAutor = async (req, res) => {
         }
         audiolibros = await autoresModel.getAudiolibrosPorAutor(id); 
         genero = await autoresModel.getGeneroMasEscrito(id);
-        //media reviews
-        res.status(200).json({ autor, generoMasEscrito: genero.genero, audiolibros});
+        NotaMedia = await autoresModel.getPuntuacionMediaAutor(id);
+        NotaMedia = Math.round(NotaMedia.media_puntuacion * 100) / 100;
+        res.status(200).json({ autor, NotaMedia,generoMasEscrito: genero.genero, audiolibros});
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Server Error" });
     }
 };
-
-/*
-Base de datos:
-
--nombre
--wikipedia
--ciudad nacimiento
-----------------------------
-Consultas extra
-media nota reviews de sus audiolibros
--Genero mas escrito */

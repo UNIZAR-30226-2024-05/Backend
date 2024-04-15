@@ -94,6 +94,21 @@ const autoresModel = {
             console.error("Error al obtener los datos del autor:", error);
             throw error;
         }
+    },
+    async getPuntuacionMediaAutor(id) {
+        try {
+            const media = await pool.query(`
+            SELECT AVG(r.puntuacion) AS media_puntuacion
+            FROM autores a
+            JOIN audiolibros au ON a.id = au.autor
+            JOIN reviews r ON au.id = r.audiolibro
+            WHERE a.id = $1;
+            `, [id]);
+            return media.rows[0];
+        } catch (error) {
+            console.error("Error al obtener la puntuación media del autor:", error);
+            throw error;
+        }
     }
 };
 
