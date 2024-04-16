@@ -131,11 +131,11 @@ Para adentrarse en EL PODER DEL AHORA tendremos que dejar atrás nuestra mente a
 Cuando observamos una catástrofe; como las que ocurren, cada día con más frecuencia, hasta sentimos un poco de temor, algunos dicen por ejemplo: la tierra se puede salvar si todos sembramos un árbol, pero en el fondo sabemos que no es así, el problema es grave, el ser humano debe cambiar para que este planeta se salve.', 
 'https://narrativesarchivos.blob.core.windows.net/imagenes/101FormasDeTransdormarSuVida.jpg'),
 ('Al sueño', 18, 'Poema de Francisco de Quevedo', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasQuevedo.jpg'),
-('Epístola satírica y censoria', 18, 'Poema de Francisco de Quevedo', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasQuevedo.jpg');
-('Memoria inmortal de don Pedro Girón', 18, 'Poema de Francisco de Quevedo', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasQuevedo.jpg');
-('Conoce la diligencia con que se acerca la muerte', 18, 'Poema de Francisco de Quevedo', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasQuevedo.jpg');
-('Enseña cómo todas las cosas avisan la muerte', 18, 'Poema de Francisco de Quevedo', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasQuevedo.jpg');
-('Letrilla Satírica «Poderoso Caballero es don Dinero»', 18, 'Poema de Francisco de Quevedo', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasQuevedo.jpg');
+('Epístola satírica y censoria', 18, 'Poema de Francisco de Quevedo', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasQuevedo.jpg'),
+('Memoria inmortal de don Pedro Girón', 18, 'Poema de Francisco de Quevedo', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasQuevedo.jpg'),
+('Conoce la diligencia con que se acerca la muerte', 18, 'Poema de Francisco de Quevedo', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasQuevedo.jpg'),
+('Enseña cómo todas las cosas avisan la muerte', 18, 'Poema de Francisco de Quevedo', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasQuevedo.jpg'),
+('Letrilla Satírica «Poderoso Caballero es don Dinero»', 18, 'Poema de Francisco de Quevedo', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasQuevedo.jpg'),
 ('Romance de Angélica y Medoro', 19, 'Poema de Luis de Góngora', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasGongora.jpg'),
 ('Romance «Servía en Orán al Rey»', 19, 'Poema de Luis de Góngora', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasGongora.jpg'),
 ('Romance «Entre los sueltos caballos»', 19, 'Poema de Luis de Góngora', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasGongora.jpg'),
@@ -352,7 +352,7 @@ INSERT INTO capitulos (numero, nombre, audiolibro, audio) VALUES
 (7, 'Capítulo 7', 38, 'https://narrativesarchivos.blob.core.windows.net/audios/UnaNuevaTierra_7.mp3'),
 (8, 'Capítulo 8', 38, 'https://narrativesarchivos.blob.core.windows.net/audios/UnaNuevaTierra_8.mp3'),
 (1, '101 Formas de Transformar su Vida', 39, 'https://narrativesarchivos.blob.core.windows.net/audios/101FormasDeTransdormarSuVida.mp3'),
-(1, 'Al sueño', 40, 'https://narrativesarchivos.blob.core.windows.net/audios/AlSueño.mp3');
+(1, 'Al sueño', 40, 'https://narrativesarchivos.blob.core.windows.net/audios/AlSueño.mp3'),
 (1, 'Epístola satírica y censoria', 41, 'https://narrativesarchivos.blob.core.windows.net/audios/EpistolaSatiricaYCensoria.mp3'),
 (1, 'Memoria inmortal de don Pedro Girón', 42, 'https://narrativesarchivos.blob.core.windows.net/audios/MemoriaInmortalDeDonPedroGiron.mp3'),
 (1, 'Conoce la diligencia con que se acerca la muerte', 43, 'https://narrativesarchivos.blob.core.windows.net/audios/ConoceLaDiligenciaConQueSeAcercaLaMuerte.mp3'),
@@ -362,4 +362,4 @@ INSERT INTO capitulos (numero, nombre, audiolibro, audio) VALUES
 (1, 'Romance «Servía en Orán al Rey»', 47, 'https://narrativesarchivos.blob.core.windows.net/audios/RomanceServiaEnOranAlRey.mp3'),
 (1, 'Romance «Entre los sueltos caballos»', 48, 'https://narrativesarchivos.blob.core.windows.net/audios/RomanceEntreLosSueltosCaballos.mp3'),
 (1, 'Letrilla «Ande yo caliente, y ríase la gente»', 49, 'https://narrativesarchivos.blob.core.windows.net/audios/LetrillaAndeYoCalienteYRiaseLaGente.mp3'),
-(1, 'Letrilla «Dejadme llorar, orillas del mar»', 50, 'https://narrativesarchivos.blob.core.windows.net/audios/LetrillaDejadmeLlorarOrillasDelMar.mp3'),
+(1, 'Letrilla «Dejadme llorar, orillas del mar»', 50, 'https://narrativesarchivos.blob.core.windows.net/audios/LetrillaDejadmeLlorarOrillasDelMar.mp3');
