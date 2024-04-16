@@ -9,7 +9,15 @@ INSERT INTO autores (nombre, ciudadNacimiento, informacion) VALUES
 ('Charles Perrault', 'París, Reino de Francia', 'Charles Perrault (12 de enero de 1628) fue un escritor francés, principalmente reconocido por haber dado forma literaria a cuentos clásicos infantiles como Piel de asno, Pulgarcito, Barba Azul, La Cenicienta, La bella durmiente, Caperucita Roja y El Gato con Botas, atemperando en muchos casos la crudeza de las versiones orales, la mayoría de sus cuentos son infantiles y de fantasía.'),
 ('Hermanos Grimm', 'Hanau, Hesse, Alemania', 'Los hermanos Grimm, Jacob Grimm (4 de enero de 1785) y Wilhelm Grimm (22 de febrero de 1786), fueron eruditos, filólogos, mitólogos, investigadores culturales, lexicógrafos y escritores alemanes que coleccionaron y publicaron juntos folclore y libros durante el siglo xix. Están entre los primeros y más conocidos coleccionistas de cuentos porque popularizaron relatos orales tradicionales como La Cenicienta, El príncipe rana, La pastora de ocas, Hansel y Gretel, Rapunzel, Rumpelstiltskin, La bella durmiente y Blancanieves.'),
 ('Oscar Wilde', 'Dublín, Irlanda, Reino Unido', 'Oscar Fingal OFlahertie Wills Wilde (16 de octubre de 1854), conocido como Oscar Wilde, fue un escritor, poeta y dramaturgo de origen irlandés. Wilde es considerado uno de los dramaturgos más destacados del Londres victoriano tardío. Además, fue una celebridad de la época debido a su gran y aguzado ingenio. Hoy en día, es recordado por sus epigramas, sus cuentos, sus obras de teatro, su única novela, El retrato de Dorian Gray, y la tragedia de su encarcelamiento, seguida de su muerte prematura.'),
-('Hans Christian Andersen', 'Odense, Dinamarca', 'Hans Christian Andersen (2 de abril de 1805) fue un escritor y poeta danés famoso por sus cuentos para niños ilustrados por Vilhelm Pedersen. Hijo de un humilde zapatero, pronto aprendió diversos oficios; pero no finalizó ninguno. Con catorce años, huyó con poco dinero a Copenhague dispuesto a hacer fortuna como actor y cantante; escribió algunas obras y después de privaciones y desengaños, consiguió despertar el interés de personalidades del país que se ocuparon de su formación. Andersen siempre sintió que su origen humilde era un lastre y fantaseaba que era el hijo ilegítimo de un gran señor.');
+('Hans Christian Andersen', 'Odense, Dinamarca', 'Hans Christian Andersen (2 de abril de 1805) fue un escritor y poeta danés famoso por sus cuentos para niños ilustrados por Vilhelm Pedersen. Hijo de un humilde zapatero, pronto aprendió diversos oficios; pero no finalizó ninguno. Con catorce años, huyó con poco dinero a Copenhague dispuesto a hacer fortuna como actor y cantante; escribió algunas obras y después de privaciones y desengaños, consiguió despertar el interés de personalidades del país que se ocuparon de su formación. Andersen siempre sintió que su origen humilde era un lastre y fantaseaba que era el hijo ilegítimo de un gran señor.'),
+('Morihei Ueshiba', 'Tanabe, Japón', 'Morihei Ueshiba (1883-1969), en japonés 植芝 盛平, fue un artista marcial japonés de renombre, fundador del arte marcial Aikido. Los practicantes de este arte o aikidōkas también lo llaman Ō-sensei (Gran Maestro) en señal de admiración y respeto'),
+('James Redfield', 'Birmingham, Estados Unidos', 'James Redfield (1950) es un escritor, profesor, guionista y productor de cine estadounidense.'),
+('Louise L. Hay', 'Los Ángeles, California, Estados Unidos de América', 'Louise Lynn Hay (8 de octubre de 1926) fue una escritora y oradora estadounidense, considerada una de las figuras más representativas del movimiento del Nuevo Pensamiento y una precursora de los libros de autoayuda.'),
+('Wallace D. Wattles', 'Illinois, Estados Unidos', 'Wallace Delois Wattles (1860 - 1911) fue un escritor estadounidense, y uno de los más conocidos exponentes del Nuevo Pensamiento, a la par de nombres como William Walker Atkinson, Orison Swett Marden, los esposos Towne (Elizabeth y William) y Ralph Waldo Emerson.'),
+('Eckhart Tolle', 'Lünen, Alemania', 'Eckhart Tolle (16 de febrero de 1948) es un guía espiritual y escritor alemán, reconocido por títulos como El poder del Ahora y Un nuevo mundo, ahora. En 2008 un escritor del New York Times lo calificó como "el autor espiritual más popular del país", al igual que la Watkins Review de Londres en 2011. Reside en Vancouver (Canadá) con su mujer, Kim Eng.'),
+('Wayne W. Dyer', 'Detroit, Míchigan, Estados Unidos', 'Wayne Walter Dyer (10 de mayo de 1940) fue un psicólogo y escritor de libros de autoayuda estadounidense.'),
+('Francisco de Quevedo', 'Madrid, España', 'Francisco Gómez de Quevedo Villegas y Santibáñez Cevallos (14 de septiembre de 1580) fue un noble, político y escritor español del Siglo de Oro. Fue caballero de la Orden de Santiago a partir de 1618 y señor de Torre de Juan Abad a partir de 1620. Junto con Luis de Góngora, con quien mantuvo una enemistad durante toda su vida, es reconocido como uno de los más notables poetas de la literatura española. Además de su poesía, fue un prolífico escritor de narrativa y teatro, así como de textos filosóficos y humanísticos.'),
+('Luis de Góngora', 'Córdoba, Corona de Castilla', 'Luis de Góngora y Argote (11 de julio de 1561) fue un poeta y dramaturgo español del Siglo de Oro, máximo exponente de la corriente literaria conocida más tarde como culteranismo o gongorismo.');
 
 INSERT INTO generos (nombre) VALUES
 ('Romance'),
@@ -97,8 +105,42 @@ A lo mejor, el lobo de los tres cerditos no era tan malo. Cuenta esta historia q
 'https://narrativesarchivos.blob.core.windows.net/imagenes/ElHombreDelSaco.jpg'),
 ('Las tres naranjitas', 1, 'Un príncipe sale de palacio en busca de esposa. Un anciano le indica que ruta seguir y cómo enfrentar los peligros del camino. Tras fracasar en dos oportunidades, a la tercera encuentra su princesa, aunque aún ha pasar otras peripecias antes de su boda.', 
 'https://narrativesarchivos.blob.core.windows.net/imagenes/LasTresNaranjitas.jpg'),
-('Los ladrones arrepentidos', 1, 'Cuentos y Leyendas Populares', 
-'https://narrativesarchivos.blob.core.windows.net/imagenes/LosLadronesArrepentidos.jpg');
+('Los ladrones arrepentidos', 1, 'Cuentos y Leyendas Populares', 'https://narrativesarchivos.blob.core.windows.net/imagenes/LosLadronesArrepentidos.jpg'),
+('El Arte de la Paz', 12, 'Las enseñanzas recopiladas en este libro proceden de las charlas y escritos de Morihei Ueshiba, fundador del popular arte marcial japonés conocido como aikido, una disciplina psicofísica que él denominó "arte de la paz", y que ofrece un camino no violento hacia la victoria frente al conflicto.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/ElArteDeLaPaz.jpg'),
+('Las 9 Revelaciones', 13, 'La gran aventura espiritual que conquistó a millones de lectores en todo el mundo.
+Revelaciones clave para que podamos comprender el presente y enfrentarnos al futuro.
+Al principio solo era un pequeño volumen que su autor, James Redfield,  publicó por su cuenta y riesgo. Pero muy pronto todos estaban hablando de Las nueve revelaciones como del libro que cambiaría nuestra visión acerca del destino humano. Una decada más tarde, lleva vendidos casi seis millones de ejemplares en treinta y dos países.
+La historia que Redfield nos cuenta habla de un antiguo manuscrito  escondido en la selva peruana, que guarda en sus páginas nueve  revelaciones esenciales para comprender el presente y enfrentarse al futuro. La búsqueda del texto perdido supone un gran esfuerzo no  exento de riesgos, pero la tenacidad de un pequeño grupo de sabios  aventureros pondrá por fin en manos de todos estas claves de un mensaje  simple y directo que apunta a nuestra espiritualidad y puede abrir un nuevo capítulo en nuestras vidas.
+Una apasionante historia de aventura y descubrimiento, una guía con el  poder de cristalizar tus percepciones y dirigir tus pasos con una nueva energía y optimismo.
+Un libro que aparece solo una vez en la vida.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/LasNueveRevelaciones.jpg'),
+('Tus pensamientos crean tu vida', 14, 'Nuestras ideas y creencias pueden producir enfermedad, insatisfacción y falta de armonía. La clave para convertir las creencias negativas en positivas está en aprender a amarnos a nosotros mismos. Esta nueva actitud unida a nuestra disposición a cambiar creará la vida que de veras deseamos. 
+"Los pensamientos que tenemos y las palabras que decimos son tremendamente poderosos. Es casi como si al tener un pensamiento o pronunciar una palabra, éstos salieran de nosotros para regresar convertidos en experiencias."', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/TusPensamientosCreanTuVida.jpg'),
+('Tú puedes sanar tu vida', 14, 'El gran clásico de Louis L. Hay, un bestseller que inició el movimiento de crecimiento personal en todo el mundo y que hoy día se sigue editando en más de treinta países. El planteamiento del libro es muy sencillo: todos tenemos el poder de transformar nuestra vida porque los pensamientos conforman la realidad de cada cual. A partir de esta idea, la autora propone un metodo de autotransformación que enseña no sólo a crear paz y armonía tanto interior como exterior sino a descubrir el significado de la autentica autoestima. Usted puede sanar su vida no ha perdido vigencia con el paso de los años; al contrario, las más modernas teorías científicas corroboran sus planteamientos. Muchos autores han recuperado las ideas de Hay con posterioridad pero ninguno ha sabido exponerlos con tanta sencillez y acierto. Hoy, Ediciones Urano vuelve pone al alcance de los lectores la nueva edición de un clásico para leer y releer.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/TuPuedesSanarTuVida.jpg'),
+('La ciencia de hacerse rico', 15, 'Existe una ciencia para hacerse rico, y es una ciencia exacta, como lo son el álgebra o las matemáticas. Hay ciertas leyes que gobiernan el proceso de adquirir la riqueza: leyes que, una vez aprendidas y seguidas por cualquier persona, harán que se enriquezca con una certeza matemática. El presente libro, sin duda el manual para enriquecerse mas famoso de todo los tiempo, le revelara como alcanzar la riqueza y la prosperidad mediante el sistema que usaron cientos de multimillonarios norteamericanos.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/LaCienciaDeHacerseRico.jpg'),
+('El poder del ahora', 16, 'Con más de cinco millones de ejemplares vendidos, EL PODER DEL AHORA, un fenómeno que se ha ido extendiendo de boca a boca desde que se publicó por primera vez, es uno de esos libros extraordinarios capaces de crear una experiencia tal en los lectores que pueden cambiar radicalmente sus vidas para mejor.
+Para adentrarse en EL PODER DEL AHORA tendremos que dejar atrás nuestra mente analítica y su falso yo, el ego. Desde la primera página de este extraordinario libro nos elevamos a una mayor altura y respiramos un aire más ligero. Conectamos con la esencia indestructible de nuestro Ser: "la Vida Una omnipresente, eterna, que está más allá de la miríada de formas de vida sujetas al nacimiento y a la muerte". Aunque el viaje es todo un reto, Eckhart Tolle nos guía usando un lenguaje simple y un sencillo formato de pregunta-respuesta.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/ElPoderDelAhora.jpg');
+('Una nueva tierra', 16, 'Si ya se ha iniciado en usted el proceso del despertar, éste se acelerará y se intensificará con esta lecturaLa finalidad principal de este libro no es darle a su mente más información ni creencias, ni tratar de convencerlo de algo, sino generar en usted un cambio de conciencia, es decir, un despertar. En ese sentido, este libro no es #interesante#, puesto que esa palabra implica la posibilidad de mantener una distancia, jugar con las ideas y los conceptos en la mente y manifestarse de acuerdo o en desacuerdo con ellos. Este libro es sobre usted. Si no contribuye a modificar el estado de su conciencia, no tendrá significado alguno. Solamente servirá para despertar a quienes estén listos. Aunque no todo el mundo está listo, muchas personas sí lo están y cada vez que alguien despierta se amplifica el ímpetu de la conciencia colectiva, facilitando el cambio para los demás. Si no sabe lo que significa despertar, siga leyendo. Es solamente a través del despertar que podrá comprender el verdadero significado de la palabra. Basta con un destello para iniciar el proceso, que es irreversible. Para algunos, este libro será ese destello; para muchos otros que quizás no se hayan dado cuenta, el proceso ya ha comenzado. Este libro les ayudará a reconocerlo. Algunos habrán emprendido el camino como consecuencia del sufrimiento o de una pérdida, mientras que otros quizás lo hayan hecho a través del contacto con un maestro o una enseñanza espiritual, la lectura de El poder del ahora o de algún otro libro pleno de vida espiritual y de energía transformadora, o una combinación de lo anterior. Si ya se ha iniciado en usted el proceso del despertar, éste se acelerará y se intensificará con esta lectura.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/UnaNuevaTierra.jpg'),
+('101 Formas de Transformar su Vida', 17, 'Aunque el ser humano fue creado con un propósito, debemos reconocer que nos perdimos. Estamos viviendo una vida con dificultades, la oscuridad a la que DIOS no le gusto; esa oscuridad se ha apoderado de la conciencia para impedir que veamos el camino de regreso.
+Cuando observamos una catástrofe; como las que ocurren, cada día con más frecuencia, hasta sentimos un poco de temor, algunos dicen por ejemplo: la tierra se puede salvar si todos sembramos un árbol, pero en el fondo sabemos que no es así, el problema es grave, el ser humano debe cambiar para que este planeta se salve.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/101FormasDeTransdormarSuVida.jpg'),
+('Al sueño', 18, 'Poema de Francisco de Quevedo', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasQuevedo.jpg'),
+('Epístola satírica y censoria', 18, 'Poema de Francisco de Quevedo', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasQuevedo.jpg');
+('Memoria inmortal de don Pedro Girón', 18, 'Poema de Francisco de Quevedo', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasQuevedo.jpg');
+('Conoce la diligencia con que se acerca la muerte', 18, 'Poema de Francisco de Quevedo', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasQuevedo.jpg');
+('Enseña cómo todas las cosas avisan la muerte', 18, 'Poema de Francisco de Quevedo', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasQuevedo.jpg');
+('Letrilla Satírica «Poderoso Caballero es don Dinero»', 18, 'Poema de Francisco de Quevedo', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasQuevedo.jpg');
+('Romance de Angélica y Medoro', 19, 'Poema de Luis de Góngora', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasGongora.jpg'),
+('Romance «Servía en Orán al Rey»', 19, 'Poema de Luis de Góngora', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasGongora.jpg'),
+('Romance «Entre los sueltos caballos»', 19, 'Poema de Luis de Góngora', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasGongora.jpg'),
+('Letrilla «Ande yo caliente, y ríase la gente»', 19, 'Poema de Luis de Góngora', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasGongora.jpg'),
+('Letrilla «Dejadme llorar, orillas del mar»', 19, 'Poema de Luis de Góngora', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasGongora.jpg');
 
 INSERT INTO genero_audiolibro (audiolibro, genero) VALUES
 (3, 1),
@@ -131,7 +173,26 @@ INSERT INTO genero_audiolibro (audiolibro, genero) VALUES
 (13, 7),
 (14, 7),
 (15, 7),
-(2, 8);
+(2, 8),
+(32, 11),
+(33, 11),
+(34, 11),
+(35, 11),
+(36, 11),
+(37, 11),
+(38, 11),
+(39, 11),
+(40, 12),
+(41, 12),
+(42, 12),
+(43, 12),
+(44, 12),
+(45, 12),
+(46, 12),
+(47, 12),
+(48, 12),
+(49, 12),
+(50, 12);
 
 INSERT INTO capitulos (numero, nombre, audiolibro, audio) VALUES
 (1, 'El niño que sobrevivió', 1, 'https://narrativesarchivos.blob.core.windows.net/audios/HarryPotter1_1.mp3'),
@@ -275,4 +336,30 @@ INSERT INTO capitulos (numero, nombre, audiolibro, audio) VALUES
 (1, 'Los tres cerditos y el lobo', 28, 'https://narrativesarchivos.blob.core.windows.net/audios/ElMisterioDeCooperBeeches.mp3'),
 (1, 'El hombre del saco', 29, 'https://narrativesarchivos.blob.core.windows.net/audios/ElMisterioDeCooperBeeches.mp3'),
 (1, 'Las tres naranjitas', 30, 'https://narrativesarchivos.blob.core.windows.net/audios/ElMisterioDeCooperBeeches.mp3'),
-(1, 'Los ladrones arrepentidos', 31, 'https://narrativesarchivos.blob.core.windows.net/audios/ElMisterioDeCooperBeeches.mp3');
+(1, 'Los ladrones arrepentidos', 31, 'https://narrativesarchivos.blob.core.windows.net/audios/ElMisterioDeCooperBeeches.mp3'),
+(1, 'El Arte de la Paz', 32, 'https://narrativesarchivos.blob.core.windows.net/audios/ElArteDeLaPaz.mp3'),
+(1, 'Las 9 Revelaciones', 33, 'https://narrativesarchivos.blob.core.windows.net/audios/LasNueveRevelaciones.mp3'),
+(1, 'Tus pensamientos crean tu vida', 34, 'https://narrativesarchivos.blob.core.windows.net/audios/TusPensamientosCreanTuVida.mp3'),
+(1, 'Tú puedes sanar tu vida', 35, 'https://narrativesarchivos.blob.core.windows.net/audios/TuPuedesSanarTuVida.mp3'),
+(1, 'La ciencia de hacerse rico', 36, 'https://narrativesarchivos.blob.core.windows.net/audios/LaCienciaDeHacerseRico.mp3'),
+(1, 'El poder del ahora', 37, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPoderDelAhora.mp3'),
+(1, 'Capítulo 1', 38, 'https://narrativesarchivos.blob.core.windows.net/audios/UnaNuevaTierra_1.mp3'),
+(2, 'Capítulo 2', 38, 'https://narrativesarchivos.blob.core.windows.net/audios/UnaNuevaTierra_2.mp3'),
+(3, 'Capítulo 3', 38, 'https://narrativesarchivos.blob.core.windows.net/audios/UnaNuevaTierra_3.mp3'),
+(4, 'Capítulo 4', 38, 'https://narrativesarchivos.blob.core.windows.net/audios/UnaNuevaTierra_4.mp3'),
+(5, 'Capítulo 5', 38, 'https://narrativesarchivos.blob.core.windows.net/audios/UnaNuevaTierra_5.mp3'),
+(6, 'Capítulo 6', 38, 'https://narrativesarchivos.blob.core.windows.net/audios/UnaNuevaTierra_6.mp3'),
+(7, 'Capítulo 7', 38, 'https://narrativesarchivos.blob.core.windows.net/audios/UnaNuevaTierra_7.mp3'),
+(8, 'Capítulo 8', 38, 'https://narrativesarchivos.blob.core.windows.net/audios/UnaNuevaTierra_8.mp3'),
+(1, '101 Formas de Transformar su Vida', 39, 'https://narrativesarchivos.blob.core.windows.net/audios/101FormasDeTransdormarSuVida.mp3'),
+(1, 'Al sueño', 40, 'https://narrativesarchivos.blob.core.windows.net/audios/AlSueño.mp3');
+(1, 'Epístola satírica y censoria', 41, 'https://narrativesarchivos.blob.core.windows.net/audios/EpistolaSatiricaYCensoria.mp3'),
+(1, 'Memoria inmortal de don Pedro Girón', 42, 'https://narrativesarchivos.blob.core.windows.net/audios/MemoriaInmortalDeDonPedroGiron.mp3'),
+(1, 'Conoce la diligencia con que se acerca la muerte', 43, 'https://narrativesarchivos.blob.core.windows.net/audios/ConoceLaDiligenciaConQueSeAcercaLaMuerte.mp3'),
+(1, 'Enseña cómo todas las cosas avisan la muerte', 44, 'https://narrativesarchivos.blob.core.windows.net/audios/EnseñaComoTodasLasCosasAvisanLaMuerte.mp3'),
+(1, 'Letrilla Satírica «Poderoso Caballero es don Dinero»', 45, 'https://narrativesarchivos.blob.core.windows.net/audios/LetrillaSatiricaPoderosoCaballeroEsDonDinero.mp3'),
+(1, 'Romance de Angélica y Medoro', 46, 'https://narrativesarchivos.blob.core.windows.net/audios/RomanceDeAngelicaYMedoro.mp3'),
+(1, 'Romance «Servía en Orán al Rey»', 47, 'https://narrativesarchivos.blob.core.windows.net/audios/RomanceServiaEnOranAlRey.mp3'),
+(1, 'Romance «Entre los sueltos caballos»', 48, 'https://narrativesarchivos.blob.core.windows.net/audios/RomanceEntreLosSueltosCaballos.mp3'),
+(1, 'Letrilla «Ande yo caliente, y ríase la gente»', 49, 'https://narrativesarchivos.blob.core.windows.net/audios/LetrillaAndeYoCalienteYRiaseLaGente.mp3'),
+(1, 'Letrilla «Dejadme llorar, orillas del mar»', 50, 'https://narrativesarchivos.blob.core.windows.net/audios/LetrillaDejadmeLlorarOrillasDelMar.mp3'),
