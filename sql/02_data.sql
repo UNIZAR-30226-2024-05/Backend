@@ -17,7 +17,10 @@ INSERT INTO autores (nombre, ciudadNacimiento, informacion) VALUES
 ('Eckhart Tolle', 'Lünen, Alemania', 'Eckhart Tolle (16 de febrero de 1948) es un guía espiritual y escritor alemán, reconocido por títulos como El poder del Ahora y Un nuevo mundo, ahora. En 2008 un escritor del New York Times lo calificó como "el autor espiritual más popular del país", al igual que la Watkins Review de Londres en 2011. Reside en Vancouver (Canadá) con su mujer, Kim Eng.'),
 ('Wayne W. Dyer', 'Detroit, Míchigan, Estados Unidos', 'Wayne Walter Dyer (10 de mayo de 1940) fue un psicólogo y escritor de libros de autoayuda estadounidense.'),
 ('Francisco de Quevedo', 'Madrid, España', 'Francisco Gómez de Quevedo Villegas y Santibáñez Cevallos (14 de septiembre de 1580) fue un noble, político y escritor español del Siglo de Oro. Fue caballero de la Orden de Santiago a partir de 1618 y señor de Torre de Juan Abad a partir de 1620. Junto con Luis de Góngora, con quien mantuvo una enemistad durante toda su vida, es reconocido como uno de los más notables poetas de la literatura española. Además de su poesía, fue un prolífico escritor de narrativa y teatro, así como de textos filosóficos y humanísticos.'),
-('Luis de Góngora', 'Córdoba, Corona de Castilla', 'Luis de Góngora y Argote (11 de julio de 1561) fue un poeta y dramaturgo español del Siglo de Oro, máximo exponente de la corriente literaria conocida más tarde como culteranismo o gongorismo.');
+('Luis de Góngora', 'Córdoba, Corona de Castilla', 'Luis de Góngora y Argote (11 de julio de 1561) fue un poeta y dramaturgo español del Siglo de Oro, máximo exponente de la corriente literaria conocida más tarde como culteranismo o gongorismo.'),
+('Elizabeth Hoyt', 'Nueva Orleans, Luisiana, Estados Unidos', 'Elizabeth Hoyt (21 de noviembre de 1970) es el seudónimo de Nancy M. Finney. Hoyt es una de los autoras de novelas históricas más vendidos del New York Times. También escribe novelas románticas contemporáneas bajo el nombre de Julia Harper. Vive en el centro de Illinois con su marido y sus dos hijos.'),
+('Meagan McKinney', 'Estados Unidos', 'Meagan McKinney (nacida en 1961) es el seudónimo escogido por la autora americana Ruth Goodman para firmar parte de su obra literaria. Goodman estudió Biología, campo al que se dedicó varios años. Tras el éxito de sus primeras novelas, Goodman decidió dedicarse por completo a la literatura a partir de los años 90 bajo el nombre de McKinney, con el que ha publicado desde entonces más de veinte novelas.'),
+('Elizabeth Lowell', 'Milwaukee , Wisconsin , Estados Unidos', 'Ann Maxwell (nacida el 5 de abril de 1944), también conocida como AE Maxwell y Elizabeth Lowell , es una escritora estadounidense. Ha escrito individualmente y con el coautor y esposo Evan más de 50 novelas y un libro de no ficción. Sus novelas van desde la ciencia ficción hasta la ficción histórica, y desde el romance hasta el misterio y el suspenso.');
 
 INSERT INTO generos (nombre) VALUES
 ('Romance'),
@@ -140,10 +143,58 @@ Cuando observamos una catástrofe; como las que ocurren, cada día con más frec
 ('Romance «Servía en Orán al Rey»', 19, 'Poema de Luis de Góngora', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasGongora.jpg'),
 ('Romance «Entre los sueltos caballos»', 19, 'Poema de Luis de Góngora', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasGongora.jpg'),
 ('Letrilla «Ande yo caliente, y ríase la gente»', 19, 'Poema de Luis de Góngora', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasGongora.jpg'),
-('Letrilla «Dejadme llorar, orillas del mar»', 19, 'Poema de Luis de Góngora', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasGongora.jpg');
+('Letrilla «Dejadme llorar, orillas del mar»', 19, 'Poema de Luis de Góngora', 'https://narrativesarchivos.blob.core.windows.net/imagenes/PoemasGongora.jpg'),
+('El príncipe cuervo', 20, 'Edward de Raaf, conde de Swartingham, necesita con urgencia un secretario que ponga orden en sus caóticas finanzas. El problema es que, con su carácter, espanta a todos los candidatos. Para Anna Wren el puesto es la solución a sus problemas, después de enviudar de un marido infiel y quedarse en la ruina. La atracción entre ambos personajes queda patente desde el primer momento, aunque Edward no parece muy dispuesto a dejarse llevar por ella. Cuando Anna descubre que el conde es habitual de un conocido burdel de Londres, decide poner en marcha una pequeña mascarada. Porque en el juego de la seducción, no existen reglas?', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/ElPrincipeCuervo.jpg'),
+('El príncipe leopardo', 20, 'Lo único que jamás debe hacer una dama... 
+La adinerada lady Georgina Maitland no quiere un esposo, aunque no le vendría nada mal un administrador que gestione sus propiedades. Es ponerle la vista encima a Harry Pye, y Georgina sabe que no sólo está tratando con un sirviente, sino con un hombre.
+...es enamorarse... 
+Harry ha conocido a muchos aristócratas... incluyendo a uno en particular que es su enemigo jurado. Pero Harry jamás ha conocido a una hermosa dama tan independiente, desinhibida y ansiosa por estar en sus brazos. 
+...de su sirviente.
+Con todo, es imposible mantener una aventura discreta cuando el envenenamiento de ovejas, asesinato de aldeanos y un magistrado rabioso tiene alborotado al condado entero. Los lugareños culpan a Harry de todo. Georgiana no tardará en hacer algo para poder mantenerse a flote ella misma y salvar a Harry de la horca... sin perderse otra noche de amor.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/ElPrincipeLeopardo.jpg'),
+('El príncipe serpiente', 20, 'Cuando el demonio conoce a un ángel... 
+Lucy Craddock-Hayes está contenta con su tranquila vida campestre. Hasta el día en que tropieza con un hombre inconsciente —un hombre «desnudo» inconsciente— y pierde para siempre su inocencia. 
+...puede llevarla hasta el séptimo cielo... 
+El vizconde Simon Iddesleigh ha recibido una brutal paliza por parte de sus enemigos que a punto ha estado de acabar con su vida. Ahora Simon solamente piensa en vengarse. Pero cuando Lucy le cuida y le devuelve la salud, su honestidad espanta sus hastiadas sensibilidades... aun cuando despierta un deseo que amenaza con consumirlos a ambos. 
+...o al infierno. 
+Embrujada por la astuta inteligencia de Simon, sus modales mundanos e inclusos sus zapatos de tacón rojo, Lucy se enamora rápida y profundamente de él. Pero aunque el honor le impida seducirla, su venganza guiará a sus atacantes hasta su puerta. Mientras Simon hace la guerra a sus enemigos, Lucy libra una guerra propia por su alma empleando la única arma que tiene a su alcance... su amor...', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/ElPrincipeSerpiente.jpg'),
+('La princesa de hielo', 20, 'SIETE NOCHES DE PECADO
+Como la madam de la Gruta de Afrodita, el burdel más famoso de Londres, Coral Smythe sabe todo lo posible acerca de las necesidades y los deseos de los hombres. Sin embargo, ella nunca ha experimentado el amor de uno solo, ni siquiera lel del capitán Isaac Wargate cuyos ojos de halcón la miran fijamente con condena ... y lujuria.
+SIETE NOCHES DE ÉXTASIS
+El corazón del capitán Wargate desaprueba a la sensual madam que siempre lleva una máscara de oro. Ella distrae a sus oficiales de los buques y de su deber, como tambien a él. Pero cuando la misma Coral es ofrecida como premio en un juego de azar, Wargate impulsivamente entra ... y gana.
+SIETE NOCHES DE AMOR
+Ahora, el puritano capitán de la Armada contará de siete noches para aprender todo lo que pueda acerca de la misteriosa señora, y lo que sabe de los deseos de un hombre. Pero cuando Coral es amenazada por el nuevo dueño de la Gruta de Afrodita, ¿estárá Wargate dispuesto a tener una oportunidad con la mujer debajo de la máscara ... y el amor?', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/LaPrincesaDeHielo.jpg'),
+('Encajes y pecados', 21, 'La luz de gas iluminaba los cabellos dorados de Alana van Alen. Nacida para el lujo, se codeaba con los Astor y los Vanderbilt en los grandes salones. Sin embargo, se estremeció de miedo y algo más cuando se encontró ante el apuesto e implacable Trevor Sheridan. Sheridan, el hombre que había llevado a la bancarrota a la familia de ella y pretendía sacar a la luz el escandaloso secreto familiar en caso de que Alana no aceptara su ultrajante proposicion, su chantaje emocional... ni el beso que le paralizó el corazón.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/EncajesYPecados.jpg'),
+('Fugitiva', 21, 'Cuando la bella aristócrata Christabel Van Alen es acusada falsamente de asesinato, escapa de su vida en Nueva York hacia el salvaje Oeste con la intención de crearse una nueva identidad. Sin embargo, sus planes se verán frustrados cuando se interpone en su camino Cain, un duro e implacable representante de la ley que la perseguirá sin tregua allá donde vaya. 
+El marshal captura a la joven con intenciones de llevarla ante la justicia, pero el deseo y la violenta pasión que surge entre ellos harán que todo en lo que ha creído Cain hasta el momento se derrumbe y deba escoger entre la ley… o la mujer a la que ama y sin la que ya no puede vivir.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/Fugitiva.jpg'),
+('Indómito', 22, 'El peligroso y enigmático Dominic le Sabre regresa a Inglaterra colmado de gloria y riquezas obtenidas en las Cruzadas, para reclamar su recompensa: la hermosa dama sajona que le ha sido destinada por el rey. 
+Sin embargo, lady Margaret de Blackthorne, atrapada en una red de odio, no puede ceder ante el invasor normando. Pero lo que no imagina es que va a ser sometida sin piedad a una implacable seducción por parte del fiero guerrero, en la que ambos perderán su corazón y… también su alma. 
+Juntos deberán enfrentarse a las traiciones que les rodean y librar la batalla más importante de sus vidas. Una batalla en la que tendrán que luchar por la violenta pasión que les une, y… por su amor.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/Indomito.jpg'),
+('Prohibido', 22, 'Una antigua profecía… 
+Amber es la única descendiente de una antigua tribu celta y está destinada a llevar una vida solitaria dedicada a la sanación hasta que, según predijeron a su nacimiento, un hombre la conduzca hasta la luz… o la oscuridad. 
+Un pasión prohibida… 
+Duncan es uno de los guerreros más poderosos de Inglaterra, un hombre duro y peligroso hecho a sí mismo, pero ahora ha perdido la memoria y ha caído en manos de sus enemigos. Lo que nunca hubiera podido imaginar es que hallaría la pasión, el amor y la ternura en una mujer que le está… prohi-bida.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/Prohibido.jpg'),
+('Hechicera', 22, 'Simon le Sabre ha jurado no amar jamás, y aunque acepta desposar a una bella heredera normanda para lograr la paz en sus tierras, el matrimonio no es para él más que una simple obligación. Sin embargo, el poderoso guerrero que nunca ha conocido la derrota, caerá rendido ante su esposa y su único objetivo será conquistarla y seducirla. Ariane Deguerre, una inocente y dulce hechicera, se ha visto obligada a enfrentarse toda su vida a la frialdad y la crueldad, por lo que llega a Simon reticente... y aterrorizada. Lo último que la joven esperaba era sentirse cautivada por el hombre que el destino ha cruzado en su camino, un hombre que hace surgir en ella un fiero deseo más fuerte que el odio y la traición. Ambos deberán aprender que la paz que tanto ansían sólo podrá lograrse mediante la violenta pasión y el profundo amor que llegará a unirlos.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/Hechicera.jpg');
 
 INSERT INTO genero_audiolibro (audiolibro, genero) VALUES
 (3, 1),
+(51, 1),
+(52, 1),
+(53, 1),
+(54, 1),
+(55, 1),
+(56, 1),
+(57, 1),
+(58, 1),
+(59, 1),
 (1, 3),
 (4, 5),
 (5, 5),
@@ -362,4 +413,64 @@ INSERT INTO capitulos (numero, nombre, audiolibro, audio) VALUES
 (1, 'Romance «Servía en Orán al Rey»', 47, 'https://narrativesarchivos.blob.core.windows.net/audios/RomanceServiaEnOranAlRey.mp3'),
 (1, 'Romance «Entre los sueltos caballos»', 48, 'https://narrativesarchivos.blob.core.windows.net/audios/RomanceEntreLosSueltosCaballos.mp3'),
 (1, 'Letrilla «Ande yo caliente, y ríase la gente»', 49, 'https://narrativesarchivos.blob.core.windows.net/audios/LetrillaAndeYoCalienteYRiaseLaGente.mp3'),
-(1, 'Letrilla «Dejadme llorar, orillas del mar»', 50, 'https://narrativesarchivos.blob.core.windows.net/audios/LetrillaDejadmeLlorarOrillasDelMar.mp3');
+(1, 'Letrilla «Dejadme llorar, orillas del mar»', 50, 'https://narrativesarchivos.blob.core.windows.net/audios/LetrillaDejadmeLlorarOrillasDelMar.mp3'),
+(1, 'Capítulos 1 a 3', 51, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeCuervo_1.mp3'),
+(2, 'Capítulos 4 a 6', 51, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeCuervo_2.mp3'),
+(3, 'Capítulos 7 a 10', 51, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeCuervo_3.mp3'),
+(4, 'Capítulos 11 a 13', 51, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeCuervo_4.mp3'),
+(5, 'Capítulos 14 a 16', 51, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeCuervo_5.mp3'),
+(6, 'Capítulos 17 a 19', 51, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeCuervo_6.mp3'),
+(7, 'Capítulos 20 a 22', 51, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeCuervo_7.mp3'),
+(1, 'Capítulos 1 a 3', 52, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeLeopardo_1.mp3'),
+(2, 'Capítulos 4 a 6', 52, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeLeopardo_2.mp3'),
+(3, 'Capítulos 7 a 9', 52, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeLeopardo_3.mp3'),
+(4, 'Capítulos 10 a 12', 52, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeLeopardo_4.mp3'),
+(5, 'Capítulos 13 a 15', 52, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeLeopardo_5.mp3'),
+(6, 'Capítulos 16 a 18', 52, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeLeopardo_6.mp3'),
+(7, 'Capítulos 19 a 21', 52, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeLeopardo_7.mp3'),
+(1, 'Capítulos 1 a 3', 53, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeSerpiente_1.mp3'),
+(2, 'Capítulos 4 a 6', 53, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeSerpiente_2.mp3'),
+(3, 'Capítulos 7 a 9', 53, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeSerpiente_3.mp3'),
+(4, 'Capítulos 10 a 12', 53, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeSerpiente_4.mp3'),
+(5, 'Capítulos 13 a 16', 53, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeSerpiente_5.mp3'),
+(6, 'Capítulos 17 a 20', 53, 'https://narrativesarchivos.blob.core.windows.net/audios/ElPrincipeSerpiente_6.mp3'),
+(1, 'Capítulos 1 a 4', 54, 'https://narrativesarchivos.blob.core.windows.net/audios/LaPrincesaDeHielo_1.mp3'),
+(2, 'Capítulos 5 a 12', 54, 'https://narrativesarchivos.blob.core.windows.net/audios/LaPrincesaDeHielo_2.mp3'),
+(1, 'Capítulos 1 y 2', 55, 'https://narrativesarchivos.blob.core.windows.net/audios/EncajesYPecados_1.mp3'),
+(2, 'Capítulos 3 a 6', 55, 'https://narrativesarchivos.blob.core.windows.net/audios/EncajesYPecados_2.mp3'),
+(3, 'Capítulos 7 a 10', 55, 'https://narrativesarchivos.blob.core.windows.net/audios/EncajesYPecados_3.mp3'),
+(4, 'Capítulos 11 a 14', 55, 'https://narrativesarchivos.blob.core.windows.net/audios/EncajesYPecados_4.mp3'),
+(5, 'Capítulos 15 a 18', 55, 'https://narrativesarchivos.blob.core.windows.net/audios/EncajesYPecados_5.mp3'),
+(6, 'Capítulos 19 a 23', 55, 'https://narrativesarchivos.blob.core.windows.net/audios/EncajesYPecados_6.mp3'),
+(7, 'Capítulos 24 a 33', 55, 'https://narrativesarchivos.blob.core.windows.net/audios/EncajesYPecados_7.mp3'),
+(1, 'Capítulos 1 y 2', 56, 'https://narrativesarchivos.blob.core.windows.net/audios/Fugitiva_1.mp3'),
+(2, 'Capítulos 3 a 7', 56, 'https://narrativesarchivos.blob.core.windows.net/audios/Fugitiva_2.mp3'),
+(3, 'Capítulos 8 a 12', 56, 'https://narrativesarchivos.blob.core.windows.net/audios/Fugitiva_3.mp3'),
+(4, 'Capítulos 13 a 18', 56, 'https://narrativesarchivos.blob.core.windows.net/audios/Fugitiva_4.mp3'),
+(5, 'Capítulos 19 a 25', 56, 'https://narrativesarchivos.blob.core.windows.net/audios/Fugitiva_5.mp3'),
+(6, 'Capítulos 26 a 30', 56, 'https://narrativesarchivos.blob.core.windows.net/audios/Fugitiva_6.mp3'),
+(1, 'Capítulos 1 a 3', 57, 'https://narrativesarchivos.blob.core.windows.net/audios/Indomito_1.mp3'),
+(2, 'Capítulos 4 a 7', 57, 'https://narrativesarchivos.blob.core.windows.net/audios/Indomito_2.mp3'),
+(3, 'Capítulos 8 a 10', 57, 'https://narrativesarchivos.blob.core.windows.net/audios/Indomito_3.mp3'),
+(4, 'Capítulos 11 a 14', 57, 'https://narrativesarchivos.blob.core.windows.net/audios/Indomito_4.mp3'),
+(5, 'Capítulos 15 a 18', 57, 'https://narrativesarchivos.blob.core.windows.net/audios/Indomito_5.mp3'),
+(6, 'Capítulos 19 a 22', 57, 'https://narrativesarchivos.blob.core.windows.net/audios/Indomito_6.mp3'),
+(7, 'Capítulos 23 y 25', 57, 'https://narrativesarchivos.blob.core.windows.net/audios/Indomito_7.mp3'),
+(8, 'Capítulos 26 y 28', 57, 'https://narrativesarchivos.blob.core.windows.net/audios/Indomito_8.mp3'),
+(1, 'Capítulos 1 a 3', 58, 'https://narrativesarchivos.blob.core.windows.net/audios/Prohibido_1.mp3'),
+(2, 'Capítulos 4 a 6', 58, 'https://narrativesarchivos.blob.core.windows.net/audios/Prohibido_2.mp3'),
+(3, 'Capítulos 7 a 9', 58, 'https://narrativesarchivos.blob.core.windows.net/audios/Prohibido_3.mp3'),
+(4, 'Capítulos 10 a 12', 58, 'https://narrativesarchivos.blob.core.windows.net/audios/Prohibido_4.mp3'),
+(5, 'Capítulos 13 a 15', 58, 'https://narrativesarchivos.blob.core.windows.net/audios/Prohibido_5.mp3'),
+(6, 'Capítulos 16 a 18', 58, 'https://narrativesarchivos.blob.core.windows.net/audios/Prohibido_6.mp3'),
+(7, 'Capítulos 19 y 20', 58, 'https://narrativesarchivos.blob.core.windows.net/audios/Prohibido_7.mp3'),
+(8, 'Capítulos 21 y 22', 58, 'https://narrativesarchivos.blob.core.windows.net/audios/Prohibido_8.mp3'),
+(1, 'Capítulos 1 a 5', 59, 'https://narrativesarchivos.blob.core.windows.net/audios/Hechicera_1.mp3'),
+(2, 'Capítulos 6 a 8', 59, 'https://narrativesarchivos.blob.core.windows.net/audios/Hechicera_2.mp3'),
+(3, 'Capítulos 9 a 12', 59, 'https://narrativesarchivos.blob.core.windows.net/audios/Hechicera_3.mp3'),
+(4, 'Capítulos 13 a 16', 59, 'https://narrativesarchivos.blob.core.windows.net/audios/Hechicera_4.mp3'),
+(5, 'Capítulos 17 a 20', 59, 'https://narrativesarchivos.blob.core.windows.net/audios/Hechicera_5.mp3'),
+(6, 'Capítulos 21 a 23', 59, 'https://narrativesarchivos.blob.core.windows.net/audios/Hechicera_6.mp3'),
+(7, 'Capítulos 24 y 26', 59, 'https://narrativesarchivos.blob.core.windows.net/audios/Hechicera_7.mp3'),
+(8, 'Capítulos 27 y 29', 59, 'https://narrativesarchivos.blob.core.windows.net/audios/Hechicera_8.mp3'),
+(9, 'Capítulos 30 y 33', 59, 'https://narrativesarchivos.blob.core.windows.net/audios/Hechicera_9.mp3');
