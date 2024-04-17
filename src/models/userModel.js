@@ -2,12 +2,14 @@ const pool = require('../db');
 const bcrypt = require("bcrypt");
 
 const UserModel = {
-    async createUser(username, mail, password) {
+    async createUser(username, mail, password, img) {
         const hashedPassword = await bcrypt.hash(password, 10);
-        await pool.query(
-            "INSERT INTO users (username, mail, password, admin) VALUES ($1, $2, $3, false)",
-            [username, mail, hashedPassword]
+        const user_id  = await pool.query(
+            `INSERT INTO users (username, mail, password, img, admin) VALUES ($1, $2, $3, $4, false)
+            RETURNING id`,
+            [username, mail, hashedPassword, img]
         );
+        return user_id.rows[0].id;
     },
 
     async getUserById(user_id) {
@@ -28,6 +30,11 @@ const UserModel = {
     async changePass(user_id, newPassword) {
         const hashedPassword = await bcrypt.hash(newPassword, 10);
         const updatedUser = await pool.query("UPDATE users SET password = $1 WHERE id = $2", [hashedPassword, user_id]);
+        return updatedUser.rowCount;
+    },
+
+    async changeImg(user_id, newImg) {
+        const updatedUser = await pool.query("UPDATE users SET img = $1 WHERE id = $2", [newImg, user_id]);
         return updatedUser.rowCount;
     }
 };

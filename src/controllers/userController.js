@@ -19,11 +19,10 @@ exports.register = async (req, res) => {
                 error: "Existing email"
             });
         }
-
-        await UserModel.createUser(username, mail, password);
-        const newUser = await UserModel.getUserByUsername(username); 
-        await ColeccionesModel.createUserCollection('Favoritos', newUser.id);
-        await ColeccionesModel.createUserCollection('Escuchar mas tarde', newUser.id);
+        const randomImg = (Math.floor(Math.random() * 10)).toString();
+        const user_id = await UserModel.createUser(username, mail, password, randomImg); 
+        await ColeccionesModel.createUserCollection('Favoritos', user_id);
+        await ColeccionesModel.createUserCollection('Escuchar mas tarde', user_id);
         res.status(200).json({
             message: "OK"
         });
@@ -52,9 +51,9 @@ exports.login = async (req, res) => {
             });
         } else {
             if (user.admin) {
-                req.session.user = { user_id: user.id, username, role: 'admin' };
+                req.session.user = { user_id: user.id, username, img: user.img, role: 'admin' };
             } else {
-                req.session.user = { user_id: user.id, username, role: 'normal' };
+                req.session.user = { user_id: user.id, username, img: user.img, role: 'normal' };
             }
         }
 
@@ -100,6 +99,21 @@ exports.changePass = async (req, res) => {
     }
 };
 
+exports.changeImg = async (req, res) => {
+    const { newImg } = req.body;
+    const { user_id } = req.session.user;
+
+    try {
+        await UserModel.changeImg(user_id, newImg);
+        res.status(200).json({ 
+            message: "OK"
+        });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+};
+
 exports.profile = async (req, res) => {
     const { user_id } = req.session.user;
 
@@ -107,7 +121,8 @@ exports.profile = async (req, res) => {
         const user = await UserModel.getUserById(user_id);
         return res.status(200).json({
             username: user.username,
-            mail: user.mail
+            mail: user.mail,
+            img: user.img
         });
     } catch (err) {
         console.error(err.message);

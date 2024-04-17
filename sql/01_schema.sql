@@ -2,6 +2,7 @@ CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(20) NOT NULL UNIQUE,
     mail VARCHAR(50) NOT NULL UNIQUE,
+    img CHAR(1) NOT NULL CHECK (img >= '0' AND img <= '9'),
     password VARCHAR(64) NOT NULL,
     admin BOOLEAN NOT NULL
 );
