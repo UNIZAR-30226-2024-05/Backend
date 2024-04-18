@@ -1,11 +1,11 @@
 const pool = require('../services/db');
 
 const AudiolibrosModel = {
-    async newAudiolibro(titulo, autorId, descripcion, imgUrl) {
+    async newAudiolibro(titulo, autor, descripcion, imgUrl) {
         try {
             await pool.query(
                 "INSERT INTO audiolibros (titulo, autor, descripcion, img) VALUES ($1, $2, $3, $4)", 
-                [titulo, autorId, descripcion, imgUrl]);
+                [titulo, autor, descripcion, imgUrl]);
         } catch (error) {
             console.error("Error al insertar nuevo audiolibro:", error);
             throw error;

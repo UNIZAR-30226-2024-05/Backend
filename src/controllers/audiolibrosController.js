@@ -14,11 +14,25 @@ exports.getAudiolibrosByGenero = async (req, res) => {
 };
 
 exports.newAudiolibro = async (req, res) => {
-    const { titulo, autorId, descripcion, imgPath } = req.body;
+    const { titulo, autor, descripcion } = req.body;
+    const { image, audios } = req.files;
 
     try {
-        const imgUrl = await AzureBlobStorage.uploadFileToAzureBlobStorage(imgPath, titulo+autorId);
-        await AudiolibrosModel.newAudiolibro(titulo, autorId, descripcion, imgUrl);
+        const imgUrl = await AzureBlobStorage.uploadFileToAzureBlobStorage(
+            image[0].originalname, image[0].buffer, image[0].fieldname, image[0].mimetype
+        );
+        //const autorId = await 
+        //await AudiolibrosModel.newAudiolibro(titulo, autorId, descripcion, imgUrl);
+
+        const audiosUrls = [];
+        for (const file of audios) {
+            const audioUrl = await AzureBlobStorage.uploadFileToAzureBlobStorage(
+                file.originalname, file.buffer, file.fieldname, file.mimetype
+            );
+            audiosUrls.push(audioUrl);
+        }
+        //await AudiolibrosModel.subirCapitulos();
+        
         res.status(200).json({ message: "OK" });
     } catch (error) {
         console.error(error);
@@ -26,6 +40,7 @@ exports.newAudiolibro = async (req, res) => {
     }
 };
 
+/*
 exports.deleteAudiolibro = async (req, res) => {
     const { audiolibroId } = req.body;
 
@@ -39,3 +54,4 @@ exports.deleteAudiolibro = async (req, res) => {
         res.status(500).json({ error: "Server Error" });
     }
 };
+*/
