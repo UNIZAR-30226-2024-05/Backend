@@ -40,18 +40,24 @@ exports.newAudiolibro = async (req, res) => {
     }
 };
 
-/*
 exports.deleteAudiolibro = async (req, res) => {
     const { audiolibroId } = req.body;
 
     try {
         const audiolibros = await AudiolibrosModel.getAudiolibroById(audiolibroId);
-        await AzureBlobStorage.deleteBlobFromAzureBlobStorage(audiolibros.titulo+audiolibros.autor);
+        const imgName = audiolibros.img.substring(audiolibros.img.lastIndexOf('/') + 1);
+
+        const audiosUrls = await AudiolibrosModel.getAudiosCapitulos(audiolibroId);
+        const audiosNames = audiosUrls.map((audio) => {
+            return audio.audio.substring(audio.audio.lastIndexOf('/') + 1);
+        });
+        
         await AudiolibrosModel.deleteAudiolibro(audiolibroId);
+        await AzureBlobStorage.deleteBlobsFromAzureBlobStorage(imgName, audiosNames);
+
         res.status(200).json({ message: "OK" });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Server Error" });
     }
 };
-*/

@@ -22,15 +22,16 @@ async function uploadFileToAzureBlobStorage(fileName, fileData, fileType, mimeTy
     return blockBlobClient.url; 
 }
 
-async function deleteBlobFromAzureBlobStorage(fileName, fileType) {
-    let containerClient;
-    if (fileType === "image") {
-        containerClient = blobServiceClient.getContainerClient(imgContainerName);
-    } else {
-        containerClient = blobServiceClient.getContainerClient(audioContainerName);
-    }
-    const blockBlobClient = containerClient.getBlockBlobClient(fileName);
+async function deleteBlobsFromAzureBlobStorage(imgName, audiosNames) {
+    let containerClient = blobServiceClient.getContainerClient(imgContainerName);
+    let blockBlobClient = containerClient.getBlockBlobClient(imgName);
     await blockBlobClient.delete();
+
+    containerClient = blobServiceClient.getContainerClient(audioContainerName);
+    audiosNames.forEach(async (audio) => {
+        blockBlobClient = containerClient.getBlockBlobClient(audio);
+        await blockBlobClient.delete();
+    });
 }
 
-module.exports = { uploadFileToAzureBlobStorage, deleteBlobFromAzureBlobStorage };
+module.exports = { uploadFileToAzureBlobStorage, deleteBlobsFromAzureBlobStorage };

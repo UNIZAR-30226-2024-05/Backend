@@ -61,6 +61,18 @@ const AudiolibrosModel = {
             console.error("Error al obtener el audiolibro:", error);
             throw error;
         }
+    },
+
+    async getAudiosCapitulos(audiolibroId) {
+        try {
+            const capitulos = await pool.query(
+                "SELECT audio FROM capitulos WHERE audiolibro = $1", 
+                [audiolibroId]);
+            return capitulos.rows;
+        } catch (error) {
+            console.error("Error al obtener el audiolibro:", error);
+            throw error;
+        }
     }
 };
 
