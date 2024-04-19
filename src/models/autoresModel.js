@@ -38,9 +38,12 @@ const autoresModel = {
     },
 
     async getAudiolibrosPorAutor(idAutor) {
-        try {
+        try { 
             const audiolibros = await pool.query(`
-            SELECT DISTINCT audiolibros.id, audiolibros.titulo, audiolibros.img, ROUND(AVG(reviews.puntuacion), 2) AS media_puntuacion
+            SELECT DISTINCT audiolibros.id, 
+            audiolibros.titulo, 
+            audiolibros.img, 
+            ROUND(COALESCE(AVG(reviews.puntuacion), 0.00), 2) AS puntuacion
             FROM audiolibros
             JOIN autores ON audiolibros.autor = autores.id
             LEFT JOIN reviews ON audiolibros.id = reviews.audiolibro
