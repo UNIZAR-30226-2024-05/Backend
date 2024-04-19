@@ -40,10 +40,12 @@ const autoresModel = {
     async getAudiolibrosPorAutor(idAutor) {
         try {
             const audiolibros = await pool.query(`
-                SELECT DISTINCT audiolibros.*
-                FROM audiolibros
-                JOIN autores ON audiolibros.autor = autores.id
-                WHERE autores.id = $1;
+            SELECT DISTINCT audiolibros.id, audiolibros.titulo, audiolibros.img, ROUND(AVG(reviews.puntuacion), 2) AS media_puntuacion
+            FROM audiolibros
+            JOIN autores ON audiolibros.autor = autores.id
+            LEFT JOIN reviews ON audiolibros.id = reviews.audiolibro
+            WHERE autores.id = $1
+            GROUP BY audiolibros.id, audiolibros.titulo, audiolibros.img;
             `, [idAutor]);
     
             return audiolibros.rows;
