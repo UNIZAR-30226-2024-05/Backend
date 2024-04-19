@@ -19,17 +19,17 @@ exports.getAudiolibroById = async (req, res) => {
     try {
         // Recoger datos generales
         let audiolibro = await AudiolibrosModel.getAudiolibroById(id);
-        const autor = await AutorModel.getAutorById(audiolibro.autor); //Falta
+        //const autor = await AutorModel.getAutorById(audiolibro.autor); //Falta
         delete audiolibro.autor;
         const generos = await AudiolibrosModel.getGenerosOfAudiolibro(id);
         const capitulos = await AudiolibrosModel.getCapitulosOfAudiolibro(id);
-        const publicReviews = await ReviewModel.getPublicReviewsOfAudiolibro(id);
+        //const publicReviews = await ReviewModel.getPublicReviewsOfAudiolibro(id);
 
         if (boolAuthenticated) {
             // Está registrado, recoger datos relativos al usuario
             const { user_id } = req.session.user;
-            const friendsReviews = await ReviewModel.getFriendsReviewsOfAudiolibro(id, user_id);
-            const ownReviews = await ReviewModel.getOwnReviewOfAudiolibro(id, user_id);
+            //const friendsReviews = await ReviewModel.getFriendsReviewsOfAudiolibro(id, user_id);
+            //const ownReviews = await ReviewModel.getOwnReviewOfAudiolibro(id, user_id);
 
         }
 
