@@ -15,6 +15,7 @@ exports.getAllAudiolibros = async (req, res) => {
 
 exports.getAudiolibroById = async (req, res) => {
     const { id } = req.params;
+    const { boolAuthenticated } = req.hasSession;
 
     try {
         // Recoger datos generales
