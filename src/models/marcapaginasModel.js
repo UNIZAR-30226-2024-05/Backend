@@ -50,20 +50,19 @@ const marcapaginasModel = {
             throw error;
         }
     },
-    //Para buscar donde se dejo un audiolibro concreto
-    async getUltimoMomentoByAudiolibro(username,audiobookId) {
+
+    async getAudiolibrosEmpezados(username) {
         try {
-            const audiolibros = await pool.query(`
-                SELECT DISTINCT  marcapaginas.capitulo, marcapaginas.fecha
-                FROM audiolibros
-                JOIN capitulos ON audiolibros.id = capitulos.audiolibro
-                JOIN marcapaginas ON capitulos.id = marcapaginas.capitulo
-                JOIN users ON marcapaginas.usuario = users.id
-                WHERE (marcapaginas.tipo = '1' OR marcapaginas.tipo = '0') AND users.username = $1 AND capitulos.audiolibro = $2;
-            `, [username, audiobookId]);
-            return audiolibros.rows[0];
+            const audiolibros = await pool.query(`SELECT DISTINCT audiolibros.*, capitulos.*, marcapaginas.*
+            FROM audiolibros
+            JOIN capitulos ON audiolibros.id = capitulos.audiolibro
+            JOIN marcapaginas ON capitulos.id = marcapaginas.capitulo
+            JOIN users ON marcapaginas.usuario = users.id
+            WHERE  marcapaginas.tipo = '1' AND users.username = $1;
+            `, [username]);
+            return audiolibros.rows;
         } catch (error) {
-            console.error("Error al obtener el ultimo momento del audiolibro:", error);
+            console.error("Error al obtener el ultimo audiolibro del usuario:", error);
             throw error;
         }
     },
@@ -78,15 +77,14 @@ const marcapaginasModel = {
             `, [username]);
             return audiolibros.rows;
         } catch (error) {
-            console.error("Error al obtener los marcapaginas personalizados del usuario:", error);
+            console.error("Error al obtener el ultimo audiolibro del usuario:", error);
             throw error;
         }
     },
-    //Para buscar todos los marcapaginas personalizados de un audiolibro concreto
     async getMarcapaginasPersonalizadosByAudiolibro(username, audiobookId) {
         try {
             const audiolibros = await pool.query(`
-                SELECT DISTINCT  marcapaginas.id,  marcapaginas.titulo,  marcapaginas.capitulo,  marcapaginas.fecha
+                SELECT DISTINCT  marcapaginas.*
                 FROM audiolibros
                 JOIN capitulos ON audiolibros.id = capitulos.audiolibro
                 JOIN marcapaginas ON capitulos.id = marcapaginas.capitulo
@@ -95,7 +93,7 @@ const marcapaginasModel = {
             `, [username, audiobookId]);
             return audiolibros.rows;
         } catch (error) {
-            console.error("Error al obtener los marcapaginas personalizados del libro:", error);
+            console.error("Error al obtener el último audiolibro del usuario:", error);
             throw error;
         }
     },
