@@ -51,14 +51,14 @@ exports.login = async (req, res) => {
             });
         } else {
             if (user.admin) {
-                req.session.user = { user_id: user.id, username, img: user.img, role: 'admin' };
+                req.session.user = { user_id: user.id, role: 'admin' };
             } else {
-                req.session.user = { user_id: user.id, username, img: user.img, role: 'normal' };
+                req.session.user = { user_id: user.id, role: 'normal' };
             }
         }
 
         res.status(200).json({ 
-            message: "OK", user: req.session.user 
+            message: "OK", user: { username, img: user.img }
         });
         
     } catch (err) {

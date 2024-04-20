@@ -79,10 +79,10 @@ exports.ActualizarMarcapaginas = async (req, res) => {
 
 exports.ActualizarUltimoAudiolibro = async (req, res) => {
     const {capitulo, tiempo } = req.body;
-    const { username, user_id } = req.session.user;
+    const { user_id } = req.session.user;
     try {
         // 4 casos. No existia previo ultimo||Datos actualizados del ultimo audiolibro || Datos actualizados de un libro previamente empezado(tipo 1) || Datos nuevo audiolibro
-        ultimo = await marcapaginasModel.getUltimoAudiolibro(username);
+        ultimo = await marcapaginasModel.getUltimoAudiolibro(user_id);
         if(!ultimo){ //Caso no existia ningun marcapaginas tipo 0
              await marcapaginasModel.CrearUltimoAudiolibro(user_id, "",capitulo, tiempo);
         }else{ 
