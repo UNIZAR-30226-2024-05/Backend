@@ -4,6 +4,6 @@ const audiolibrosController = require("../controllers/audiolibrosController");
 const authMiddleware = require('../middlewares/authMiddleware');
 
 router.get('/', audiolibrosController.getAllAudiolibros);
-router.get('/:id', authMiddleware.boolAuthenticated, audiolibrosController.getAllAudiolibros);
+router.get('/:id', authMiddleware.boolAuthenticated, audiolibrosController.getAudiolibroById);
 
 module.exports = router;

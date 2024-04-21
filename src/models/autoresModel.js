@@ -69,6 +69,20 @@ const autoresModel = {
             throw error;
         }
     },
+
+    async getAutorBasicoByID(id) {
+        try {
+            const autor = await pool.query(`SELECT id, nombre
+                FROM autores
+                WHERE autores.id = $1;`, [id]
+            );
+            return autor.rows[0];
+        } catch (error) {
+            console.error("Error al obtener los datos del autor:", error);
+            throw error;
+        }
+    },
+
     async getAutorByID(id) {
         try {
             const autor = await pool.query(`SELECT DISTINCT autores.*

@@ -1,5 +1,7 @@
 const AudiolibrosModel = require("../models/audiolibrosModel");
-//const ReviewModel = require("../models/reviewModel");
+const ReviewModel = require("../models/reviewModel");
+const MarcapaginasModel = require("../models/marcapaginasModel");
+const ColeccionesModel = require("../models/coleccionesModel");
 
 exports.getAllAudiolibros = async (req, res) => {    
     try {
@@ -20,21 +22,41 @@ exports.getAudiolibroById = async (req, res) => {
     try {
         // Recoger datos generales
         let audiolibro = await AudiolibrosModel.getAudiolibroById(id);
-        //const autor = await AutorModel.getAutorById(audiolibro.autor); //Falta
+        const autor = await AutorModel.getAutorBasicoByID(audiolibro.autor);
         delete audiolibro.autor;
         const generos = await AudiolibrosModel.getGenerosOfAudiolibro(id);
         const capitulos = await AudiolibrosModel.getCapitulosOfAudiolibro(id);
-        //const publicReviews = await ReviewModel.getPublicReviewsOfAudiolibro(id);
+        const publicReviews = await ReviewModel.getPublicReviewsOfAudiolibro(id);
+        var friendsReviews = {};
+        var ownReview = {};
+        var ultimoMomento = {};
+        var mpPersonalizados = {};
+        var colecciones = {};
 
         if (boolAuthenticated) {
             // Está registrado, recoger datos relativos al usuario
             const { user_id } = req.session.user;
-            //const friendsReviews = await ReviewModel.getFriendsReviewsOfAudiolibro(id, user_id);
-            //const ownReviews = await ReviewModel.getOwnReviewOfAudiolibro(id, user_id);
+            friendsReviews = await ReviewModel.getFriendsReviewsOfAudiolibro(id, user_id);
+            ownReview = await ReviewModel.getOwnReviewOfAudiolibro(id, user_id);
+            ultimoMomento = await MarcapaginasModel.getUltimoMomentoByAudiolibro(user_id, id);
+            mpPersonalizados = await MarcapaginasModel.getMarcapaginasPersonalizadosByAudiolibro(user_id, id);
+            colecciones = await ColeccionesModel.audiolibroPerteneceColecciones(id, user_id);
 
         }
 
         // Construir y mandar el json final
+        res.status(200).json({
+            audiolibro: audiolibros,
+            autor: autor,
+            generos: generos,
+            capitulos: capitulos,
+            public_reviews: publicReviews,
+            friends_reviews: friendsReviews,
+            own_review: ownReview,
+            ultimo_momento: ultimoMomento,
+            mp_personalizados: mpPersonalizados,
+            colecciones: colecciones
+        });
 
     } catch (error) {
         console.error(error);

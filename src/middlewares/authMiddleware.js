@@ -8,13 +8,13 @@ function isAuthenticated(req, res, next) {
     }
 }
 
-function boolAuthenticated(req, next) {
+function boolAuthenticated(req, res, next) {
     if (req.session && req.session.user) {
         req.hasSession = true;
     } else {
         req.hasSession = false;
     }
-    next();
+    return next();
 }
 
 function adminAuthorized(req, res, next) {
