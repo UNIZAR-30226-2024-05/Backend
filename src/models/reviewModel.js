@@ -60,7 +60,7 @@ const ReviewModel = {
                     WHEN user1 = $2 THEN user2 
                     ELSE user1 
                     END AS friend_id
-                FROM amistad
+                FROM amigos
                 WHERE user1 = $2 OR user2 = $2
             )`,
             [id_audiolibro, visibilidad]
@@ -79,7 +79,7 @@ const ReviewModel = {
                     WHEN user1 = $2 THEN user2 
                     ELSE user1 
                     END AS friend_id
-                FROM amistad
+                FROM amigos
                 WHERE user1 = $2 OR user2 = $2
             )`,
             [id_audiolibro, user_id]
@@ -91,7 +91,7 @@ const ReviewModel = {
         const review = await pool.query(
             `SELECT id, comentario, puntuacion, visibilidad, fecha 
             FROM reviews 
-            WHERE audiolibro = $1 AND usuario  = $2`,
+            WHERE audiolibro = $1 AND usuario = $2`,
             [id_audiolibro, user_id]
         );
         return review.row[0];
