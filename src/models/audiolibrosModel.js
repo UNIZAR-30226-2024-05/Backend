@@ -4,12 +4,14 @@ const AudiolibrosModel = {
     async getAllAudiolibros() {
         try {
             const audiolibros = await pool.query(`
-                SELECT a.*, g.nombre AS genero, COALESCE(ROUND(AVG(r.puntuacion)::numeric, 2), 0.00) AS puntuacion
+                SELECT a.id, a.titulo, aut.nombre AS autor, g.nombre AS genero, a.descripcion, a.img, 
+                COALESCE(ROUND(AVG(r.puntuacion)::numeric, 2), 0.00) AS puntuacion
                 FROM audiolibros a
                 JOIN genero_audiolibro ga ON a.id = ga.audiolibro
                 JOIN generos g ON ga.genero = g.id
                 LEFT JOIN reviews r ON a.id = r.audiolibro
-                GROUP BY a.id, g.nombre
+                JOIN autores aut ON a.autor = aut.id
+                GROUP BY a.id, aut.nombre, g.nombre
             `);
             return audiolibros.rows;
         } catch (error) {
