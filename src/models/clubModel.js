@@ -80,9 +80,9 @@ const clubesModel = {
     async obtenerMiembrosClub(idClub) {
         try {
             const resultado = await pool.query(`
-                SELECT u.nombre
+                SELECT u.username
                 FROM miembros_club mc
-                JOIN usuarios u ON mc.usuario = u.id
+                JOIN users u ON mc.usuario = u.id
                 WHERE mc.club = $1;
             `, [idClub]);      
             return resultado.rows;

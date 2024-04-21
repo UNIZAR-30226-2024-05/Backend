@@ -93,10 +93,12 @@ exports.SalirseDelClub = async (req, res) => {
 };
 
 exports.DatosDelClub = async (req, res) => {
-    const { id } = req.body;
+    const { id } = req.params;
     const { user_id } = req.session.user;
     try {
+        console.log(id);
         club = await clubesModel.getClubByID(id);
+        console.log(club);
         if (!club){
             return res.status(404).json({ 
                  error: "Not Existing club" 
