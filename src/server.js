@@ -43,6 +43,7 @@ const coleccionesRoutes = require("./routes/coleccionesRoutes");
 const amistadRoutes = require("./routes/amistadRoutes");
 const marcapaginasRoutes = require("./routes/marcapaginasRoutes");
 const autoresRoutes = require("./routes/autoresRoutes");
+const reviewRoutes = require("./routes/reviewRoutes");
 
 const PORT = process.env.PORT || 8000;
 
@@ -52,6 +53,7 @@ app.use("/colecciones", coleccionesRoutes);
 app.use("/amistad", amistadRoutes);
 app.use("/marcapaginas", marcapaginasRoutes);
 app.use("/autores", autoresRoutes);
+app.use("/review", reviewRoutes);
 
 server.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);

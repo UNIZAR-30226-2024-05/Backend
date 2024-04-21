@@ -1,4 +1,5 @@
 const AudiolibrosModel = require("../models/audiolibrosModel");
+const AutoresModel = require("../models/autoresModel");
 const ReviewModel = require("../models/reviewModel");
 const MarcapaginasModel = require("../models/marcapaginasModel");
 const ColeccionesModel = require("../models/coleccionesModel");
@@ -22,16 +23,21 @@ exports.getAudiolibroById = async (req, res) => {
     try {
         // Recoger datos generales
         let audiolibro = await AudiolibrosModel.getAudiolibroById(id);
-        const autor = await AutorModel.getAutorBasicoByID(audiolibro.autor);
+        if (!audiolibro) {
+            return res.status(409).json({ 
+                error: "Audiolibro doesn't exist"
+            });
+        }
+        const autor = await AutoresModel.getAutorBasicoByID(audiolibro.autor);
         delete audiolibro.autor;
         const generos = await AudiolibrosModel.getGenerosOfAudiolibro(id);
         const capitulos = await AudiolibrosModel.getCapitulosOfAudiolibro(id);
         const publicReviews = await ReviewModel.getPublicReviewsOfAudiolibro(id);
-        var friendsReviews = {};
+        var friendsReviews = [];
         var ownReview = {};
         var ultimoMomento = {};
-        var mpPersonalizados = {};
-        var colecciones = {};
+        var mpPersonalizados = [];
+        var colecciones = [];
 
         if (boolAuthenticated) {
             // Está registrado, recoger datos relativos al usuario
@@ -46,7 +52,7 @@ exports.getAudiolibroById = async (req, res) => {
 
         // Construir y mandar el json final
         res.status(200).json({
-            audiolibro: audiolibros,
+            audiolibro: audiolibro,
             autor: autor,
             generos: generos,
             capitulos: capitulos,

@@ -44,7 +44,7 @@ const AudiolibrosModel = {
     async getCapitulosOfAudiolibro(id) {
         try {
             const capitulos = await pool.query(`SELECT id, numero, nombre, audio 
-                                            FROM capitulos WHERE audiolibro = $1`
+                                            FROM capitulos WHERE audiolibro = $1`,
                                             [id]);
             return capitulos.rows;
         } catch (error) {
