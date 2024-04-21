@@ -61,7 +61,37 @@ const clubesModel = {
             console.error("Error al salirse del club:", error);
             throw error;
         }
+    },
+
+    async verificarMembresia(idUsuario, idClub) {
+        try {
+            const resultado = await pool.query(`
+                SELECT *
+                FROM miembros_club
+                WHERE club = $1 AND usuario = $2;
+            `, [idClub, idUsuario]);
+            
+            return resultado.rows[0];
+        } catch (error) {
+            console.error("Error al verificar la membresía del usuario en el club:", error);
+            throw error;
+        }
+    },
+    async obtenerMiembrosClub(idClub) {
+        try {
+            const resultado = await pool.query(`
+                SELECT u.nombre
+                FROM miembros_club mc
+                JOIN usuarios u ON mc.usuario = u.id
+                WHERE mc.club = $1;
+            `, [idClub]);      
+            return resultado.rows;
+        } catch (error) {
+            console.error("Error al obtener los miembros del club:", error);
+            throw error;
+        }
     }
+    
     
 };
 
