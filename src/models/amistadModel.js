@@ -27,7 +27,8 @@ const AmistadModel = {
 
     async getAmigos(user_id) {
         const amigos = await pool.query(
-            `SELECT id, username FROM users
+            `SELECT id, username, img
+            FROM users
             WHERE id IN (
                 SELECT CASE
                     WHEN user1 = $1 THEN user2

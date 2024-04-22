@@ -10,5 +10,6 @@ router.post("/cancel", authMiddleware.isAuthenticated, amistadController.cancelP
 router.post("/remove", authMiddleware.isAuthenticated, amistadController.removeAmistad);
 router.get("/peticiones", authMiddleware.isAuthenticated, amistadController.getPeticiones);
 router.get("/amigos", authMiddleware.isAuthenticated, amistadController.getAmigos);
+router.get("/lista", authMiddleware.isAuthenticated, amistadController.getListaUsers);
 
 module.exports = router;

@@ -36,6 +36,11 @@ const UserModel = {
     async changeImg(user_id, newImg) {
         const updatedUser = await pool.query("UPDATE users SET img = $1 WHERE id = $2", [newImg, user_id]);
         return updatedUser.rowCount;
+    },
+
+    async getUsersExceptOwn(user_id) {
+        const list = await pool.query(`SELECT id, username, img FROM users WHERE NOT id = $1`, [user_id]);
+        return list.rows;
     }
 };
 

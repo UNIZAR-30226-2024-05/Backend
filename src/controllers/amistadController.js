@@ -1,4 +1,5 @@
 const AmistadModel = require("../models/amistadModel");
+const UserModel = require("../models/userModel");
 const { sendMessageToUser } = require('../sockets.js');
 
 exports.sendPeticion = async (req, res) => {
@@ -203,6 +204,35 @@ exports.getAmigos = async (req, res) => {
 
         res.status(200).json({ 
             amigos: amigos
+        });
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+};
+
+exports.getListaUsers = async (req, res) => {
+    const { user_id } = req.session.user;
+
+    try {
+        var lista = await UserModel.getUsersExceptOwn(user_id);
+        var estado;
+        for (let i = 0; i < lista.length; i++) {
+            if (await AmistadModel.hayAmistad(user_id, lista[i].id)) {
+                estado = 0;
+            } else if (await AmistadModel.hayPeticionPendienteEnviada(user_id, lista[i].id)) {
+                estado = 2;
+            } else if (await AmistadModel.hayPeticionPendienteRecibida(user_id, lista[i].id)) {
+                estado = 3;
+            } else {
+                estado = 1;
+            }
+            lista[i].estado = estado;
+         }
+
+        res.status(200).json({ 
+            users: lista
         });
 
     } catch (err) {
