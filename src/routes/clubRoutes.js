@@ -4,8 +4,8 @@ const clubController = require("../controllers/clubController");
 const authMiddleware = require('../middlewares/authMiddleware');
 
 router.get('/:id', authMiddleware.isAuthenticated,clubController.DatosDelClub);
-//router.get('/member', authMiddleware.isAuthenticated,clubController.MyClubs);
-/*router.get('/', clubController.AllClubs);  Habra que hablar si sera implementar buscador, si les devolvemos todos y ellos gestionan el buscador o si los devolvemos por audiolibro*/
+router.get('/lista', authMiddleware.isAuthenticated, clubController.getClubesOfUser);
+/*router.get('/all', clubController.AllClubs);  Habra que hablar si sera implementar buscador, si les devolvemos todos y ellos gestionan el buscador o si los devolvemos por audiolibro*/
 router.post('/create', authMiddleware.isAuthenticated, clubController.CrearClub);
 router.post('/delete', authMiddleware.isAuthenticated, clubController.BorrarClub);
 router.post('/join', authMiddleware.isAuthenticated, clubController.UniserAClub);

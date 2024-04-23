@@ -1,10 +1,13 @@
 const clubesModel = require("../models/clubModel");
+const io = require('../sockets');
 
 exports.CrearClub = async (req, res) => {
     const { nombre, audiolibroID, descripcion} = req.body;
     const { user_id } = req.session.user;
     try {
-        await clubesModel.CrearClub(nombre, audiolibroID,descripcion, user_id);
+        const club = await clubesModel.CrearClub(nombre, audiolibroID,descripcion, user_id);
+        await clubesModel.unirseAlClub(user_id, club.id);
+        io.addSocketsToRoom(user_id, `club_${club.id}`);
         res.status(200).json({
             message: "OK"
         });
@@ -29,6 +32,7 @@ exports.BorrarClub = async (req, res) => {
             });
         }
         await clubesModel.BorrarClub(id);
+        io.deleteRoom(`club_${id}`);
         res.status(200).json({
             message: "OK"
         });
@@ -56,6 +60,7 @@ exports.UniserAClub = async (req, res) => {
             }
         }
         await clubesModel.unirseAlClub(user_id,id);
+        io.addSocketsToRoom(user_id, `club_${club.id}`);
         res.status(200).json({
             message: "OK"
         });
@@ -83,12 +88,25 @@ exports.SalirseDelClub = async (req, res) => {
             }
         }
         await clubesModel.salirseDelClub(user_id,id);
+        io.removeSocketsFromRoom(user_id, `club_${id}`)
         res.status(200).json({
             message: "OK"
         });
     } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
+    }
+};
+
+exports.getClubesOfUser = async (req, res) => {
+    const { user_id } = req.session.user;
+    try {
+        const listaClubes = await clubesModel.getClubesOfUser(user_id);
+        res.status(200).json({ 
+            listaClubes
+        });
+    } catch (error) {
+
     }
 };
 
@@ -109,15 +127,11 @@ exports.DatosDelClub = async (req, res) => {
             membresia = true;
         }else{
             owner = false;
-            Vmembresia = await clubesModel.verificarMembresia(user_id,id);
-            if(Vmembresia){
-                membresia = true;
-            }else{
-                membresia = false;
-            }
+            membresia = await clubesModel.verificarMembresia(user_id,id);
         }
         miembros = await clubesModel.obtenerMiembrosClub(id);
-        res.status(200).json({ club,owner,membresia, miembros});
+        mensajes = await clubesModel.getMessagesOfClub(id);
+        res.status(200).json({ club, owner, membresia, miembros, mensajes});
     } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");

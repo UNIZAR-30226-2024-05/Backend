@@ -71,7 +71,7 @@ const clubesModel = {
                 WHERE club = $1 AND usuario = $2;
             `, [idClub, idUsuario]);
             
-            return resultado.rows[0];
+            return resultado.rowCount;
         } catch (error) {
             console.error("Error al verificar la membresía del usuario en el club:", error);
             throw error;
@@ -80,7 +80,7 @@ const clubesModel = {
     async obtenerMiembrosClub(idClub) {
         try {
             const resultado = await pool.query(`
-                SELECT u.username
+                SELECT u.id, u.username, u.img
                 FROM miembros_club mc
                 JOIN users u ON mc.usuario = u.id
                 WHERE mc.club = $1;
@@ -89,6 +89,45 @@ const clubesModel = {
         } catch (error) {
             console.error("Error al obtener los miembros del club:", error);
             throw error;
+        }
+    },
+
+    async getClubesOfUser(user_id) {
+        try {
+            const listaClubes = await pool.query(
+                `SELECT c.id, c.nombre 
+                FROM club_lectura c INNER JOIN miembros_club m ON c.id = m.club 
+                WHERE m.usuario = $1`,
+                [user_id]);
+            return listaClubes.rows;
+        } catch (error) {
+            console.error("Error obteniendo la lista de clubes: ", error);
+        }
+    },
+
+    async getMessagesOfClub(club_id) {
+        try {
+            const messages = await pool.query(
+                `SELECT m.id, m.usuario AS user_id, u.username, mensaje, fecha
+                FROM mensajes m LEFT JOIN users u ON m.usuario = u.id
+                WHERE m.club = $1
+                ORDER BY m.fecha ASC`,
+                [club_id]);
+            return messages.rows;
+        } catch (error) {
+            console.error("Error obteniendo los mensajes de un club: ", error);
+        }
+    },
+
+    async addMessage(user_id, club_id, msg) {
+        try {
+            const message = await pool.query(
+                `INSERT INTO (club, usuario, mensaje, fecha) VALUES ($1, $2, $3, NOW())
+                RETURNING club, usuario AS user_id, SELECT username FROM users WHERE id = $2, mensaje, fecha`,
+                [club_id, user_id, msg]);
+            return message.row[0];
+        } catch (error) {
+            console.error("Error obteniendo los mensajes de un club: ", error);
         }
     }
     

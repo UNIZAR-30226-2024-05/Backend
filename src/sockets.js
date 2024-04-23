@@ -1,6 +1,6 @@
 const sessions = require('client-sessions');
 const io = require('./server'); // Importa el 'io' ya existente
-const ClubModel = require("../models/clubModel");
+const ClubModel = require("./models/clubModel");
 
 const users = {};
 
@@ -109,15 +109,33 @@ function sendMessageToRoom(room, evento, message) {
 // Función para añadir socket a una room
 function addSocketsToRoom(user_id, room) {
     const sockets = users[user_id];
-    sockets[i].join(room);
+    if (sockets != null) {
+        if (io.sockets.adapter.rooms.has(room)) {
+            for (let i = 0; i < sockets.length; i++) {
+                sockets[i].join(room);
+            }
+        }
+    }
 };
 
 // Función para quitar socket de una room
 function removeSocketsFromRoom(user_id, room) {
     const sockets = users[user_id];
-    sockets[i].leave(room);
+    if (sockets != null) {
+        if (io.sockets.adapter.rooms.has(room)) {
+            for (let i = 0; i < sockets.length; i++) {
+                sockets[i].leave(room);
+            }
+        }
+    }
+};
+
+function deleteRoom(room) {
+    if (io.sockets.adapter.rooms.has(room)) {
+        io.sockets.adapter.del(room);
+    }
 };
 
 module.exports = {
-    sendMessageToUser, sendMessageToRoom, addSocketsToRoom, removeSocketsFromRoom
+    sendMessageToUser, sendMessageToRoom, addSocketsToRoom, removeSocketsFromRoom, deleteRoom
 };
