@@ -31,12 +31,9 @@ exports.editReview = async (req, res) => {
             if (belongs) {
                 const editedReview = await ReviewModel.editReview(id_review, comentario, puntuacion, visibilidad);
                 if (editedReview) {
-                    return res.status(200).json({
-                        message: "Updated review",
-                        editedReview
-                    });
+                    return res.status(200).json(editedReview);
                 } else {
-                    throw new Error("Review couldn't be updated"); //?
+                    throw new Error("Review couldn't be updated");
                 }
             } else {
                 return res.status(403).json({ 
