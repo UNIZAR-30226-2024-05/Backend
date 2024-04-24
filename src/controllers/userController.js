@@ -1,5 +1,7 @@
 const UserModel = require("../models/userModel");
 const ColeccionesModel = require("../models/coleccionesModel");
+const AmistadModel = require("../models/amistadModel");
+const MarcapaginasModel = require("../models/marcapaginasModel");
 const bcrypt = require("bcrypt");
 
 exports.register = async (req, res) => {
@@ -129,4 +131,43 @@ exports.profile = async (req, res) => {
         res.status(500).send("Server Error");
     }
 
+};
+
+exports.anyUserProfile = async (req, res) => {
+    const boolAuthenticated = req.hasSession;
+    const { other_id } = req.params;
+
+    try {
+        respuesta = {};
+        const user = await UserModel.getUserById(other_id);
+        const colecciones = await ColeccionesModel.getUserCollections(other_id);
+
+        //id, username, img, colecciones
+        respuesta.id = user.id;
+        respuesta.username = user.username;
+        respuesta.img = user.img;
+        respuesta.colecciones = colecciones;
+
+        if (boolAuthenticated) {
+            const { user_id } = req.session.user;
+            var estado = 1;
+            if (await AmistadModel.hayAmistad(user_id, other_id)) {
+                estado = 0;
+            } else if (await AmistadModel.hayPeticionPendienteEnviada(user_id, other_id)) {
+                estado = 2;
+            } else if (await AmistadModel.hayPeticionPendienteRecibida(user_id, other_id)) {
+                estado = 3;
+            }
+            respuesta.estado = estado;
+        }
+        if (estado == 0) {
+            respuesta.ultimo = await MarcapaginasModel.getUltimoAudiolibro(other_id);
+        }
+        return res.status(200).json(
+            respuesta
+        );
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Server Error");
+    }
 };

@@ -85,7 +85,11 @@ const ReviewModel = {
             WHERE audiolibro = $1 AND usuario = $2`,
             [id_audiolibro, user_id]
         );
-        return review.row[0];
+        if (review.rows.length === 0) {
+            return {};
+        } else {
+            return review.rows[0];
+        }
     }
 
 };

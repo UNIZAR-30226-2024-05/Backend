@@ -3,14 +3,17 @@ const pool = require('../db');
 const marcapaginasModel = {
     async getUltimoAudiolibro(user_id) {
         try {
-            const audiolibros = await pool.query(`SELECT DISTINCT audiolibros.*, capitulos.*, marcapaginas.*
-            FROM audiolibros
-            JOIN capitulos ON audiolibros.id = capitulos.audiolibro
-            JOIN marcapaginas ON capitulos.id = marcapaginas.capitulo
-            JOIN users ON marcapaginas.usuario = users.id
-            WHERE  marcapaginas.tipo = '0' AND users.id = $1;
+            const audiolibros = await pool.query(`SELECT a.id AS id_audiolibro, a.titulo, a.img, c.id AS id_capitulo, m.fecha
+            FROM audiolibros a
+            JOIN capitulos c ON a.id = c.audiolibro
+            JOIN marcapaginas m ON c.id = m.capitulo
+            WHERE  m.tipo = '0' AND m.usuario = $1;
             `, [user_id]);
-            return audiolibros.rows[0];
+            if (audiolibros.rows.length === 0) {
+                return {};
+            } else {
+                return audiolibros.rows[0];
+            }
         } catch (error) {
             console.error("Error al obtener el ultimo audiolibro del usuario:", error);
             throw error;

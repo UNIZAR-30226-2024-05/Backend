@@ -18,51 +18,40 @@ exports.getAllAudiolibros = async (req, res) => {
 
 exports.getAudiolibroById = async (req, res) => {
     const { id } = req.params;
-    const { boolAuthenticated } = req.hasSession;
+    const boolAuthenticated = req.hasSession;
 
     try {
         // Recoger datos generales
+        let respuesta = {}
         let audiolibro = await AudiolibrosModel.getAudiolibroById(id);
         if (!audiolibro) {
             return res.status(409).json({ 
                 error: "Audiolibro doesn't exist"
             });
         }
-        const autor = await AutoresModel.getAutorBasicoByID(audiolibro.autor);
         delete audiolibro.autor;
-        const generos = await AudiolibrosModel.getGenerosOfAudiolibro(id);
-        const capitulos = await AudiolibrosModel.getCapitulosOfAudiolibro(id);
-        const publicReviews = await ReviewModel.getPublicReviewsOfAudiolibro(id);
-        var friendsReviews = [];
-        var ownReview = {};
-        var ultimoMomento = {};
-        var mpPersonalizados = [];
-        var colecciones = [];
+        respuesta.audiolibro = audiolibro;
+        respuesta.autor = await AutoresModel.getAutorBasicoByID(audiolibro.autor);
+        respuesta.generos = await AudiolibrosModel.getGenerosOfAudiolibro(id);
+        respuesta.capitulos = await AudiolibrosModel.getCapitulosOfAudiolibro(id);
+        respuesta.public_reviews = await ReviewModel.getPublicReviewsOfAudiolibro(id);
 
         if (boolAuthenticated) {
             // Está registrado, recoger datos relativos al usuario
             const { user_id } = req.session.user;
-            friendsReviews = await ReviewModel.getFriendsReviewsOfAudiolibro(id, user_id);
-            ownReview = await ReviewModel.getOwnReviewOfAudiolibro(id, user_id);
-            ultimoMomento = await MarcapaginasModel.getUltimoMomentoByAudiolibro(user_id, id);
-            mpPersonalizados = await MarcapaginasModel.getMarcapaginasPersonalizadosByAudiolibro(user_id, id);
-            colecciones = await ColeccionesModel.audiolibroPerteneceColecciones(id, user_id);
+            respuesta.friends_reviews = await ReviewModel.getFriendsReviewsOfAudiolibro(id, user_id);
+            respuesta.own_review = await ReviewModel.getOwnReviewOfAudiolibro(id, user_id);
+            console.log(await ReviewModel.getOwnReviewOfAudiolibro(id, user_id));
+            respuesta.ultimo_momento = await MarcapaginasModel.getUltimoMomentoByAudiolibro(user_id, id);
+            respuesta.mp_personalizados = await MarcapaginasModel.getMarcapaginasPersonalizadosByAudiolibro(user_id, id);
+            respuesta.colecciones = await ColeccionesModel.audiolibroPerteneceColecciones(id, user_id);
 
         }
 
         // Construir y mandar el json final
-        res.status(200).json({
-            audiolibro: audiolibro,
-            autor: autor,
-            generos: generos,
-            capitulos: capitulos,
-            public_reviews: publicReviews,
-            friends_reviews: friendsReviews,
-            own_review: ownReview,
-            ultimo_momento: ultimoMomento,
-            mp_personalizados: mpPersonalizados,
-            colecciones: colecciones
-        });
+        res.status(200).json(
+            respuesta
+        );
 
     } catch (error) {
         console.error(error);
