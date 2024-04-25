@@ -60,7 +60,7 @@ exports.login = async (req, res) => {
         }
 
         res.status(200).json({ 
-            message: "OK", user: { username, img: user.img }
+            message: "OK", user: { user_id: req.session.user.user_id, username, img: user.img, role: req.session.user.role }
         });
         
     } catch (err) {
