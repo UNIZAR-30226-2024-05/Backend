@@ -9,7 +9,7 @@ const AudiolibrosModel = {
             return rows[0];
         } catch (error) {
             console.error("Error al insertar nuevo audiolibro:", error);
-            throw error;
+            return null;
         }
     },
 
