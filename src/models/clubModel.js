@@ -5,7 +5,7 @@ const clubesModel = {
     async CrearClub(nombre, audiolibro,descripcion,owner) {
         try {
             const newClub = await pool.query(
-            "INSERT INTO club_lectura (nombre, audiolibro, descripcion, owner) VALUES ($1, $2,$3,$4)"
+            "INSERT INTO club_lectura (nombre, audiolibro, descripcion, owner) VALUES ($1, $2,$3,$4) RETURNING *"
             , [nombre, audiolibro,descripcion,owner]);
             return newClub.rows[0];
         } catch (error) {
@@ -27,9 +27,11 @@ const clubesModel = {
 
     async getClubByID(id) {
         try {
-            const club = await pool.query(`SELECT DISTINCT club_lectura.*
-            FROM club_lectura
-            WHERE   club_lectura.id = $1;
+            const club = await pool.query(`SELECT c.*, u.username AS Nombre_Owner, a.titulo AS titulo_audiolibro
+            FROM club_lectura c
+            JOIN users u ON c.owner = u.id
+            JOIN audiolibros a ON c.audiolibro = a.id
+            WHERE c.id = $1;
             `, [id]);
             return club.rows[0];
         } catch (error) {

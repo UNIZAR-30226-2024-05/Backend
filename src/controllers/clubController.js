@@ -6,6 +6,7 @@ exports.CrearClub = async (req, res) => {
     const { user_id } = req.session.user;
     try {
         const club = await clubesModel.CrearClub(nombre, audiolibroID,descripcion, user_id);
+        console.log(club);
         await clubesModel.unirseAlClub(user_id, club.id);
         io.addSocketsToRoom(user_id, `club_${club.id}`);
         res.status(200).json({
@@ -86,6 +87,11 @@ exports.SalirseDelClub = async (req, res) => {
                     error: "Not a member" 
                 });
             }
+        }
+        if(existe.owner == user_id){
+            return res.status(401).json({  //revisar si era el 401
+                error: "Owner cannot leave" 
+            });
         }
         await clubesModel.salirseDelClub(user_id,id);
         io.removeSocketsFromRoom(user_id, `club_${id}`)
