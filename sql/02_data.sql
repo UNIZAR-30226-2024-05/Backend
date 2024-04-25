@@ -21,7 +21,8 @@ INSERT INTO autores (nombre, ciudadNacimiento, informacion) VALUES
 ('Elizabeth Hoyt', 'Nueva Orleans, Luisiana, Estados Unidos', 'Elizabeth Hoyt (21 de noviembre de 1970) es el seudónimo de Nancy M. Finney. Hoyt es una de los autoras de novelas históricas más vendidos del New York Times. También escribe novelas románticas contemporáneas bajo el nombre de Julia Harper. Vive en el centro de Illinois con su marido y sus dos hijos.'),
 ('Meagan McKinney', 'Estados Unidos', 'Meagan McKinney (nacida en 1961) es el seudónimo escogido por la autora americana Ruth Goodman para firmar parte de su obra literaria. Goodman estudió Biología, campo al que se dedicó varios años. Tras el éxito de sus primeras novelas, Goodman decidió dedicarse por completo a la literatura a partir de los años 90 bajo el nombre de McKinney, con el que ha publicado desde entonces más de veinte novelas.'),
 ('Elizabeth Lowell', 'Milwaukee , Wisconsin , Estados Unidos', 'Ann Maxwell (nacida el 5 de abril de 1944), también conocida como AE Maxwell y Elizabeth Lowell , es una escritora estadounidense. Ha escrito individualmente y con el coautor y esposo Evan más de 50 novelas y un libro de no ficción. Sus novelas van desde la ciencia ficción hasta la ficción histórica, y desde el romance hasta el misterio y el suspenso.'),
-('Alexandra Bracken', 'Phoenix, Arizona, Estados Unidos', 'Alexandra Bracken nació en Phoenix, Arizona. Regresó allí tras vivir en Nueva York donde trabajó en la industria editorial, primero como ayudante y luego en marketing. Estudió en La Universidad de William y Mary en Williamsburg, Virginia, graduándose magna cum laude con un grado en Historia e Inglés en mayo de 2009');
+('Alexandra Bracken', 'Phoenix, Arizona, Estados Unidos', 'Alexandra Bracken nació en Phoenix, Arizona. Regresó allí tras vivir en Nueva York donde trabajó en la industria editorial, primero como ayudante y luego en marketing. Estudió en La Universidad de William y Mary en Williamsburg, Virginia, graduándose magna cum laude con un grado en Historia e Inglés en mayo de 2009'),
+('C. S. Lewis', 'Belfast, Reino Unido de Gran Bretaña e Irlanda', 'Clive Staples Lewis (29 de noviembre de 1898), popularmente conocido como C. S. Lewis, fue un apologista cristiano anglicano, medievalista, y escritor británico, reconocido por sus obras de ficción, especialmente por su saga Las crónicas de Narnia. También fue crítico literario, académico de la universidad de Oxford en el Magdalen College y locutor de radio norirlandés. Lewis fue un amigo cercano de J. R. R. Tolkien, el autor de El Señor de los Anillos.');
 
 INSERT INTO generos (nombre) VALUES
 ('Romance'),
@@ -95,7 +96,7 @@ Había una vez un molinero que dejó en herencia a sus hijos un molino, un asno 
 ('El soldadito de plomo', 11, 'En la narración de Hans Christian Andersen, el soldado de una sola pierna se enamora de la bailarina de palacio, es arrancado de su pequeño mundo, comienza un viaje aventurero en un barco de papel y, finalmente, regresa a casa, donde se le depara un final agridulce.', 
 'https://narrativesarchivos.blob.core.windows.net/imagenes/ElSoldaditoDePlomo.jpg'),
 ('La princesa y el guisante', 11, 'La protagonista, Amira, hija del rey Mustafá de Arabia, decide huir para evitar que su padre la case con un sultán que ella no conoce. Lo mismo le pasa al príncipe Arnaldo cuando su madre le obliga a casarse con la joven que sea capaz de notar la presencia de un guisante escondido bajo siete colchones.', 
-'https://narrativesarchivos.blob.core.windows.net/imagenes/ElSoldaditoDePlomo.jpg'),
+'https://narrativesarchivos.blob.core.windows.net/imagenes/LaPrincesaYElGuisante.jpg'),
 ('La vendedora de fósforos', 11, 'La vendedora de fósforos de Andersen, el burro de Bresson, la relación entre un guerrillero alemán y una pianista argentina, y Helmut Lachenmann tratando de montar una ópera con la orquesta del Teatro Colón en huelga. Marie y Walter intentarán con su hija vivir en el medio de todo eso.', 
 'https://narrativesarchivos.blob.core.windows.net/imagenes/LaVendedoraDeFosforos.jpg'),
 ('El último sueño del viejo roble', 11, 'Trata la historia de un viejo roble que vive junto a un puerto pesquero. Tiene 365 años y a su alrededor, cada verano, revolotean las moscas que solo viven un día. Llega el otoño y las hojas comienzan a caer y el árbol y los animales se preparan para los largos meses de invierno.', 
@@ -202,7 +203,12 @@ Cuando le confían un secreto explosivo, Ruby se lanza a un peligroso viaje para
 Un viaje a traves de un país desesperado en busca de respuestas... ¿y si ganar la batalla supone perderse a sí misma?', 
 'https://narrativesarchivos.blob.core.windows.net/imagenes/NuncaOlvidan.jpg'),
 ('Una luz incierta', 23, 'El tiempo se agota. Mientras miles de chicos languidecen encerrados en los campos, Ruby y el grupo que sobrevivió a los últimos ataques se reagrupan en el note para retomar su objetivo inicial: liberar a los demás. Solo cuentan con un arma y es de doble filo: la prueba de la conspiración del gobierno para encubrir el origen de la misteriosa plaga que acabó con la vida de tanto jóvenes y que convirtió a los pocios supervivientes en unos seres extraños y temidos. Ahora, un nuevo riesgo se suma a la persecucción mortal que sufren Ruby y los demás por parte del gobierno: las tensiones aumentan en el seno del grupo cuando empiezan a correr rumores sobre una posible cura. Con el destino de toda una generación en sus manos, Ruby sabe que todo pende de un hilo... Cualquier paso en falso podría ser la chispa que destara el caos. LLEGA EL EXPLOSIVO FINAL DE UNA SAGA TREPIDANTE LA LUZ VOLVERÇ A BRILLAR... O SE APAGARÇ PARA SIEMPRE', 
-'https://narrativesarchivos.blob.core.windows.net/imagenes/UnaLuzIncierta.jpg');
+'https://narrativesarchivos.blob.core.windows.net/imagenes/UnaLuzIncierta.jpg'),
+('Las crónicas de Narnia. El sobrino del mago', 24, 'Dos amigos, víctimas del poder de unos anillos mágicos, son arrojados a otro mundo en el que una malvada hechicera intenta convertirlos en sus esclavos. Pero entonces aparece Aslan y crea Narnia, un mundo poblado por seres mitológicos, animales parlantes y brujas malvadas.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/Narnia1.jpg'),
+('Las crónicas de Narnia. El león, la bruja y el armario', 24, 'Narnia, la tierra donde todo puede suceder
+Cuatro niños que viven en una casa solitaria descubren un armario que da acceso a Narnia, un país congelado en un invierno eterno y sin Navidad. Cumpliendo con las viejas profecías, los niños–junto con el león Aslan- liberarán al país de la tiranía de la Bruja Blanca.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/Narnia2.jpg');
 
 INSERT INTO genero_audiolibro (audiolibro, genero) VALUES
 (3, 1),
@@ -222,6 +228,8 @@ INSERT INTO genero_audiolibro (audiolibro, genero) VALUES
 (63, 3),
 (64, 3),
 (65, 3),
+(66, 3),
+(67, 3),
 (4, 5),
 (5, 5),
 (6, 5),
@@ -555,4 +563,36 @@ INSERT INTO capitulos (numero, nombre, audiolibro, audio) VALUES
 (6, 'Capítulos 15 y 16', 65, 'https://narrativesarchivos.blob.core.windows.net/audios/UnaLuzIncierta_6.mp3'),
 (7, 'Capítulos 18 a 20', 65, 'https://narrativesarchivos.blob.core.windows.net/audios/UnaLuzIncierta_7.mp3'),
 (8, 'Capítulos 21 a 24', 65, 'https://narrativesarchivos.blob.core.windows.net/audios/UnaLuzIncierta_8.mp3'),
-(9, 'Capítulos 25 a 27', 65, 'https://narrativesarchivos.blob.core.windows.net/audios/UnaLuzIncierta_9.mp3');
+(9, 'Capítulos 25 a 27', 65, 'https://narrativesarchivos.blob.core.windows.net/audios/UnaLuzIncierta_9.mp3'),
+(1, 'La puerta equivocada', 66, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia1_1.mp3'),
+(2, 'Digory y su tío', 66, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia1_2.m4a'),
+(3, 'El Bosque entre los Mundos', 66, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia1_3.m4a'),
+(4, 'La campana y el martillo', 66, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia1_4.m4a'),
+(5, 'La palabra deplorable', 66, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia1_5.m4a'),
+(6, 'El principio de los problemas del tío Andrew', 66, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia1_6.m4a'),
+(7, 'Lo que sucedió ante la puerta principal', 66, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia1_7.m4a'),
+(8, 'La pelea junto al farol', 66, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia1_8.m4a'),
+(9, 'La creación de Narnia', 66, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia1_9.m4a'),
+(10, 'El primer chiste y otros asuntos', 66, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia1_10.m4a'),
+(11, 'Digory y su tío tienen problemas', 66, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia1_11.m4a'),
+(12, 'La aventura de Fresón', 66, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia1_12.m4a'),
+(13, 'Un encuentro inesperado', 66, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia1_13.m4a'),
+(14, 'Plantando el árbol', 66, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia1_14.m4a'),
+(15, 'El fin de esta historia y el inicio de todas las demás', 66, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia1_15.m4a'),
+(1, 'Lucy se mete en el armario', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_1.mp3'),
+(2, 'Lo que encontró Lucy', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_2.m4a'),
+(3, 'Edmund y el armario', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_3.m4a'),
+(4, 'Delicias turcas', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_4.m4a'),
+(5, 'De vuelta a este lado de la puerta', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_5.m4a'),
+(6, 'En el interior del bosque', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_6.m4a'),
+(7, 'Un día con los castores', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_7.m4a'),
+(8, 'Lo que sucedió después de cenar', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_8.m4a'),
+(9, 'En casa de la bruja', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_9.m4a'),
+(10, 'El hechizo empieza a romperse', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_10.m4a'),
+(11, 'Aslan está cada vez más cerca', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_11.m4a'),
+(12, 'La primera batalla de Peter', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_12.m4a'),
+(13, 'Magia Insondable de los albores del tiempo', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_13.m4a'),
+(14, 'El triunfo de la bruja', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_14.m4a'),
+(15, 'Magia Más Insondable de antes de los albores del tiempo', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_15.m4a'),
+(16, 'Lo que sucedió con las estatuas', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_16.m4a'),
+(17, 'La cacería del Ciervo Blanco', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_17.m4a');
