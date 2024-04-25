@@ -29,9 +29,9 @@ exports.getAudiolibroById = async (req, res) => {
                 error: "Audiolibro doesn't exist"
             });
         }
-        delete audiolibro.autor;
         respuesta.audiolibro = audiolibro;
         respuesta.autor = await AutoresModel.getAutorBasicoByID(audiolibro.autor);
+        delete audiolibro.autor;
         respuesta.generos = await AudiolibrosModel.getGenerosOfAudiolibro(id);
         respuesta.capitulos = await AudiolibrosModel.getCapitulosOfAudiolibro(id);
         respuesta.public_reviews = await ReviewModel.getPublicReviewsOfAudiolibro(id);
