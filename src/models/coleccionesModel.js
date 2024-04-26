@@ -1,6 +1,18 @@
 const pool = require('../db');
 
 const BibliotecaModel = {
+    async getColeccionById(coleccion_id) {
+        try {
+            const colecciones = await pool.query(
+                `SELECT * FROM colecciones WHERE id = $1`,
+                [coleccion_id]
+            );
+            return colecciones.rows[0];
+        } catch (error) {
+            throw error;
+        }
+    },
+
     async getUserCollections(user_id) {
         try {
             const audiolibros = await pool.query(
@@ -20,6 +32,21 @@ const BibliotecaModel = {
         }
     },
 
+    async getCollectionOwner(collectionId) {
+        try {
+            const audiolibros = await pool.query(
+                `SELECT u.username
+                FROM colecciones c
+                JOIN users u ON c.propietario = u.id
+                WHERE c.id = $1`,
+                [collectionId]
+            );
+            return audiolibros.rows[0]?.username;
+        } catch (error) {
+            throw error;
+        }
+    },
+
     async coleccionGuardada(user_id, coleccionId) {
         try {
             const audiolibros = await pool.query(
@@ -27,21 +54,6 @@ const BibliotecaModel = {
                 [user_id, coleccionId]
             );
             return audiolibros.rows.length > 0;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    async getInfoColeccion(coleccionId) {
-        try {
-            const audiolibros = await pool.query(
-                `SELECT c.*, u.username AS nombre_propietario
-                FROM colecciones c
-                JOIN users u ON c.propietario = u.id
-                WHERE c.id = $1`,
-                [coleccionId]
-            );
-            return audiolibros.rows;
         } catch (error) {
             throw error;
         }
@@ -70,21 +82,6 @@ const BibliotecaModel = {
                 VALUES ($1, $2)`,
                 [title, owner]
             );
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    async getCollectionOwner(collectionId) {
-        try {
-            const collection = await pool.query(
-                `SELECT users.id
-                FROM users
-                INNER JOIN colecciones ON users.id = colecciones.propietario
-                WHERE colecciones.id = $1`,
-                [collectionId]
-            );
-            return collection.rows[0];
         } catch (error) {
             throw error;
         }
@@ -127,8 +124,8 @@ const BibliotecaModel = {
 
     async addAudiolibroColeccion(audiolibroId, coleccionId, user_id) {
         try {
-            collectionOwner = await this.getCollectionOwner(coleccionId);
-            if (collectionOwner.id == user_id) {
+            const coleccion = await this.getColeccionById(coleccionId);
+            if (coleccion.propietario == user_id) {
                 await pool.query(
                     `INSERT INTO colecciones_audiolibros (coleccion, audiolibro)
                     VALUES ($1, $2)`,
@@ -145,9 +142,9 @@ const BibliotecaModel = {
 
     async removeAudiolibroColeccion(audiolibroId, coleccionId, user_id) {
         try {
-            collectionOwner = await this.getCollectionOwner(coleccionId);
+            const coleccion = await this.getColeccionById(coleccionId);
 
-            if (collectionOwner.id == user_id) {
+            if (coleccion.propietario == user_id) {
                 await pool.query(
                     `DELETE FROM colecciones_audiolibros WHERE audiolibro = $1`,
                     [audiolibroId]

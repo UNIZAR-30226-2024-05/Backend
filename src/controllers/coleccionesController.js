@@ -19,11 +19,18 @@ exports.getInfoCollection = async (req, res) => {
     const { coleccionId } = req.params;
     
     try {
+        const coleccion = await ColeccionesModel.getColeccionById(coleccionId);
+        if (!coleccion) {
+            return res.status(409).json({ 
+                error: "Coleccion no encontrada"
+            });
+        }
+
+        const propietario = await ColeccionesModel.getCollectionOwner(coleccionId);
         const guardada = await ColeccionesModel.coleccionGuardada(user_id, coleccionId);
-        const info = await ColeccionesModel.getInfoColeccion(coleccionId);
         const audiolibros = await ColeccionesModel.getAudiolibrosColeccion(coleccionId);
         res.status(200).json({
-            message: "OK", info, guardada, audiolibros
+            message: "OK", coleccion, propietario, guardada, audiolibros
         });
     } catch (err) {
         console.error(err.message);
