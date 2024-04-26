@@ -6,12 +6,11 @@ const imgContainerName = process.env.AZURE_BLOB_IMAGENES_CONTAINER_NAME;
 const audioContainerName = process.env.AZURE_BLOB_AUDIOS_CONTAINER_NAME;
 
 async function uploadFileToAzureBlobStorage(fileName, fileData, fileType, mimeType) {
-    let containerClient;
+    let containerClient = blobServiceClient.getContainerClient(audioContainerName);
     if (fileType === "image") {
         containerClient = blobServiceClient.getContainerClient(imgContainerName);
-    } else {
-        containerClient = blobServiceClient.getContainerClient(audioContainerName);
     }
+
     const blockBlobClient = containerClient.getBlockBlobClient(fileName);
     await blockBlobClient.upload(fileData, fileData.length, {
         blobHTTPHeaders: {
@@ -22,16 +21,16 @@ async function uploadFileToAzureBlobStorage(fileName, fileData, fileType, mimeTy
     return blockBlobClient.url; 
 }
 
-async function deleteBlobsFromAzureBlobStorage(imgName, audiosNames) {
-    let containerClient = blobServiceClient.getContainerClient(imgContainerName);
-    let blockBlobClient = containerClient.getBlockBlobClient(imgName);
+async function deleteImgFromAzureBlobStorage(imgName) {
+    const containerClient = blobServiceClient.getContainerClient(imgContainerName);
+    const blockBlobClient = containerClient.getBlockBlobClient(imgName);
     await blockBlobClient.delete();
-
-    containerClient = blobServiceClient.getContainerClient(audioContainerName);
-    audiosNames.forEach(async (audio) => {
-        blockBlobClient = containerClient.getBlockBlobClient(audio);
-        await blockBlobClient.delete();
-    });
 }
 
-module.exports = { uploadFileToAzureBlobStorage, deleteBlobsFromAzureBlobStorage };
+async function deleteAudioFromAzureBlobStorage(audioName) {
+    const containerClient = blobServiceClient.getContainerClient(audioContainerName);
+    const blockBlobClient = containerClient.getBlockBlobClient(audioName);
+    await blockBlobClient.delete();
+}
+
+module.exports = { uploadFileToAzureBlobStorage, deleteImgFromAzureBlobStorage, deleteAudioFromAzureBlobStorage };

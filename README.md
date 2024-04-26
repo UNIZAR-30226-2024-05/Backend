@@ -1,6 +1,6 @@
 # Servidor en la nube
 
-Haz solicitudes a http://20.199.84.234:8000
+Solicitudes a narratives-backend.azurewebsites.net
 
 ## Conexión ssh
 
@@ -21,7 +21,7 @@ Haz solicitudes a http://20.199.84.234:8000
 
 # Servidor en local
 
-Este repositorio contiene un contenedor Docker configurado con PostgreSQL, listo para ser ejecutado con datos de muestra.
+Este repositorio contiene lo necesario para configurar en local un contenedor Docker de PostgreSQL, listo para ser ejecutado con algunos datos de muestra.
 
 ## Requisitos previos
 
@@ -55,11 +55,8 @@ Este repositorio contiene un contenedor Docker configurado con PostgreSQL, listo
 
 ## Contenido del Repositorio
 
+### Necesario fichero .env con variables de entorno (en Discord)
+
 - docker-compose.yml: Archivo de configuración de Docker Compose.
-- .env: Archivo de configuración de las variables de entorno necesarias para ejecutar tanto del contenedor de la base de datos como del contenedor de pgadmin 4.
 - sql: Archivos SQL con la estructura de la base datos (tablas) y datos de población.
 - src: Archivos del servidor node js.
-    - controllers: Almacena la lógica de controlador para cada ruta.
-    - middlewares: Almacena funciones de middleware personalizadas que se utilizan en las rutas para realizar tareas como la autenticación, la validación de datos de entrada, el registro de solicitudes, etc.
-    - models: Almacena los métodos para interactuar con la base de datos.
-    - routes: Almacena todos los archivos de enrutamiento.

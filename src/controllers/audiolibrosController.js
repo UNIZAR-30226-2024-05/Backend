@@ -24,7 +24,7 @@ exports.newAudiolibro = async (req, res) => {
         );
         const autor = await AutoresModel.getAutorByName(nombreAutor);
         const audiolibro = await AudiolibrosModel.newAudiolibro(titulo, autor.id, descripcion, imgUrl);
-        if (audiolibro == null) {
+        if (!audiolibro) {
             res.status(409).json({ error: "Audiolibro existente" });
             return;
         }
@@ -48,16 +48,23 @@ exports.deleteAudiolibro = async (req, res) => {
     const { audiolibroId } = req.body;
 
     try {
-        const audiolibros = await AudiolibrosModel.getAudiolibroById(audiolibroId);
-        const imgName = audiolibros.img.substring(audiolibros.img.lastIndexOf('/') + 1);
+        const audiolibro = await AudiolibrosModel.getAudiolibroById(audiolibroId);
+        if (!audiolibro) {
+            return res.status(409).json({ 
+                error: "Audiolibro doesn't exist"
+            });
+        }
 
-        const audiosUrls = await AudiolibrosModel.getAudiosCapitulos(audiolibroId);
-        const audiosNames = audiosUrls.map((audio) => {
-            return audio.audio.substring(audio.audio.lastIndexOf('/') + 1);
-        });
-        
+        const imgName = audiolibro.img.substring(audiolibro.img.lastIndexOf('/') + 1);
+        await AzureBlobStorage.deleteImgFromAzureBlobStorage(imgName);
+
+        const capitulos = await AudiolibrosModel.getCapitulosOfAudiolibro(audiolibroId);
+        capitulos.forEach(async (capitulo) => {
+            const audioName = capitulo.audio.substring(capitulo.audio.lastIndexOf('/') + 1);
+            await AzureBlobStorage.deleteAudioFromAzureBlobStorage(audioName);
+        })
+
         await AudiolibrosModel.deleteAudiolibro(audiolibroId);
-        await AzureBlobStorage.deleteBlobsFromAzureBlobStorage(imgName, audiosNames);
 
         res.status(200).json({ message: "OK" });
     } catch (error) {
@@ -67,32 +74,49 @@ exports.deleteAudiolibro = async (req, res) => {
 };
 
 exports.updateAudiolibro = async (req, res) => {
-    const { audiolibroId, titulo, nombreAutor, descripcion } = req.body;
+    const { audiolibroId, titulo, nombreAutor, descripcion, audiosUrls } = req.body;
+    let imgUrl = req.body;
     const { image, audios } = req.files;
 
     try {
-        const audiolibros = await AudiolibrosModel.getAudiolibroById(audiolibroId);
-        const imgName = audiolibros.img.substring(audiolibros.img.lastIndexOf('/') + 1);
+        const audiolibro = await AudiolibrosModel.getAudiolibroById(audiolibroId);
+        if (!audiolibro) {
+            return res.status(409).json({ error: "Audiolibro doesn't exist" });
+        }
 
-        const audiosUrls = await AudiolibrosModel.getAudiosCapitulos(audiolibroId);
-        const audiosNames = audiosUrls.map((audio) => {
-            return audio.audio.substring(audio.audio.lastIndexOf('/') + 1);
-        });
-
-        await AzureBlobStorage.deleteBlobsFromAzureBlobStorage(imgName, audiosNames);
-
-        const imgUrl = await AzureBlobStorage.uploadFileToAzureBlobStorage(
-            image[0].originalname, image[0].buffer, image[0].fieldname, image[0].mimetype
-        );
-        const autor = await AutoresModel.getAutorByName(nombreAutor);
-        const audiolibro = await AudiolibrosModel.newAudiolibro(titulo, autor.id, descripcion, imgUrl);
-
-        for (let i = 0; i < audios.length; i++) {
-            const file = audios[i];
-            const audioUrl = await AzureBlobStorage.uploadFileToAzureBlobStorage(
-                file.originalname, file.buffer, file.fieldname, file.mimetype
+        if (image && image.length > 0) {
+            const imgName = audiolibro.img.substring(audiolibro.img.lastIndexOf('/') + 1);
+            await AzureBlobStorage.deleteImgFromAzureBlobStorage(imgName)
+            imgUrl = await AzureBlobStorage.uploadFileToAzureBlobStorage(
+                image[0].originalname, image[0].buffer, image[0].fieldname, image[0].mimetype
             );
-            await AudiolibrosModel.subirCapitulo(audiolibro.id, i+1, audioUrl);
+        }
+
+        const autorPeticion = await AutoresModel.getAutorByName(nombreAutor);
+        if (audiolibro.titulo !== titulo || audiolibro.autor !== autorPeticion.id || audiolibro.descripcion !== descripcion 
+            || (image && image.length > 0)) {
+            await AudiolibrosModel.updateAudiolibro(audiolibroId, titulo, autorPeticion.id, descripcion, imgUrl);
+        }
+
+        const capitulosActuales = await AudiolibrosModel.getCapitulosOfAudiolibro(audiolibroId);
+        capitulosActuales.forEach(async (capitulo) => {
+            if (!audiosUrls || !audiosUrls.includes(capitulo.audio)) {
+                await AudiolibrosModel.eliminarCapitulo(audiolibroId, capitulo.audio);
+                const audioName = capitulo.audio.substring(capitulo.audio.lastIndexOf('/') + 1);
+                await AzureBlobStorage.deleteAudioFromAzureBlobStorage(audioName);
+            }
+        })
+
+        if (audios && audios.length > 0) {
+            let ultimoCapitulo = capitulosActuales[capitulosActuales.length - 1].numero;
+            for (let i = 0; i < audios.length; i++) {
+                const audio = audios[i];
+                const audioUrl = await AzureBlobStorage.uploadFileToAzureBlobStorage(
+                    audio.originalname, audio.buffer, audio.fieldname, audio.mimetype
+                );
+                await AudiolibrosModel.subirCapitulo(audiolibroId, ultimoCapitulo+1, audioUrl);
+                ultimoCapitulo++;
+            }
         }
         
         res.status(200).json({ message: "OK" });
