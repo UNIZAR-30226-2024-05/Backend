@@ -41,7 +41,7 @@ const BibliotecaModel = {
                 WHERE c.id = $1`,
                 [collectionId]
             );
-            return audiolibros.rows[0]?.username;
+            return audiolibros.rows[0].username;
         } catch (error) {
             throw error;
         }
