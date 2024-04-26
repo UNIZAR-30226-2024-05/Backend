@@ -50,9 +50,10 @@ const BibliotecaModel = {
     async getAudiolibrosColeccion(coleccionId) {
         try {
             const audiolibros = await pool.query(
-                `SELECT audiolibros.*
+                `SELECT audiolibros.*, autores.nombre AS nombre_autor
                 FROM audiolibros
                 INNER JOIN colecciones_audiolibros ON audiolibros.id = colecciones_audiolibros.audiolibro
+                INNER JOIN autores ON audiolibros.autor = autores.id
                 WHERE colecciones_audiolibros.coleccion = $1`,
                 [coleccionId]
             );
