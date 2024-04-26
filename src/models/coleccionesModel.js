@@ -32,7 +32,7 @@ const BibliotecaModel = {
         }
     },
 
-    async getCollectionOwner(collectionId) {
+    async getCollectionOwnerName(collectionId) {
         try {
             const audiolibros = await pool.query(
                 `SELECT u.username

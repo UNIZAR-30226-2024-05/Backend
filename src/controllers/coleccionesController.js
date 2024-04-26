@@ -26,7 +26,7 @@ exports.getInfoCollection = async (req, res) => {
             });
         }
 
-        const propietario = await ColeccionesModel.getCollectionOwner(coleccionId);
+        const propietario = await ColeccionesModel.getCollectionOwnerName(coleccionId);
         const guardada = await ColeccionesModel.coleccionGuardada(user_id, coleccionId);
         const audiolibros = await ColeccionesModel.getAudiolibrosColeccion(coleccionId);
         res.status(200).json({
