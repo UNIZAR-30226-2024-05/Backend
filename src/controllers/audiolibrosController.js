@@ -22,7 +22,7 @@ exports.newAudiolibro = async (req, res) => {
         const imgUrl = await AzureBlobStorage.uploadFileToAzureBlobStorage(
             image[0].originalname, image[0].buffer, image[0].fieldname, image[0].mimetype
         );
-        const autor = await AutoresModel.getAutorByName(nombreAutor);
+        const autor = await AutoresModel.getAutor(nombreAutor);
         const audiolibro = await AudiolibrosModel.newAudiolibro(titulo, autor.id, descripcion, imgUrl);
         if (!audiolibro) {
             res.status(409).json({ error: "Audiolibro existente" });
@@ -92,7 +92,7 @@ exports.updateAudiolibro = async (req, res) => {
             );
         }
 
-        const autorPeticion = await AutoresModel.getAutorByName(nombreAutor);
+        const autorPeticion = await AutoresModel.getAutor(nombreAutor);
         if (audiolibro.titulo !== titulo || audiolibro.autor !== autorPeticion.id || audiolibro.descripcion !== descripcion 
             || (image && image.length > 0)) {
             await AudiolibrosModel.updateAudiolibro(audiolibroId, titulo, autorPeticion.id, descripcion, imgUrl);
