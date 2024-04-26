@@ -146,8 +146,8 @@ const BibliotecaModel = {
 
             if (coleccion.propietario == user_id) {
                 await pool.query(
-                    `DELETE FROM colecciones_audiolibros WHERE audiolibro = $1`,
-                    [audiolibroId]
+                    `DELETE FROM colecciones_audiolibros WHERE audiolibro = $1 AND coleccion = $2`,
+                    [audiolibroId, coleccionId]
                 );
                 return 1;
             } else {
