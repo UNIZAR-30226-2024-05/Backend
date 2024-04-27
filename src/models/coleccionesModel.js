@@ -32,16 +32,16 @@ const BibliotecaModel = {
         }
     },
 
-    async getCollectionOwnerName(collectionId) {
+    async getCollectionOwner(collectionId) {
         try {
             const audiolibros = await pool.query(
-                `SELECT u.username
+                `SELECT u.id, u.username
                 FROM colecciones c
                 JOIN users u ON c.propietario = u.id
                 WHERE c.id = $1`,
                 [collectionId]
             );
-            return audiolibros.rows[0].username;
+            return audiolibros.rows[0];
         } catch (error) {
             throw error;
         }

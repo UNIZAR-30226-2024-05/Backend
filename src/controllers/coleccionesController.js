@@ -1,4 +1,5 @@
 const ColeccionesModel = require("../models/coleccionesModel");
+const UsersModel = require("../models/userModel");
 
 exports.getUserCollections = async (req, res) => {
     const { user_id } = req.session.user;
@@ -26,11 +27,12 @@ exports.getInfoCollection = async (req, res) => {
             });
         }
 
-        const propietario = await ColeccionesModel.getCollectionOwnerName(coleccionId);
+        const propietario = await ColeccionesModel.getCollectionOwner(coleccionId);
+        const propietarioUsername = propietario.username;
         const guardada = await ColeccionesModel.coleccionGuardada(user_id, coleccionId);
         const audiolibros = await ColeccionesModel.getAudiolibrosColeccion(coleccionId);
         res.status(200).json({
-            message: "OK", coleccion, propietario, guardada, audiolibros
+            message: "OK", coleccion, propietarioUsername, guardada, audiolibros
         });
     } catch (err) {
         console.error(err.message);
@@ -62,8 +64,8 @@ exports.removeCollection = async (req, res) => {
     const { collectionId } = req.body;
 
     try {
-        const collectionOwner = await ColeccionesModel.getCollectionOwnerName(collectionId);
-        if (collectionOwner.id == user_id) {
+        const collectionOwnerName = await ColeccionesModel.getCollectionOwner(collectionId);
+        if (collectionOwnerName.id == user_id) {
             await ColeccionesModel.deleteUserCollection(collectionId);
         } else {
             await ColeccionesModel.removeFriendCollection(collectionId, user_id);
