@@ -62,7 +62,7 @@ exports.removeCollection = async (req, res) => {
     const { collectionId } = req.body;
 
     try {
-        const collectionOwner = await ColeccionesModel.getCollectionOwner(collectionId);
+        const collectionOwner = await ColeccionesModel.getCollectionOwnerName(collectionId);
         if (collectionOwner.id == user_id) {
             await ColeccionesModel.deleteUserCollection(collectionId);
         } else {
