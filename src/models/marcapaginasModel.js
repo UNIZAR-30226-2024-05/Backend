@@ -3,7 +3,7 @@ const pool = require('../db');
 const marcapaginasModel = {
     async getUltimoAudiolibro(user_id) {
         try {
-            const audiolibros = await pool.query(`SELECT a.id AS id_audiolibro, a.titulo, a.img, c.id AS id_capitulo, m.fecha
+            const audiolibros = await pool.query(`SELECT a.id AS id_audiolibro, a.titulo, a.img, c.id AS id_capitulo, m.fecha, m.id
             FROM audiolibros a
             JOIN capitulos c ON a.id = c.audiolibro
             JOIN marcapaginas m ON c.id = m.capitulo

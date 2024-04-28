@@ -87,7 +87,7 @@ exports.ActualizarUltimoAudiolibro = async (req, res) => {
              await marcapaginasModel.CrearUltimoAudiolibro(user_id, "",capitulo, tiempo);
         }else{ 
               const comparar = await marcapaginasModel.AudiolibroDelCapitulo(capitulo); 
-             if(ultimo.audiolibro == comparar.audiolibro){ // Caso son datos del mismo audiolibro asi que solo hay que actualizarlos
+             if(ultimo.id_audiolibro == comparar.audiolibro){ // Caso son datos del mismo audiolibro asi que solo hay que actualizarlos
                 await marcapaginasModel.ActualizarMarcapaginas(ultimo.id, "", tiempo,capitulo);
              }else{  //caso no era del mismo audiolibro(comprueba si hay que borrar algun 1)
             await marcapaginasModel.CambiarUltimoMarcapaginas(ultimo.id);
