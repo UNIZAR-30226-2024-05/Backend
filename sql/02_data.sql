@@ -22,7 +22,8 @@ INSERT INTO autores (nombre, ciudadNacimiento, informacion) VALUES
 ('Meagan McKinney', 'Estados Unidos', 'Meagan McKinney (nacida en 1961) es el seudónimo escogido por la autora americana Ruth Goodman para firmar parte de su obra literaria. Goodman estudió Biología, campo al que se dedicó varios años. Tras el éxito de sus primeras novelas, Goodman decidió dedicarse por completo a la literatura a partir de los años 90 bajo el nombre de McKinney, con el que ha publicado desde entonces más de veinte novelas.'),
 ('Elizabeth Lowell', 'Milwaukee , Wisconsin , Estados Unidos', 'Ann Maxwell (nacida el 5 de abril de 1944), también conocida como AE Maxwell y Elizabeth Lowell , es una escritora estadounidense. Ha escrito individualmente y con el coautor y esposo Evan más de 50 novelas y un libro de no ficción. Sus novelas van desde la ciencia ficción hasta la ficción histórica, y desde el romance hasta el misterio y el suspenso.'),
 ('Alexandra Bracken', 'Phoenix, Arizona, Estados Unidos', 'Alexandra Bracken nació en Phoenix, Arizona. Regresó allí tras vivir en Nueva York donde trabajó en la industria editorial, primero como ayudante y luego en marketing. Estudió en La Universidad de William y Mary en Williamsburg, Virginia, graduándose magna cum laude con un grado en Historia e Inglés en mayo de 2009'),
-('C. S. Lewis', 'Belfast, Reino Unido de Gran Bretaña e Irlanda', 'Clive Staples Lewis (29 de noviembre de 1898), popularmente conocido como C. S. Lewis, fue un apologista cristiano anglicano, medievalista, y escritor británico, reconocido por sus obras de ficción, especialmente por su saga Las crónicas de Narnia. También fue crítico literario, académico de la universidad de Oxford en el Magdalen College y locutor de radio norirlandés. Lewis fue un amigo cercano de J. R. R. Tolkien, el autor de El Señor de los Anillos.');
+('C. S. Lewis', 'Belfast, Reino Unido de Gran Bretaña e Irlanda', 'Clive Staples Lewis (29 de noviembre de 1898), popularmente conocido como C. S. Lewis, fue un apologista cristiano anglicano, medievalista, y escritor británico, reconocido por sus obras de ficción, especialmente por su saga Las crónicas de Narnia. También fue crítico literario, académico de la universidad de Oxford en el Magdalen College y locutor de radio norirlandés. Lewis fue un amigo cercano de J. R. R. Tolkien, el autor de El Señor de los Anillos.'),
+('Julio Verne', 'Nantes, Reino de Francia', 'Jules Gabriel Verne, conocido en los países hispanohablantes como Julio Verne (8 de febrero de 1828), fue un escritor, dramaturgo y poeta francés, célebre por sus novelas de aventuras y por su profunda influencia en el género literario de la ciencia ficción');
 
 INSERT INTO generos (nombre) VALUES
 ('Romance'),
@@ -55,7 +56,7 @@ Harry Potter nunca ha oído hablar de Hogwarts hasta que empiezan a caer cartas 
 ('Un Trago De Despedida', 5, 'Cierta noche de invierno, en un bar, varios parroquianos mantienen sus charlas habituales. Cuando están a punto de cerrar, un hombre muy alarmado entra pidiendo ayuda: su coche ha quedado atrapado por la nieve en la carretera que conduce a Jerusalem’s Lot (o Salem’s lot), un pueblo «aparentemente» abandonado.
 Lo que sobrecoge a esos parroquianos es que la mujer y la hija del conductor han quedado en el interior del vehículo. Inmediatamente se ponen en marcha, aunque quizá cuando lleguen sea tarde.', 
 'https://narrativesarchivos.blob.core.windows.net/imagenes/ElUmbralDeLaNoche.jpg'),
-('Asesinato en el campo de golf', 5, 'Hércules Poirot recibe una carta de Paul Renauld, quien le dice que teme por su vida y le urge a que acuda en su ayuda. Así, junto con su amigo el capitán Hastings, el detective se dirige rápido al norte de Francia para prestar sus servicios al nuevo cliente. Sin embargo, llegan demasiado tarde: el cuerpo de Renauld yace apuñalado en medio de un campo de golf.
+('Asesinato en el campo de golf', 6, 'Hércules Poirot recibe una carta de Paul Renauld, quien le dice que teme por su vida y le urge a que acuda en su ayuda. Así, junto con su amigo el capitán Hastings, el detective se dirige rápido al norte de Francia para prestar sus servicios al nuevo cliente. Sin embargo, llegan demasiado tarde: el cuerpo de Renauld yace apuñalado en medio de un campo de golf.
 Mientras Poirot investiga la escena del crimen y a los posibles sospechosos, descubre otro cuerpo asesinado de la misma manera que el primero, y con la misma arma. ¿Qué tienen en común estos hombres? ¿Quién los ha matado? ¿Y por qué Poirot no deja de pensar en un crimen cometido años atrás?', 
 'https://narrativesarchivos.blob.core.windows.net/imagenes/AsesinatoEnElCampoDeGolf.jpg'),
 ('Muerte en el Nilo', 6, 'Un célebre caso que pone a prueba la extrema lucidez de Hércules Poirot.
@@ -208,7 +209,18 @@ Un viaje a traves de un país desesperado en busca de respuestas... ¿y si ganar
 'https://narrativesarchivos.blob.core.windows.net/imagenes/Narnia1.jpg'),
 ('Las crónicas de Narnia. El león, la bruja y el armario', 24, 'Narnia, la tierra donde todo puede suceder
 Cuatro niños que viven en una casa solitaria descubren un armario que da acceso a Narnia, un país congelado en un invierno eterno y sin Navidad. Cumpliendo con las viejas profecías, los niños–junto con el león Aslan- liberarán al país de la tiranía de la Bruja Blanca.', 
-'https://narrativesarchivos.blob.core.windows.net/imagenes/Narnia2.jpg');
+'https://narrativesarchivos.blob.core.windows.net/imagenes/Narnia2.jpg'),
+('Viaje al centro de la tierra', 25, 'Un jeroglífico medieval casi indescifrable puede permanecer luengos siglos durmiendo entre las hojas de un libro viejo. Pero, cuando por azar caiga en manos del audaz profesor Otto Lidenbrock de Hamburgo, desencadenará el viaje más espectacular de todo el siglo XIX. El profesor, su sobrino Axel y el impasible Hans verán maravillas en el interior del globo, iluminados por una inmóvil luz incomprensible. Esta novela, la más fantástica, la menos científica, tal vez la mas literaria de Verne, cautivará a los lectores por la intensidad de la narración y por el indefinible misterio que encierra la naturaleza cuando se penetra en ella por los caminos de la imaginación.
+Un jeroglífico medieval casi indescifrable puede permanecer luengos siglos durmiendo entre las hojas de un libro viejo. Pero, cuando por azar caiga en manos del audaz profesor Otto Lidenbrock de Hamburgo, desencadenará el viaje más espectacular de todo el siglo XIX. El profesor, su sobrino Axel y el impasible Hans verán maravillas en el interior del globo, iluminados por una inmóvil luz incomprensible. Esta novela, la más fantástica, la menos científica, tal vez la mas literaria de Verne, cautivará a los lectores por la intensidad de la narración y por el indefinible misterio que encierra la naturaleza cuando se penetra en ella por los caminos de la imaginación.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/ViajeAlCentroDeLaTierra.jpg'),
+('20000 leguas de viaje submarino', 25, 'Un monstruo marino ha puesto en marcha todas las alarmas, y finalmente se organiza una expedición para capturarlo, en la que figuran el célebre  profesor de Historia Natural Pierre Aronnax, su ayudante Conseil y el experto arponero canadiense Ned Land, a bordo de la fragata estadounidense Abraham Lincoln.
+El monstruo resulta ser un sorprendente submarino a las órdenes del capitán Nemo, y el hecho de que deba mantener el secreto plantea un grave problema al capitán en cuanto a la liberación de los tres personajes principales.El capitán Nemo, el sabio atormentado y desengañado de la raza humana, en el que confluyen el individualismo libertario y un exacerbado sentido de la justicia, se ha convertido sin duda en uno de los paradigmas de la novela de aventuras y su presencia ya bastaría para justificar el lugar de honor que ocupa Veinte mil leguas de viaje submarino en el género. Y sin embargo contiene muchos otros alicientes: emoción, conocimiento, suspense, personajes inolvidables, lances inesperados... Uno de los hitos de la novela de aventuras y fuente inagotable para la posterior narrativa de anticipación.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/20000LeguasDeViajeSubmarino.jpg'),
+('La vuelta al mundo en 80 días', 25, 'Phileas Fogg, un flemático inglés, ha apostado su fortuna a que dará la vuelta al mundo en 80 días, y empleará todos los medios de locomoción a su alcance: trenes, barcos, coches, y hasta un elefante y un trineo. Pero esta vuelta al mundo, en la que se combinan el humor, la aventura, el heroísmo y la típica abnegación de los personajes vernianos, reserva al lector otra sorpresa: la apuesta que a Fogg le hace perder el policía Fix se la hará ganar impensadamente el sol.
+Phileas Fogg, un flemático inglés, ha apostado su fortuna a que dará la vuelta al mundo en 80 días, y empleará todos los medios de locomoción a su alcance: trenes, barcos, coches, y hasta un elefante y un trineo. Pero esta vuelta al mundo, en la que se combinan el humor, la aventura, el heroísmo y la típica abnegación de los personajes vernianos, reserva al lector otra sorpresa: la apuesta que a Fogg le hace perder el policía Fix se la hará ganar impensadamente el sol.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/LaVueltaAlMundoEn80Dias.jpg'),
+('Miguel Strogoff', 25, '"Y no volverá a ver las cosas de la tierra". Era el versículo del Corán que Miguel Strogoff oyó antes de que la hoja incandescente de un sable al rojo vivo pasara delante de sus ojos. Desde ese momento culminante, el lector, ya irremesiblemente atrapado, acompaña al correo del zar por las estepas siberianas, compartiendo su tesón, sus dudas, tal vez la superstición de aquella liebre de mal agüero que se cruzó en el camino, y acaso su secreto. Novela de aventuras en estado puro, donde el viaje argumental del protagonista se convierte en viaje iniciático del joven, añade la virtud de aliviar la tensión narrativa con las ocurrencias humorísticas de los periodistas Blount y Jolivet.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/MiguelStrogoff.jpg');
 
 INSERT INTO genero_audiolibro (audiolibro, genero) VALUES
 (3, 1),
@@ -221,6 +233,9 @@ INSERT INTO genero_audiolibro (audiolibro, genero) VALUES
 (57, 1),
 (58, 1),
 (59, 1),
+(68, 2),
+(70, 2),
+(71, 2),
 (1, 3),
 (60, 3),
 (61, 3),
@@ -230,6 +245,7 @@ INSERT INTO genero_audiolibro (audiolibro, genero) VALUES
 (65, 3),
 (66, 3),
 (67, 3),
+(69, 4),
 (4, 5),
 (5, 5),
 (6, 5),
@@ -595,4 +611,8 @@ INSERT INTO capitulos (numero, nombre, audiolibro, audio) VALUES
 (14, 'El triunfo de la bruja', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_14.m4a'),
 (15, 'Magia Más Insondable de antes de los albores del tiempo', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_15.m4a'),
 (16, 'Lo que sucedió con las estatuas', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_16.m4a'),
-(17, 'La cacería del Ciervo Blanco', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_17.m4a');
+(17, 'La cacería del Ciervo Blanco', 67, 'https://narrativesarchivos.blob.core.windows.net/audios/Narnia2_17.m4a'),
+(1, 'Viaje al centro de la tierra', 68, 'https://narrativesarchivos.blob.core.windows.net/audios/ViajeAlCentroDeLaTierra.mp3'),
+(1, '20000 leguas de viaje submarino', 69, 'https://narrativesarchivos.blob.core.windows.net/audios/20000LeguasDeViajeSubmarino.mp3'),
+(1, 'La vuelta al mundo en 80 días', 70, 'https://narrativesarchivos.blob.core.windows.net/audios/LaVueltaAlMundoEn80Dias.mp3'),
+(1, 'Miguel Strogoff', 71, 'https://narrativesarchivos.blob.core.windows.net/audios/MiguelStrogoff.mp3');
