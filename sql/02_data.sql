@@ -24,6 +24,7 @@ INSERT INTO autores (nombre, ciudadNacimiento, informacion) VALUES
 ('Alexandra Bracken', 'Phoenix, Arizona, Estados Unidos', 'Alexandra Bracken nació en Phoenix, Arizona. Regresó allí tras vivir en Nueva York donde trabajó en la industria editorial, primero como ayudante y luego en marketing. Estudió en La Universidad de William y Mary en Williamsburg, Virginia, graduándose magna cum laude con un grado en Historia e Inglés en mayo de 2009'),
 ('C. S. Lewis', 'Belfast, Reino Unido de Gran Bretaña e Irlanda', 'Clive Staples Lewis (29 de noviembre de 1898), popularmente conocido como C. S. Lewis, fue un apologista cristiano anglicano, medievalista, y escritor británico, reconocido por sus obras de ficción, especialmente por su saga Las crónicas de Narnia. También fue crítico literario, académico de la universidad de Oxford en el Magdalen College y locutor de radio norirlandés. Lewis fue un amigo cercano de J. R. R. Tolkien, el autor de El Señor de los Anillos.'),
 ('Julio Verne', 'Nantes, Reino de Francia', 'Jules Gabriel Verne, conocido en los países hispanohablantes como Julio Verne (8 de febrero de 1828), fue un escritor, dramaturgo y poeta francés, célebre por sus novelas de aventuras y por su profunda influencia en el género literario de la ciencia ficción');
+('Mark Twain', 'Florida, Estados Unidos', 'Samuel Langhorne Clemens (30 de noviembre de 1835), más conocido por su seudónimo Mark Twain, fue un escritor, orador y humorista estadounidense. Twain nació durante una de las visitas a la Tierra del cometa Halley y predijo que también «me iré con él»; murió al siguiente regreso a la Tierra del cometa, 74 años después. William Faulkner calificó a Twain como «el padre de la literatura estadounidense».');
 
 INSERT INTO generos (nombre) VALUES
 ('Romance'),
@@ -220,7 +221,15 @@ El monstruo resulta ser un sorprendente submarino a las órdenes del capitán Ne
 Phileas Fogg, un flemático inglés, ha apostado su fortuna a que dará la vuelta al mundo en 80 días, y empleará todos los medios de locomoción a su alcance: trenes, barcos, coches, y hasta un elefante y un trineo. Pero esta vuelta al mundo, en la que se combinan el humor, la aventura, el heroísmo y la típica abnegación de los personajes vernianos, reserva al lector otra sorpresa: la apuesta que a Fogg le hace perder el policía Fix se la hará ganar impensadamente el sol.', 
 'https://narrativesarchivos.blob.core.windows.net/imagenes/LaVueltaAlMundoEn80Dias.jpg'),
 ('Miguel Strogoff', 25, '"Y no volverá a ver las cosas de la tierra". Era el versículo del Corán que Miguel Strogoff oyó antes de que la hoja incandescente de un sable al rojo vivo pasara delante de sus ojos. Desde ese momento culminante, el lector, ya irremesiblemente atrapado, acompaña al correo del zar por las estepas siberianas, compartiendo su tesón, sus dudas, tal vez la superstición de aquella liebre de mal agüero que se cruzó en el camino, y acaso su secreto. Novela de aventuras en estado puro, donde el viaje argumental del protagonista se convierte en viaje iniciático del joven, añade la virtud de aliviar la tensión narrativa con las ocurrencias humorísticas de los periodistas Blount y Jolivet.', 
-'https://narrativesarchivos.blob.core.windows.net/imagenes/MiguelStrogoff.jpg');
+'https://narrativesarchivos.blob.core.windows.net/imagenes/MiguelStrogoff.jpg'),
+('El castillo de los Cárpatos', 25, 'En las profundidades de Transilvania, en una comunidad aislada y supersticiosa, la inesperada aparición de humo en la torre de un castillo abandonado sugiere una presencia diabólica.
+Un valiente guardabosques y un médico algo cobarde se aventuran a explorar el castillo y son rechazados por fuerzas extrañas y pavorosas. Por su parte, un joven conde valaco que ha perdido a su amada, la célebre cantante Stilla, que murió en el escenario, cree oír su voz en las inmediaciones del recinto. Verne combina en esta curiosísima novela el racionalismo, el humor sardónico y la crítica de la superstición y la leyenda con una paradójica, casi surrealista, exaltación del amour fou.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/ElCastilloEnLosCarpatos.jpg'),
+('Las aventuras de Tom Sawyer', 26, 'Un canto a la amistad lleno de humor y aventuras.
+Esta es la historia de un verano de travesuras, diversión y amistad. Es la historia de Tom Sawyer, el niño que nos llevará a orillas del río Misisipi, a casa de su tía Polly, desde donde saldrá a correr aventuras con sus amigos Huck y Joe; a la escuela con su maestro, el señor Dobbins; a conocer a su amor, la linda Becky...', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/LasAventurasDeTomSawyer.jpg'),
+('El signo de los cuatro', 7, 'La petición de una mujer a Sherlock Holmes para acompañarla a visitar a un hombre y la muerte del hermano del mismo, lo lleva a descubrir, junto al doctor Watson, el secreto que hay tras un tesoro encontrado en la India, un juramento entre tres indios, un blanco y una enloquecedora sed de venganza.', 
+'https://narrativesarchivos.blob.core.windows.net/imagenes/ElSignoDeLosCuatro.jpg');
 
 INSERT INTO genero_audiolibro (audiolibro, genero) VALUES
 (3, 1),
@@ -236,6 +245,8 @@ INSERT INTO genero_audiolibro (audiolibro, genero) VALUES
 (68, 2),
 (70, 2),
 (71, 2),
+(73, 2),
+(74, 2),
 (1, 3),
 (60, 3),
 (61, 3),
@@ -246,6 +257,10 @@ INSERT INTO genero_audiolibro (audiolibro, genero) VALUES
 (66, 3),
 (67, 3),
 (69, 4),
+(72, 4),
+(13, 4),
+(14, 4),
+(15, 4),
 (4, 5),
 (5, 5),
 (6, 5),
@@ -266,6 +281,7 @@ INSERT INTO genero_audiolibro (audiolibro, genero) VALUES
 (29, 6),
 (30, 6),
 (31, 6),
+(73, 6),
 (8, 7),
 (9, 7),
 (10, 7),
@@ -615,4 +631,13 @@ INSERT INTO capitulos (numero, nombre, audiolibro, audio) VALUES
 (1, 'Viaje al centro de la tierra', 68, 'https://narrativesarchivos.blob.core.windows.net/audios/ViajeAlCentroDeLaTierra.mp3'),
 (1, '20000 leguas de viaje submarino', 69, 'https://narrativesarchivos.blob.core.windows.net/audios/20000LeguasDeViajeSubmarino.mp3'),
 (1, 'La vuelta al mundo en 80 días', 70, 'https://narrativesarchivos.blob.core.windows.net/audios/LaVueltaAlMundoEn80Dias.mp3'),
-(1, 'Miguel Strogoff', 71, 'https://narrativesarchivos.blob.core.windows.net/audios/MiguelStrogoff.mp3');
+(1, 'Miguel Strogoff', 71, 'https://narrativesarchivos.blob.core.windows.net/audios/MiguelStrogoff.mp3'),
+(1, 'Parte 1', 72, 'https://narrativesarchivos.blob.core.windows.net/audios/ElCastilloEnLosCarpatos_1.mp3'),
+(2, 'Parte 2', 72, 'https://narrativesarchivos.blob.core.windows.net/audios/ElCastilloEnLosCarpatos_2.mp3'),
+(3, 'Parte 3', 72, 'https://narrativesarchivos.blob.core.windows.net/audios/ElCastilloEnLosCarpatos_3.mp3'),
+(4, 'Parte 4', 72, 'https://narrativesarchivos.blob.core.windows.net/audios/ElCastilloEnLosCarpatos_4.mp3'),
+(5, 'Parte 5', 72, 'https://narrativesarchivos.blob.core.windows.net/audios/ElCastilloEnLosCarpatos_5.mp3'),
+(6, 'Parte 6', 72, 'https://narrativesarchivos.blob.core.windows.net/audios/ElCastilloEnLosCarpatos_6.mp3'),
+(7, 'Parte 7', 72, 'https://narrativesarchivos.blob.core.windows.net/audios/ElCastilloEnLosCarpatos_7.mp3'),
+(1, 'Las aventuras de Tom Sawyer', 73, 'https://narrativesarchivos.blob.core.windows.net/audios/LasAventurasDeTomSawyer.mp3'),
+(1, 'El signo de los cuatro', 74, 'https://narrativesarchivos.blob.core.windows.net/audios/ElSignoDeLosCuatro.mp3');
