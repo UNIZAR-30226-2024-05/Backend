@@ -64,10 +64,10 @@ CREATE TABLE capitulos (
    2 - privada */
 CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
-    usuario INTEGER REFERENCES users(id) ON DELETE CASCADE,
-    audiolibro INTEGER REFERENCES audiolibros(id) ON DELETE CASCADE,
+    usuario INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    audiolibro INTEGER NOT NULL REFERENCES audiolibros(id) ON DELETE CASCADE,
     comentario VARCHAR(500),
-    puntuacion SMALLINT NOT NULL,
+    puntuacion SMALLINT NOT NULL CHECK (puntuacion >= 0 AND puntuacion <= 5),
     visibilidad CHAR(1) NOT NULL CHECK (visibilidad IN ('0', '1', '2')),
     fecha TIMESTAMPTZ NOT NULL,
     UNIQUE(usuario, audiolibro)
