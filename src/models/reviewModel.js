@@ -27,7 +27,6 @@ const ReviewModel = {
                 VALUES ($1, $2, $3, $4, $5, NOW()) RETURNING id, comentario, puntuacion, visibilidad, fecha`,
             [user, audiolibro, comment, puntuacion, visibilidad]
         );
-        console.log(newReview);
         return newReview.rows[0];
     },
 

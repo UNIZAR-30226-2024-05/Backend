@@ -41,7 +41,6 @@ exports.getAudiolibroById = async (req, res) => {
             const { user_id } = req.session.user;
             respuesta.friends_reviews = await ReviewModel.getFriendsReviewsOfAudiolibro(id, user_id);
             respuesta.own_review = await ReviewModel.getOwnReviewOfAudiolibro(id, user_id);
-            console.log(await ReviewModel.getOwnReviewOfAudiolibro(id, user_id));
             respuesta.ultimo_momento = await MarcapaginasModel.getUltimoMomentoByAudiolibro(user_id, id);
             respuesta.mp_personalizados = await MarcapaginasModel.getMarcapaginasPersonalizadosByAudiolibro(user_id, id);
             respuesta.colecciones = await ColeccionesModel.audiolibroPerteneceColecciones(id, user_id);
