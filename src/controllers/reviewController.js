@@ -25,9 +25,9 @@ exports.editReview = async (req, res) => {
     const { id_review, comentario, puntuacion, visibilidad } = req.body;
 
     try {
-        const exists = await ReviewModel.getReviewById(id_review, user_id)
+        const exists = await ReviewModel.getReviewById(id_review, user_id);
         if(exists){
-            const belongs = await ReviewModel.reviewBelongsToUser(id_review, user_id)
+            const belongs = await ReviewModel.reviewBelongsToUser(id_review, user_id);
             if (belongs) {
                 const editedReview = await ReviewModel.editReview(id_review, comentario, puntuacion, visibilidad);
                 if (editedReview) {
@@ -55,9 +55,9 @@ exports.deleteReview = async (req, res) => {
     const { user_id } = req.session.user;
     const { id_review } = req.body;
     try {
-        const exists = await ReviewModel.getReviewById(id_review, user_id)
+        const exists = await ReviewModel.getReviewById(id_review, user_id);
         if(exists){
-            const belongs = await ReviewModel.reviewBelongsToUser(id_review, user_id)
+            const belongs = await ReviewModel.reviewBelongsToUser(id_review, user_id);
             if (belongs) {
                 ReviewModel.deleteReview(id_review);
                 return res.status(200).json({

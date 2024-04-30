@@ -2,6 +2,14 @@ const pool = require('../db');
 
 const ReviewModel = {
 
+    async getReviewById(id_review) {
+        const review = await pool.query(
+            `SELECT * FROM reviews WHERE id = $1`,
+            [id_review]
+        );
+        return review.rowCount;
+    },
+
     async alreadyExistingReview(id_audiolibro, user_id) {
         const review = await pool.query(
             `SELECT id FROM reviews WHERE audiolibro = $1 AND usuario  = $2`,
