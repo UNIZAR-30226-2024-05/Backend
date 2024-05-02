@@ -76,8 +76,9 @@ CREATE TABLE reviews (
 CREATE TABLE club_lectura (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(30) NOT NULL,
-    audiolibro INTEGER REFERENCES audiolibros(id) ON DELETE SET NULL,
-    descripcion VARCHAR(200)
+    audiolibro INTEGER REFERENCES audiolibros(id) ON DELETE SET,
+    descripcion VARCHAR(200),
+    adminn INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL
 );
 
 /* 0 - momento donde se dejó último libro leído
