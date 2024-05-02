@@ -28,7 +28,7 @@ const clubesModel = {
     async getClubByID(id) {
         try {
             const club = await pool.query(`SELECT c.*, a.id AS id_audiolibro, a.titulo 
-                FROM club_lectura c LEFT JOIN audiolibro a ON c.audiolibro = a.id
+                FROM club_lectura c LEFT JOIN audiolibros a ON c.audiolibro = a.id
                 WHERE c.id = $1;
             `, [id]);
             return club.rows[0];
