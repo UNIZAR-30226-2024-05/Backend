@@ -5,6 +5,7 @@ const ClubModel = require("./models/clubModel");
 const users = {};
 
 io.on('connection', async (socket) => {
+    let user_id;
     try {
         const sessionCookie = socket.handshake.headers.cookie.substring('session='.length);
 
@@ -13,7 +14,7 @@ io.on('connection', async (socket) => {
                 secret: 'secret'
             }, sessionCookie);
 
-        const user_id = sessionData.content.user.user_id;
+        user_id = sessionData.content.user.user_id;
         console.log('Usuario autenticado:', user_id);
 
         // Guardar socket en la lista
@@ -28,12 +29,13 @@ io.on('connection', async (socket) => {
     }
 
     try {
-        // Añadir socket a rooms de clubes de lectura
-        const clubes = await ClubModel.getClubesOfUser(user_id);
-        for (let i = 0; i < clubes.length; i++) {
-            socket.join(`club_${clubes[i].id}`);
+        if (user_id) {
+            // Añadir socket a rooms de clubes de lectura
+            const clubes = await ClubModel.getClubesOfUser(user_id);
+            for (let i = 0; i < clubes.length; i++) {
+                socket.join(`club_${clubes[i].id}`);
+            }
         }
-        console.log(clubes);
 
         // Recepción mensajes
         socket.on("message", async (msg) => {
