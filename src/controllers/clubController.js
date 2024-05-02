@@ -135,9 +135,21 @@ exports.DatosDelClub = async (req, res) => {
             owner = false;
             membresia = await clubesModel.verificarMembresia(user_id,id);
         }
-        miembros = await clubesModel.obtenerMiembrosClub(id);
-        mensajes = await clubesModel.getMessagesOfClub(id);
-        res.status(200).json({ club, owner, membresia, miembros, mensajes});
+        members = await clubesModel.obtenerMiembrosClub(id);
+        messages = await clubesModel.getMessagesOfClub(id);
+        res.status(200).json({ 
+            id: club.id,
+            name: club.nombre,
+            descripcion: club.descripcion,
+            isAdmin: owner,
+            isMember: membresia,
+            audiolibro: {
+                id: club.id_audiolibro,
+                titulo: club.titulo
+            },
+            members,
+            messages
+        });
     } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");

@@ -27,11 +27,9 @@ const clubesModel = {
 
     async getClubByID(id) {
         try {
-            const club = await pool.query(`SELECT c.*, u.username AS Nombre_Owner, a.titulo AS titulo_audiolibro
-            FROM club_lectura c
-            JOIN users u ON c.owner = u.id
-            JOIN audiolibros a ON c.audiolibro = a.id
-            WHERE c.id = $1;
+            const club = await pool.query(`SELECT c.*, a.id AS id_audiolibro, a.titulo 
+                FROM club_lectura c LEFT JOIN audiolibro a ON c.audiolibro = a.id
+                WHERE c.id = $1;
             `, [id]);
             return club.rows[0];
         } catch (error) {
@@ -82,7 +80,12 @@ const clubesModel = {
     async obtenerMiembrosClub(idClub) {
         try {
             const resultado = await pool.query(`
-                SELECT u.id, u.username, u.img
+                SELECT u.id, u.username, u.img,
+                    CASE 
+                        WHEN (SELECT adminn FROM club_lectura WHERE id = $1) = u.id
+                        THEN TRUE
+                        ELSE FALSE
+                    END AS isAdmin
                 FROM miembros_club mc
                 JOIN users u ON mc.usuario = u.id
                 WHERE mc.club = $1;
@@ -97,7 +100,11 @@ const clubesModel = {
     async getClubesOfUser(user_id) {
         try {
             const listaClubes = await pool.query(
-                `SELECT c.id, c.nombre 
+                `SELECT c.id, c.nombre, c.descripcion,
+                    CASE 
+                        WHEN c.adminn = $1 THEN TRUE 
+                        ELSE FALSE 
+                    END AS isAdmin
                 FROM club_lectura c INNER JOIN miembros_club m ON c.id = m.club 
                 WHERE m.usuario = $1`,
                 [user_id]);
