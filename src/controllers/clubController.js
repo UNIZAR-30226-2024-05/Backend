@@ -133,7 +133,7 @@ exports.DatosDelClub = async (req, res) => {
             membresia = true;
         }else{
             owner = false;
-            membresia = await clubesModel.verificarMembresia(user_id,id);
+            membresia = !!await clubesModel.verificarMembresia(user_id, id);
         }
         members = await clubesModel.obtenerMiembrosClub(id);
         messages = await clubesModel.getMessagesOfClub(id);
