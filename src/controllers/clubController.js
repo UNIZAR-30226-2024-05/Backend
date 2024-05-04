@@ -10,7 +10,8 @@ exports.CrearClub = async (req, res) => {
         await clubesModel.unirseAlClub(user_id, club.id);
         io.addSocketsToRoom(user_id, `club_${club.id}`);
         res.status(200).json({
-            message: "OK"
+            message: "OK",
+            club
         });
     } catch (err) {
         console.error(err.message);

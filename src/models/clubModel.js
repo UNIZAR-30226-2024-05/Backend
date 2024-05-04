@@ -5,7 +5,8 @@ const clubesModel = {
     async CrearClub(nombre, audiolibro,descripcion,owner) {
         try {
             const newClub = await pool.query(
-            "INSERT INTO club_lectura (nombre, audiolibro, descripcion, adminn) VALUES ($1, $2,$3,$4) RETURNING *"
+            `INSERT INTO club_lectura (nombre, audiolibro, descripcion, adminn) VALUES ($1, $2,$3,$4) 
+            RETURNING id, nombre, descripcion`
             , [nombre, audiolibro,descripcion,owner]);
             return newClub.rows[0];
         } catch (error) {
