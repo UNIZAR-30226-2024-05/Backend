@@ -113,7 +113,21 @@ exports.getClubesOfUser = async (req, res) => {
             listaClubes
         });
     } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Server Error");
+    }
+};
 
+exports.getClubesNotOfUser = async (req, res) => {
+    const { user_id } = req.session.user;
+    try {
+        const listaClubes = await clubesModel.getClubesNotOfUser(user_id);
+        res.status(200).json({ 
+            listaClubes
+        });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Server Error");
     }
 };
 

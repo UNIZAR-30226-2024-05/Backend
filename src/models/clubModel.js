@@ -115,6 +115,20 @@ const clubesModel = {
         }
     },
 
+    async getClubesNotOfUser(user_id) {
+        try {
+            const listaClubes = await pool.query(
+                `SELECT c.id, c.nombre, c.descripcion
+                FROM club_lectura c INNER JOIN miembros_club m ON c.id = m.club 
+                WHERE c.id NOT IN (SELECT c.id FROM club_lectura c INNER JOIN miembros_club m ON c.id = m.club 
+                                    WHERE m.usuario = $1)`,
+                [user_id]);
+            return listaClubes.rows;
+        } catch (error) {
+            console.error("Error obteniendo la lista de clubes: ", error);
+        }
+    },
+
     async getMessagesOfClub(club_id) {
         try {
             const messages = await pool.query(
