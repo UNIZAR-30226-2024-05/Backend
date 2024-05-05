@@ -82,6 +82,18 @@ const autoresModel = {
             throw error;
         }
     },
+    async getAllAutores() {
+        try {
+            const autor = await pool.query(`SELECT id, nombre
+                FROM autores;`
+            );
+            return autor.rows;
+        } catch (error) {
+            console.error("Error al obtener los datos de los autores:", error);
+            throw error;
+        }
+    },
+
 
     async getAutorByID(id) {
         try {

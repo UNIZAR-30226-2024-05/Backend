@@ -76,7 +76,19 @@ exports.getDatosAutor = async (req, res) => {
         genero = await autoresModel.getGeneroMasEscrito(id);
         NotaMedia = await autoresModel.getPuntuacionMediaAutor(id);
         NotaMedia = Math.round(NotaMedia.media_puntuacion * 100) / 100;
-        res.status(200).json({ autor, NotaMedia,generoMasEscrito: genero.genero, audiolibros});
+        // Manejar el caso en que genero sea null, que me paso probando. Creo que no deberia ocurrir pero por si acaso
+        const generoMasEscrito = genero ? genero.genero : "ninguno";
+        res.status(200).json({ autor, NotaMedia,generoMasEscrito, audiolibros});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Server Error" });
+    }
+};
+
+exports.getAutores = async (req, res) => {
+    try {
+        autores = await autoresModel.getAllAutores(); 
+        res.status(200).json({autores});
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Server Error" });
