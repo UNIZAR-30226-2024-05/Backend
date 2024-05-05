@@ -6,7 +6,14 @@ const clubesModel = {
         try {
             const newClub = await pool.query(
             `INSERT INTO club_lectura (nombre, audiolibro, descripcion, adminn) VALUES ($1, $2,$3,$4) 
-            RETURNING id, nombre, descripcion`
+            RETURNING id, nombre, descripcion, (SELECT true) AS isAdmin, (SELECT true) AS isMember,
+                        (SELECT json_build_object(
+                            'id', a.id,
+                            'titulo', a.titulo,
+                            'img', a.img )
+                        FROM audiolibros 
+                        WHERE id = $2
+                        ) AS audiolibro`
             , [nombre, audiolibro,descripcion,owner]);
             return newClub.rows[0];
         } catch (error) {
@@ -28,7 +35,7 @@ const clubesModel = {
 
     async getClubByID(id) {
         try {
-            const club = await pool.query(`SELECT c.*, a.id AS id_audiolibro, a.titulo 
+            const club = await pool.query(`SELECT c.*, a.id AS id_audiolibro, a.titulo, a.img 
                 FROM club_lectura c LEFT JOIN audiolibros a ON c.audiolibro = a.id
                 WHERE c.id = $1;
             `, [id]);
@@ -101,12 +108,19 @@ const clubesModel = {
     async getClubesOfUser(user_id) {
         try {
             const listaClubes = await pool.query(
-                `SELECT c.id, c.nombre, c.descripcion,
+                `SELECT c.id, c.nombre, c.descripcion, (SELECT true) AS isMember, 
+                    (SELECT json_build_object(
+                        'id', a.id,
+                        'titulo', a.titulo,
+                        'img', a.img )
+                    ) AS audiolibro,
                     CASE 
                         WHEN c.adminn = $1 THEN TRUE 
                         ELSE FALSE 
                     END AS isAdmin
-                FROM club_lectura c INNER JOIN miembros_club m ON c.id = m.club 
+                FROM club_lectura c 
+                INNER JOIN audiolibros a ON c.audiolibro = a.id
+                INNER JOIN miembros_club m ON c.id = m.club 
                 WHERE m.usuario = $1`,
                 [user_id]);
             return listaClubes.rows;
@@ -118,8 +132,15 @@ const clubesModel = {
     async getClubesNotOfUser(user_id) {
         try {
             const listaClubes = await pool.query(
-                `SELECT c.id, c.nombre, c.descripcion
-                FROM club_lectura c INNER JOIN miembros_club m ON c.id = m.club 
+                `SELECT c.id, c.nombre, c.descripcion, (SELECT false) AS isAdmin, (SELECT false) AS isMember,
+                    (SELECT json_build_object(
+                        'id', a.id,
+                        'titulo', a.titulo,
+                        'img', a.img )
+                    ) AS audiolibro
+                FROM club_lectura c 
+                LEFT JOIN audiolibros a ON c.audiolibro = a.id
+                INNER JOIN miembros_club m ON c.id = m.club 
                 WHERE c.id NOT IN (SELECT c.id FROM club_lectura c INNER JOIN miembros_club m ON c.id = m.club 
                                     WHERE m.usuario = $1)`,
                 [user_id]);

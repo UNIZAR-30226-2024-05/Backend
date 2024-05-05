@@ -143,7 +143,7 @@ exports.DatosDelClub = async (req, res) => {
                  error: "Not Existing club" 
              });
         }
-        if(club.owner == user_id){
+        if(club.adminn == user_id){
             owner = true;
             membresia = true;
         }else{
@@ -153,17 +153,21 @@ exports.DatosDelClub = async (req, res) => {
         members = await clubesModel.obtenerMiembrosClub(id);
         messages = await clubesModel.getMessagesOfClub(id);
         res.status(200).json({ 
-            id: club.id,
-            name: club.nombre,
-            descripcion: club.descripcion,
-            isAdmin: owner,
-            isMember: membresia,
-            audiolibro: {
-                id: club.id_audiolibro,
-                titulo: club.titulo
-            },
-            members,
-            messages
+            message: "OK",
+            club: {
+                id: club.id,
+                nombre: club.nombre,
+                descripcion: club.descripcion,
+                isadmin: owner,
+                ismember: membresia,
+                audiolibro: {
+                    id: club.id_audiolibro,
+                    titulo: club.titulo,
+                    img: club.img
+                },
+                members,
+                messages
+            }
         });
     } catch (err) {
         console.error(err.message);
