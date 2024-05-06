@@ -1,4 +1,4 @@
-const pool = require('../db');
+const pool = require('../services/db');
 
 const AmistadModel = {
     async hayAmistad(user1_id, user2_id) {

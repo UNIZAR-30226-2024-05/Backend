@@ -1,6 +1,6 @@
 const AmistadModel = require("../models/amistadModel");
 const UserModel = require("../models/userModel");
-const { sendMessageToUser } = require('../sockets.js');
+const { sendMessageToUser } = require('../services/sockets');
 
 exports.sendPeticion = async (req, res) => {
     const { other_id } = req.body;

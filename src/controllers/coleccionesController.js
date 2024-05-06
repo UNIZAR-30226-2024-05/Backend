@@ -1,5 +1,4 @@
 const ColeccionesModel = require("../models/coleccionesModel");
-const UsersModel = require("../models/userModel");
 
 exports.getUserCollections = async (req, res) => {
     const { user_id } = req.session.user;

@@ -1,6 +1,6 @@
 const sessions = require('client-sessions');
-const io = require('./server'); // Importa el 'io' ya existente
-const ClubModel = require("./models/clubModel");
+const io = require('../server'); // Importa el 'io' ya existente
+const ClubModel = require("../models/clubModel");
 
 const users = {};
 

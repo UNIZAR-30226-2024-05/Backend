@@ -1,14 +1,25 @@
 # Servidor en la nube
 
-Solicitudes a narratives-backend.azurewebsites.net
+Solicitudes a server.narratives.es
 
+## Conexión ssh a VM con servidor
 
-## Conexión ssh a BD PostgreSQL
-
-1. ssh carol@20.199.84.234:
+1. ssh carol@server.narratives.es: 
     Con usuario y contraseña
-    
-2. ssh -i <ruta_a_clave_privada> carol@20.199.84.234
+
+## Servicio del servidor de narratives
+
+1. Lanzar el servicio
+    ```bash
+    sudo systemctl start startServer.service
+
+2. Restablecer el servicio
+    ```bash
+    sudo systemctl restart startServer.service
+
+3. Parar el servicio
+    ```bash
+    sudo systemctl stop startServer.service
 
 # Servidor en local
 
@@ -45,7 +56,9 @@ Este repositorio contiene lo necesario para configurar en local un contenedor Do
     // npm run dev
 
 ## Contenido del Repositorio
+
 ### Necesario fichero .env con variables de entorno (en Discord)
+
 - docker-compose.yml: Archivo de configuración de Docker Compose.
 - sql: Archivos SQL con la estructura de la base datos (tablas) y datos de población.
 - src: Archivos del servidor node js.

@@ -1,8 +1,6 @@
-const pool = require('../db');
+const pool = require('../services/db');
 
 const autoresModel = {
-   
-
     async CrearAutor(nombre, info,ciudad) {
         try {
             const newAutor = await pool.query(
@@ -57,6 +55,7 @@ const autoresModel = {
             throw error;
         }
     },
+
     async getAutor(nombre) {
         try {
             const autor = await pool.query(`SELECT DISTINCT autores.*
@@ -82,6 +81,7 @@ const autoresModel = {
             throw error;
         }
     },
+
     async getAllAutores() {
         try {
             const autor = await pool.query(`SELECT id, nombre
@@ -93,7 +93,6 @@ const autoresModel = {
             throw error;
         }
     },
-
 
     async getAutorByID(id) {
         try {
@@ -107,6 +106,7 @@ const autoresModel = {
             throw error;
         }
     },
+
     async getGeneroMasEscrito(id) {
         try {
             const autor = await pool.query(`
@@ -126,6 +126,7 @@ const autoresModel = {
             throw error;
         }
     },
+
     async getPuntuacionMediaAutor(id) {
         try {
             const media = await pool.query(`
@@ -142,6 +143,5 @@ const autoresModel = {
         }
     }
 };
-
 
 module.exports = autoresModel;

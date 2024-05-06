@@ -1,4 +1,4 @@
-const pool = require('../db');
+const pool = require('../services/db');
 
 const marcapaginasModel = {
     async getUltimoAudiolibro(user_id) {
@@ -151,4 +151,5 @@ const marcapaginasModel = {
         return audiolibroPorCapitulo.rows[0];
     }
 };
+
 module.exports = marcapaginasModel;

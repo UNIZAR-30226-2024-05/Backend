@@ -1,4 +1,4 @@
-const pool = require('../db');
+const pool = require('../services/db');
 
 const BibliotecaModel = {
     async getColeccionById(coleccion_id) {

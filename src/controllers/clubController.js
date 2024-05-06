@@ -1,5 +1,5 @@
 const clubesModel = require("../models/clubModel");
-const io = require('../sockets');
+const io = require('../services/sockets');
 
 exports.CrearClub = async (req, res) => {
     const { nombre, audiolibroID, descripcion} = req.body;

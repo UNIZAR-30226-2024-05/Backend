@@ -1,4 +1,4 @@
-const pool = require('../db');
+const pool = require('../services/db');
 
 const clubesModel = {
 
@@ -178,6 +178,5 @@ const clubesModel = {
     
     
 };
-
 
 module.exports = clubesModel;
