@@ -28,7 +28,7 @@ exports.BorrarClub = async (req, res) => {
             return res.status(404).json({ 
                  error: "Not Existing club" 
              });
-        }else if(existe.owner != user_id){
+        }else if(existe.adminn != user_id){
             return res.status(401).json({  //revisar si era el 401
                 error: "Not owner" 
             });
