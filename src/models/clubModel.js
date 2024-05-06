@@ -11,7 +11,7 @@ const clubesModel = {
                             'id', a.id,
                             'titulo', a.titulo,
                             'img', a.img )
-                        FROM audiolibros 
+                        FROM audiolibros a
                         WHERE id = $2
                         ) AS audiolibro`
             , [nombre, audiolibro,descripcion,owner]);
