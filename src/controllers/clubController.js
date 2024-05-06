@@ -62,7 +62,7 @@ exports.UniserAClub = async (req, res) => {
             }
         }
         await clubesModel.unirseAlClub(user_id,id);
-        io.addSocketsToRoom(user_id, `club_${club.id}`);
+        io.addSocketsToRoom(user_id, `club_${id}`);
         res.status(200).json({
             message: "OK"
         });

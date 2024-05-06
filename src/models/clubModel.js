@@ -11,7 +11,7 @@ const clubesModel = {
                             'id', a.id,
                             'titulo', a.titulo,
                             'img', a.img )
-                        FROM audiolibros 
+                        FROM audiolibros a
                         WHERE id = $2
                         ) AS audiolibro`
             , [nombre, audiolibro,descripcion,owner]);
@@ -119,7 +119,7 @@ const clubesModel = {
                         ELSE FALSE 
                     END AS isAdmin
                 FROM club_lectura c 
-                INNER JOIN audiolibros a ON c.audiolibro = a.id
+                LEFT JOIN audiolibros a ON c.audiolibro = a.id
                 INNER JOIN miembros_club m ON c.id = m.club 
                 WHERE m.usuario = $1`,
                 [user_id]);
