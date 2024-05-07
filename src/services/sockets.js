@@ -3,7 +3,7 @@ const io = require('../server'); // Importa el 'io' ya existente
 const ClubModel = require("../models/clubModel");
 
 const users = {};
-/*
+
 io.on('connection', async (socket) => {
     let user_id;
     try {
@@ -141,4 +141,3 @@ function deleteRoom(room) {
 module.exports = {
     sendMessageToUser, sendMessageToRoom, addSocketsToRoom, removeSocketsFromRoom, deleteRoom
 };
-*/
