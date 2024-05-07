@@ -40,6 +40,9 @@ exports.BorrarAutor = async (req, res) => {
 
 exports.ActualizarAutor = async (req, res) => {
     const { id, nombre, info, ciudad  } = req.body;
+    nombreprob = nombre;
+    infoprob = info;
+    ciudadprob = ciudad;
     try {
         existe = await autoresModel.getAutorByID(id);
         if (!existe){
@@ -53,7 +56,16 @@ exports.ActualizarAutor = async (req, res) => {
                 error: "Estas modificando el nombre a un autor ya existente" 
             });
         }
-    const actualizar = await autoresModel.ActualizarAutor(id, nombre,info,ciudad);
+        if(nombre==""|| nombre==null){
+            nombreprob = existe.nombre;
+        }
+        if(info==""||info==null){
+            infoprob = existe.informacion;
+        }
+        if(ciudad==""||ciudad==null){
+            ciudadprob = existe.ciudadnacimiento;
+        }
+    const actualizar = await autoresModel.ActualizarAutor(id, nombreprob,infoprob,ciudadprob);
     res.status(200).json({
         message: "OK"
     }); 
