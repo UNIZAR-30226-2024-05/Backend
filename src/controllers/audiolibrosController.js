@@ -129,8 +129,8 @@ exports.deleteAudiolibro = async (req, res) => {
 };
 
 exports.updateAudiolibro = async (req, res) => {
-    const { audiolibroId, titulo, nombreAutor, descripcion, genero, audiosUrls } = req.body;
-    let imgUrl = req.body;
+    const { audiolibroId, nombreAutor, genero, audiosUrls } = req.body;
+    let { titulo, descripcion, imgUrl } = req.body;
     const { image, audios } = req.files;
 
     try {
@@ -139,35 +139,45 @@ exports.updateAudiolibro = async (req, res) => {
             return res.status(409).json({ error: "Audiolibro doesn't exist" });
         }
 
-        if (image && image.length > 0) {
-            const imgName = audiolibro.img.substring(audiolibro.img.lastIndexOf('/') + 1);
-            await AzureBlobStorage.deleteImgFromAzureBlobStorage(imgName)
-            imgUrl = await AzureBlobStorage.uploadFileToAzureBlobStorage(
-                image[0].originalname, image[0].buffer, image[0].fieldname, image[0].mimetype
-            );
-        }
+        if (titulo || nombreAutor || descripcion || (image && image.length > 0)) {
+            titulo = !titulo ? audiolibro.id : titulo;
+            descripcion = !descripcion ? audiolibro.descripcion : descripcion;
+            const autorId = !nombreAutor ? audiolibro.autor : await AutoresModel.getAutor(nombreAutor);
 
-        const autorPeticion = await AutoresModel.getAutor(nombreAutor);
-        if (audiolibro.titulo !== titulo || audiolibro.autor !== autorPeticion.id || audiolibro.descripcion !== descripcion 
-            || (image && image.length > 0)) {
-            await AudiolibrosModel.updateAudiolibro(audiolibroId, titulo, autorPeticion.id, descripcion, imgUrl);
-        }
-
-        const genero_audiolibro = await AudiolibrosModel.getGenerosOfAudiolibro(audiolibroId);
-        if (genero_audiolibro[0].nombre != genero) {
-            await AudiolibrosModel.deleteGeneroAudiolibro(audiolibroId);
-            const generoId = await AudiolibrosModel.getGeneroIdByName(genero);
-            await AudiolibrosModel.setGenerosOfAudiolibro(audiolibroId, generoId);
-        }
-
-        const capitulosActuales = await AudiolibrosModel.getCapitulosOfAudiolibro(audiolibroId);
-        capitulosActuales.forEach(async (capitulo) => {
-            if (!audiosUrls || !audiosUrls.includes(capitulo.audio)) {
-                await AudiolibrosModel.eliminarCapitulo(audiolibroId, capitulo.audio);
-                const audioName = capitulo.audio.substring(capitulo.audio.lastIndexOf('/') + 1);
-                await AzureBlobStorage.deleteAudioFromAzureBlobStorage(audioName);
+            if (image && image.length > 0) {
+                const imgName = audiolibro.img.substring(audiolibro.img.lastIndexOf('/') + 1);
+                await AzureBlobStorage.deleteImgFromAzureBlobStorage(imgName)
+                imgUrl = await AzureBlobStorage.uploadFileToAzureBlobStorage(
+                    image[0].originalname, image[0].buffer, image[0].fieldname, image[0].mimetype
+                );
             }
-        })
+
+            await AudiolibrosModel.updateAudiolibro(audiolibroId, titulo, autorId, descripcion, imgUrl);
+        }
+
+        if (genero) {
+            const genero_audiolibro = await AudiolibrosModel.getGenerosOfAudiolibro(audiolibroId);
+            if (genero_audiolibro[0].nombre != genero) {
+                await AudiolibrosModel.deleteGeneroAudiolibro(audiolibroId);
+                const generoId = await AudiolibrosModel.getGeneroIdByName(genero);
+                await AudiolibrosModel.setGenerosOfAudiolibro(audiolibroId, generoId);
+            }
+        }
+
+        let capitulosActuales;
+        if (audiosUrls || audios) {
+            capitulosActuales = await AudiolibrosModel.getCapitulosOfAudiolibro(audiolibroId);
+        }
+
+        if (audiosUrls) {
+            capitulosActuales.forEach(async (capitulo) => {
+                if (!audiosUrls || !audiosUrls.includes(capitulo.audio)) {
+                    await AudiolibrosModel.eliminarCapitulo(audiolibroId, capitulo.audio);
+                    const audioName = capitulo.audio.substring(capitulo.audio.lastIndexOf('/') + 1);
+                    await AzureBlobStorage.deleteAudioFromAzureBlobStorage(audioName);
+                }
+            })
+        }
 
         if (audios && audios.length > 0) {
             let ultimoCapitulo = capitulosActuales[capitulosActuales.length - 1].numero;
