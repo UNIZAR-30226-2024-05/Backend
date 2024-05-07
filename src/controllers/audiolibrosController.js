@@ -142,7 +142,14 @@ exports.updateAudiolibro = async (req, res) => {
         if (titulo || nombreAutor || descripcion || (image && image.length > 0)) {
             titulo = !titulo ? audiolibro.id : titulo;
             descripcion = !descripcion ? audiolibro.descripcion : descripcion;
-            const autorId = !nombreAutor ? audiolibro.autor : await AutoresModel.getAutor(nombreAutor);
+
+            let autorId;
+            if (nombreAutor) {
+                const autorPeticion = await AutoresModel.getAutor(nombreAutor);
+                autorId = autorPeticion.id;
+            } else {
+                autorId = audiolibro.autor;
+            }
 
             if (image && image.length > 0) {
                 const imgName = audiolibro.img.substring(audiolibro.img.lastIndexOf('/') + 1);
