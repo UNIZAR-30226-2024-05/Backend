@@ -18,7 +18,7 @@ app.use(sessions({
   cookieName: 'session',
   secret: 'secret'
 }));
-
+/*
 const httpsOptions = {
   cert: fs.readFileSync('/etc/letsencrypt/live/server.narratives.es/fullchain.pem'),
   key: fs.readFileSync('/etc/letsencrypt/live/server.narratives.es/privkey.pem')
@@ -36,7 +36,7 @@ const io = require("socket.io")(server, {
 });
 
 module.exports = io;
-
+*/
 const userRoutes = require("./routes/userRoutes");
 const audiolibrosRoutes = require("./routes/audiolibrosRoutes");
 const coleccionesRoutes = require("./routes/coleccionesRoutes");
@@ -57,6 +57,6 @@ app.use("/autores", autoresRoutes);
 app.use("/review", reviewRoutes);
 app.use("/club", clubRoutes);
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });

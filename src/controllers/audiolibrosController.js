@@ -64,9 +64,13 @@ exports.newAudiolibro = async (req, res) => {
     const { image, audios } = req.files;
 
     try {
-        const imgUrl = await AzureBlobStorage.uploadFileToAzureBlobStorage(
-            image[0].originalname, image[0].buffer, image[0].fieldname, image[0].mimetype
-        );
+        let imgUrl;
+        if (image && image.length > 0) {
+            imgUrl = await AzureBlobStorage.uploadFileToAzureBlobStorage(
+                image[0].originalname, image[0].buffer, image[0].fieldname, image[0].mimetype
+            );
+        }
+
         const autor = await AutoresModel.getAutor(nombreAutor);
         const audiolibro = await AudiolibrosModel.newAudiolibro(titulo, autor.id, descripcion, imgUrl);
         if (!audiolibro) {
@@ -74,12 +78,14 @@ exports.newAudiolibro = async (req, res) => {
             return;
         }
 
-        for (let i = 0; i < audios.length; i++) {
-            const file = audios[i];
-            const audioUrl = await AzureBlobStorage.uploadFileToAzureBlobStorage(
-                file.originalname, file.buffer, file.fieldname, file.mimetype
-            );
-            await AudiolibrosModel.subirCapitulo(audiolibro.id, i+1, audioUrl);
+        if (audios && audios.length > 0) {
+            for (let i = 0; i < audios.length; i++) {
+                const file = audios[i];
+                const audioUrl = await AzureBlobStorage.uploadFileToAzureBlobStorage(
+                    file.originalname, file.buffer, file.fieldname, file.mimetype
+                );
+                await AudiolibrosModel.subirCapitulo(audiolibro.id, i+1, audioUrl);
+            }
         }
         
         res.status(200).json({ message: "OK" });
