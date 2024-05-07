@@ -57,6 +57,6 @@ app.use("/autores", autoresRoutes);
 app.use("/review", reviewRoutes);
 app.use("/club", clubRoutes);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
