@@ -140,7 +140,7 @@ exports.updateAudiolibro = async (req, res) => {
         }
 
         if (titulo || nombreAutor || descripcion || (image && image.length > 0)) {
-            titulo = !titulo ? audiolibro.id : titulo;
+            titulo = !titulo ? audiolibro.titulo : titulo;
             descripcion = !descripcion ? audiolibro.descripcion : descripcion;
 
             let autorId;
