@@ -150,6 +150,8 @@ exports.updateAudiolibro = async (req, res) => {
                 imgUrl = await AzureBlobStorage.uploadFileToAzureBlobStorage(
                     image[0].originalname, image[0].buffer, image[0].fieldname, image[0].mimetype
                 );
+            } else {
+                imgUrl = audiolibro.img;
             }
 
             await AudiolibrosModel.updateAudiolibro(audiolibroId, titulo, autorId, descripcion, imgUrl);
