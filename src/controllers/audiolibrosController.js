@@ -153,6 +153,13 @@ exports.updateAudiolibro = async (req, res) => {
             await AudiolibrosModel.updateAudiolibro(audiolibroId, titulo, autorPeticion.id, descripcion, imgUrl);
         }
 
+        const genero_audiolibro = await AudiolibrosModel.getGenerosOfAudiolibro(audiolibroId);
+        if (genero_audiolibro[0].nombre != genero) {
+            await AudiolibrosModel.deleteGeneroAudiolibro(audiolibroId);
+            const generoId = await AudiolibrosModel.getGeneroIdByName(genero);
+            await AudiolibrosModel.setGenerosOfAudiolibro(audiolibroId, generoId);
+        }
+
         const capitulosActuales = await AudiolibrosModel.getCapitulosOfAudiolibro(audiolibroId);
         capitulosActuales.forEach(async (capitulo) => {
             if (!audiosUrls || !audiosUrls.includes(capitulo.audio)) {
