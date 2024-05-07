@@ -60,7 +60,7 @@ exports.getAudiolibroById = async (req, res) => {
 };
 
 exports.newAudiolibro = async (req, res) => {
-    const { titulo, nombreAutor, descripcion } = req.body;
+    const { titulo, nombreAutor, descripcion, genero } = req.body;
     const { image, audios } = req.files;
 
     try {
@@ -77,6 +77,9 @@ exports.newAudiolibro = async (req, res) => {
             res.status(409).json({ error: "Audiolibro existente" });
             return;
         }
+        
+        const generoId = await AudiolibrosModel.getGeneroIdByName(genero);
+        await AudiolibrosModel.setGenerosOfAudiolibro(audiolibro.id, generoId);
 
         if (audios && audios.length > 0) {
             for (let i = 0; i < audios.length; i++) {
@@ -115,6 +118,7 @@ exports.deleteAudiolibro = async (req, res) => {
             await AzureBlobStorage.deleteAudioFromAzureBlobStorage(audioName);
         })
 
+        await AudiolibrosModel.deleteGeneroAudiolibro(audiolibroId);
         await AudiolibrosModel.deleteAudiolibro(audiolibroId);
 
         res.status(200).json({ message: "OK" });
@@ -125,7 +129,7 @@ exports.deleteAudiolibro = async (req, res) => {
 };
 
 exports.updateAudiolibro = async (req, res) => {
-    const { audiolibroId, titulo, nombreAutor, descripcion, audiosUrls } = req.body;
+    const { audiolibroId, titulo, nombreAutor, descripcion, genero, audiosUrls } = req.body;
     let imgUrl = req.body;
     const { image, audios } = req.files;
 

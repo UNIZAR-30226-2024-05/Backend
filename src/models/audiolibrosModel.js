@@ -66,6 +66,16 @@ const AudiolibrosModel = {
         }
     },
 
+    async getGeneroIdByName(genero) {
+        try {
+            const generos = await pool.query(`SELECT * FROM generos WHERE nombre = $1`, [genero]);
+            return generos.rows[0].id;
+        } catch (error) {
+            console.error("Error al obtener audiolibro por id:", error);
+            throw error;
+        }
+    },
+
     async getGenerosOfAudiolibro(id) {
         try {
             const generos = await pool.query(`SELECT g.nombre 
@@ -75,6 +85,28 @@ const AudiolibrosModel = {
             return generos.rows;
         } catch (error) {
             console.error("Error al obtener audiolibro por id:", error);
+            throw error;
+        }
+    },
+
+    async setGenerosOfAudiolibro(audiolibroId, generoId) {
+        try {
+            await pool.query(
+                `INSERT INTO genero_audiolibro (audiolibro, genero) VALUES ($1, $2)`, 
+                [audiolibroId, generoId]);
+        } catch (error) {
+            console.error("Error al establecer el genero de un audiolibro:", error);
+            throw error;
+        }
+    },
+
+    async deleteGeneroAudiolibro(audiolibroId) {
+        try {
+            await pool.query(
+                `DELETE FROM genero_audiolibro WHERE audiolibro = $1`, 
+                [audiolibroId]);
+        } catch (error) {
+            console.error("Error al establecer el genero de un audiolibro:", error);
             throw error;
         }
     },
