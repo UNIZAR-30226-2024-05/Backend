@@ -89,7 +89,7 @@ exports.SalirseDelClub = async (req, res) => {
                 });
             }
         }
-        if(existe.adminn == user_id){
+        if(existe.owner == user_id){
             return res.status(401).json({  //revisar si era el 401
                 error: "Owner cannot leave" 
             });
