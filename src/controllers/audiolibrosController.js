@@ -189,7 +189,13 @@ exports.updateAudiolibro = async (req, res) => {
         }
 
         if (audios && audios.length > 0) {
-            let ultimoCapitulo = capitulosActuales[capitulosActuales.length - 1].numero;
+            let ultimoCapitulo;
+            if (capitulosActuales.length > 0) {
+                ultimoCapitulo = capitulosActuales[capitulosActuales.length - 1].numero;
+            } else {
+                ultimoCapitulo = 1;
+            }
+            
             for (let i = 0; i < audios.length; i++) {
                 const audio = audios[i];
                 const audioUrl = await AzureBlobStorage.uploadFileToAzureBlobStorage(
