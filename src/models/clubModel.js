@@ -167,12 +167,12 @@ const clubesModel = {
     async addMessage(user_id, club_id, msg) {
         try {
             const message = await pool.query(
-                `INSERT INTO (club, usuario, mensaje, fecha) VALUES ($1, $2, $3, NOW())
-                RETURNING club, usuario AS user_id, SELECT username FROM users WHERE id = $2, mensaje, fecha`,
+                `INSERT INTO mensajes (club, usuario, mensaje, fecha) VALUES ($1, $2, $3, NOW())
+                RETURNING id, $1 AS club_id, usuario AS user_id, (SELECT username FROM users WHERE id = $2) AS username, mensaje, fecha`,
                 [club_id, user_id, msg]);
-            return message.row[0];
+            return message.rows[0];
         } catch (error) {
-            console.error("Error obteniendo los mensajes de un club: ", error);
+            console.error("Error añadiendo mensaje: ", error);
         }
     }
     

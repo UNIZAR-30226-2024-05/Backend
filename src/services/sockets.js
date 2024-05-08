@@ -44,11 +44,11 @@ io.on('connection', async (socket) => {
             console.log(`Mensaje recibido por ${user_id}: `, msg);
             if (user_id != null) {
                 // Comprobar que chat existe y es miembro
-                if (await ClubModel.verificarMembresia(user_id, club_id)) {
+                if (await ClubModel.verificarMembresia(user_id, msg.club_id)) {
                     // Guardar mensaje en bd
-                    const mensaje = await ClubModel.addMessage(user_id, msg.club_id, msg.message);
+                    const mensaje = await ClubModel.addMessage(user_id, msg.club_id, msg.msg);
                     // Emitir mensaje a miembros
-                    sendMessageToRoom(`club_${msg.club_id}`, "message", msg);
+                    sendMessageToRoom(`club_${msg.club_id}`, "message", mensaje);
                 } else {
                     socket.emit('error', 'Not member of club');
                 }
@@ -112,10 +112,8 @@ function sendMessageToRoom(room, evento, message) {
 function addSocketsToRoom(user_id, room) {
     const sockets = users[user_id];
     if (sockets != null) {
-        if (io.sockets.adapter.rooms.has(room)) {
-            for (let i = 0; i < sockets.length; i++) {
-                sockets[i].join(room);
-            }
+        for (let i = 0; i < sockets.length; i++) {
+            sockets[i].join(room);
         }
     }
 };
