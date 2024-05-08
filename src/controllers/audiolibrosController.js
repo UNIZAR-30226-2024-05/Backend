@@ -79,6 +79,11 @@ exports.newAudiolibro = async (req, res) => {
 
         if (nombreAutor) {
             const autor = await AutoresModel.getAutor(nombreAutor);
+            if (!autor) {
+                return res.status(404).json({ 
+                    error: "Autor no existente"
+                });
+            }
             autorId = autor.id;
         }
 
@@ -90,6 +95,11 @@ exports.newAudiolibro = async (req, res) => {
 
         if (genero) {
             const generoId = await AudiolibrosModel.getGeneroIdByName(genero);
+            if (!genero) {
+                return res.status(405).json({ 
+                    error: "Género no existente"
+                });
+            }
             await AudiolibrosModel.setGenerosOfAudiolibro(audiolibro.id, generoId);
         }
 
@@ -158,6 +168,11 @@ exports.updateAudiolibro = async (req, res) => {
             let autorId;
             if (nombreAutor) {
                 const autorPeticion = await AutoresModel.getAutor(nombreAutor);
+                if (!autorPeticion) {
+                    return res.status(404).json({ 
+                        error: "Autor no existente"
+                    });
+                }
                 autorId = autorPeticion.id;
             } else {
                 autorId = audiolibro.autor;
@@ -181,6 +196,11 @@ exports.updateAudiolibro = async (req, res) => {
 
         if (genero) {
             const genero_audiolibro = await AudiolibrosModel.getGenerosOfAudiolibro(audiolibroId);
+            if (!genero_audiolibro) {
+                return res.status(405).json({ 
+                    error: "Género no existente"
+                });
+            }
             if (genero_audiolibro[0].nombre != genero) {
                 await AudiolibrosModel.deleteGeneroAudiolibro(audiolibroId);
                 const generoId = await AudiolibrosModel.getGeneroIdByName(genero);
