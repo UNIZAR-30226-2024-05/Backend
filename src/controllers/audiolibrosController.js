@@ -65,7 +65,7 @@ exports.newAudiolibro = async (req, res) => {
     let imgUrl, autorId;
 
     if (!titulo) {
-        return res.status(409).json({ 
+        return res.status(400).json({ 
             error: "Título obligatorio"
         });
     }
