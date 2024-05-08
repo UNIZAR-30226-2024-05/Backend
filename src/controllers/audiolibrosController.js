@@ -142,7 +142,7 @@ exports.deleteAudiolibro = async (req, res) => {
 
 exports.updateAudiolibro = async (req, res) => {
     const { audiolibroId, nombreAutor, genero, audiosUrls } = req.body;
-    let { titulo, descripcion, imgUrl } = req.body;
+    let { titulo, descripcion } = req.body;
     const { image, audios } = req.files;
 
     try {
@@ -163,6 +163,7 @@ exports.updateAudiolibro = async (req, res) => {
                 autorId = audiolibro.autor;
             }
 
+            let imgUrl;
             if (image && image.length > 0) {
                 if (audiolibro.img) {
                     const imgName = audiolibro.img.substring(audiolibro.img.lastIndexOf('/') + 1);
