@@ -62,24 +62,36 @@ exports.getAudiolibroById = async (req, res) => {
 exports.newAudiolibro = async (req, res) => {
     const { titulo, nombreAutor, descripcion, genero } = req.body;
     const { image, audios } = req.files;
+    let imgUrl, autorId;
+
+    if (!titulo) {
+        return res.status(409).json({ 
+            error: "Título obligatorio"
+        });
+    }
 
     try {
-        let imgUrl;
         if (image && image.length > 0) {
             imgUrl = await AzureBlobStorage.uploadFileToAzureBlobStorage(
                 image[0].originalname, image[0].buffer, image[0].fieldname, image[0].mimetype
             );
         }
 
-        const autor = await AutoresModel.getAutor(nombreAutor);
-        const audiolibro = await AudiolibrosModel.newAudiolibro(titulo, autor.id, descripcion, imgUrl);
+        if (nombreAutor) {
+            const autor = await AutoresModel.getAutor(nombreAutor);
+            autorId = autor.id;
+        }
+
+        const audiolibro = await AudiolibrosModel.newAudiolibro(titulo, autorId, descripcion, imgUrl);
         if (!audiolibro) {
             res.status(409).json({ error: "Audiolibro existente" });
             return;
         }
-        
-        const generoId = await AudiolibrosModel.getGeneroIdByName(genero);
-        await AudiolibrosModel.setGenerosOfAudiolibro(audiolibro.id, generoId);
+
+        if (genero) {
+            const generoId = await AudiolibrosModel.getGeneroIdByName(genero);
+            await AudiolibrosModel.setGenerosOfAudiolibro(audiolibro.id, generoId);
+        }
 
         if (audios && audios.length > 0) {
             for (let i = 0; i < audios.length; i++) {
