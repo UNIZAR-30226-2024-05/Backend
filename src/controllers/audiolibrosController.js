@@ -152,8 +152,10 @@ exports.updateAudiolibro = async (req, res) => {
             }
 
             if (image && image.length > 0) {
-                const imgName = audiolibro.img.substring(audiolibro.img.lastIndexOf('/') + 1);
-                await AzureBlobStorage.deleteImgFromAzureBlobStorage(imgName)
+                if (audiolibro.img) {
+                    const imgName = audiolibro.img.substring(audiolibro.img.lastIndexOf('/') + 1);
+                    await AzureBlobStorage.deleteImgFromAzureBlobStorage(imgName)
+                }
                 imgUrl = await AzureBlobStorage.uploadFileToAzureBlobStorage(
                     image[0].originalname, image[0].buffer, image[0].fieldname, image[0].mimetype
                 );
