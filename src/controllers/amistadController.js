@@ -34,10 +34,10 @@ exports.sendPeticion = async (req, res) => {
             });
         }
 
-        const peticion = await AmistadModel.addPeticion(user_id, other_id);
+        await AmistadModel.addPeticion(user_id, other_id);
 
         // Notificar a other_id de petición enviada
-        sendMessageToUser(other_id, 'peticionReceived', peticion);
+        sendMessageToUser(other_id, 'peticionReceived', user_id);
 
         res.status(200).json({ 
             message: "Request sent"
@@ -61,34 +61,11 @@ exports.acceptPeticion = async (req, res) => {
             });
         }
 
-        await AmistadModel.addAmistad(user_id, other_id);
-        res.status(200).json({ 
-            message: "Accepted request"
-        });
-        
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send("Server Error");
-    }
-};
-
-exports.acceptPeticion = async (req, res) => {
-    const { other_id } = req.body;
-    const { user_id } = req.session.user;
-
-    try {
-        const pendienteRecibida = await AmistadModel.hayPeticionPendienteRecibida(user_id, other_id);
-        if (!pendienteRecibida) {
-            return res.status(409).json({ 
-                error: "No received request"
-            });
-        }
-
-        const peticion = await AmistadModel.acceptPeticion(user_id, other_id);
+        await AmistadModel.acceptPeticion(user_id, other_id);
         await AmistadModel.addAmistad(user_id, other_id);
 
         // Notificar a other_id de que la petición fue aceptada
-        sendMessageToUser(other_id, 'peticionAccepted', peticion);
+        sendMessageToUser(other_id, 'peticionAccepted', user_id);
 
         res.status(200).json({ 
             message: "Accepted request"
@@ -112,10 +89,10 @@ exports.rejectPeticion = async (req, res) => {
             });
         }
 
-        const peticion = await AmistadModel.rejectPeticion(user_id, other_id);
+        await AmistadModel.rejectPeticion(user_id, other_id);
 
         // Notificar a other_id de que la petición fue rechazada
-        sendMessageToUser(other_id, 'peticionRejected', peticion);
+        sendMessageToUser(other_id, 'peticionRejected', user_id);
 
         res.status(200).json({ 
             message: "Rejected request"

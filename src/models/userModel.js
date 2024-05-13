@@ -39,7 +39,7 @@ const UserModel = {
     },
 
     async getUsersExceptOwn(user_id) {
-        const list = await pool.query(`SELECT id, username, img FROM users WHERE NOT id = $1`, [user_id]);
+        const list = await pool.query(`SELECT id, username, img FROM users WHERE NOT id = $1 AND admin = false`, [user_id]);
         return list.rows;
     }
 };
