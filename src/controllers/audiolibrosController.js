@@ -153,10 +153,13 @@ exports.deleteAudiolibro = async (req, res) => {
 exports.updateAudiolibro = async (req, res) => {
     const { audiolibroId, nombreAutor, genero, audiosUrls } = req.body;
     let { titulo, descripcion } = req.body;
+    let image, audios;
+
+    if (req.files) {
+        image, audios = req.files;
+    }
 
     try {
-        const { image, audios } = req.files;
-        
         const audiolibro = await AudiolibrosModel.getAudiolibroById(audiolibroId);
         if (!audiolibro) {
             return res.status(409).json({ error: "Audiolibro doesn't exist" });
