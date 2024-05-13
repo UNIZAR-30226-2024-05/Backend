@@ -140,7 +140,6 @@ const clubesModel = {
                     ) AS audiolibro
                 FROM club_lectura c 
                 LEFT JOIN audiolibros a ON c.audiolibro = a.id
-                INNER JOIN miembros_club m ON c.id = m.club 
                 WHERE c.id NOT IN (SELECT c.id FROM club_lectura c INNER JOIN miembros_club m ON c.id = m.club 
                                     WHERE m.usuario = $1)`,
                 [user_id]);
