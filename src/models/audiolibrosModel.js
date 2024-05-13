@@ -57,7 +57,10 @@ const AudiolibrosModel = {
     async getAudiolibroById(audiolibroId) {
         try {
             const audiolibro = await pool.query(
-                "SELECT * FROM audiolibros WHERE id = $1", 
+                `SELECT a.*, COALESCE(ROUND(AVG(r.puntuacion)::numeric, 2), 0.00) AS puntuacion 
+                FROM audiolibros a LEFT JOIN reviews r ON a.id = r.audiolibro 
+                WHERE a.id = $1
+                GROUP BY a.id`, 
                 [audiolibroId]);
             return audiolibro.rows[0];
         } catch (error) {
