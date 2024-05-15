@@ -37,7 +37,7 @@ exports.sendPeticion = async (req, res) => {
         await AmistadModel.addPeticion(user_id, other_id);
 
         // Notificar a other_id de petición enviada
-        sendMessageToUser(other_id, 'peticionReceived', user_id);
+        sendMessageToUser(other_id, 'peticionReceived', {user_id: user_id});
 
         res.status(200).json({ 
             message: "Request sent"
@@ -65,7 +65,7 @@ exports.acceptPeticion = async (req, res) => {
         await AmistadModel.addAmistad(user_id, other_id);
 
         // Notificar a other_id de que la petición fue aceptada
-        sendMessageToUser(other_id, 'peticionAccepted', user_id);
+        sendMessageToUser(other_id, 'peticionAccepted', {user_id: user_id});
 
         res.status(200).json({ 
             message: "Accepted request"
@@ -92,7 +92,7 @@ exports.rejectPeticion = async (req, res) => {
         await AmistadModel.rejectPeticion(user_id, other_id);
 
         // Notificar a other_id de que la petición fue rechazada
-        sendMessageToUser(other_id, 'peticionRejected', user_id);
+        sendMessageToUser(other_id, 'peticionRejected', {user_id: user_id});
 
         res.status(200).json({ 
             message: "Rejected request"

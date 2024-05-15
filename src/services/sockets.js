@@ -7,7 +7,12 @@ const users = {};
 io.on('connection', async (socket) => {
     let user_id;
     try {
-        const sessionCookie = socket.handshake.headers.cookie.substring('session='.length);
+        let sessionCookie;
+        if (socket.handshake.auth.cookie) {
+            sessionCookie = socket.handshake.auth.cookie.substring('session='.length);
+        } else {
+            sessionCookie = socket.handshake.headers.cookie.substring('session='.length);
+        }
 
         const sessionData = sessions.util.decode({
                 cookieName: 'session',
