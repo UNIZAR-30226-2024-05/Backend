@@ -27,7 +27,21 @@ const AmistadModel = {
 
     async getAmigos(user_id) {
         const amigos = await pool.query(
-            `SELECT id, username, img
+            `SELECT id, username, img,
+                                        (SELECT json_build_object(
+                                                    'id_audiolibro', a.id, 
+                                                    'titulo', a.titulo,
+                                                    'img', a.img, 
+                                                    'id_capitulo', c.id,
+                                                    'fecha', m.fecha,
+                                                    'id', m.id)
+                                        FROM audiolibros a
+                                        JOIN capitulos c ON a.id = c.audiolibro
+                                        JOIN marcapaginas m ON c.id = m.capitulo
+                                        WHERE  m.tipo = '0' AND m.usuario = users.id
+                                        LIMIT 1
+                                        ) AS ultimo
+
             FROM users
             WHERE id IN (
                 SELECT CASE

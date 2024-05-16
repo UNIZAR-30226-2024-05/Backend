@@ -1,4 +1,5 @@
 const AmistadModel = require("../models/amistadModel");
+const marcapaginasModel = require("../models/marcapaginasModel");
 const UserModel = require("../models/userModel");
 const { sendMessageToUser } = require('../services/sockets');
 
@@ -185,9 +186,11 @@ exports.getAmigos = async (req, res) => {
 
     try {
         const amigos = await AmistadModel.getAmigos(user_id);
+        const ultimo = await marcapaginasModel.getUltimoAudiolibro(user_id);
 
         res.status(200).json({ 
-            amigos: amigos
+            amigos: amigos,
+            ultimo
         });
 
     } catch (err) {
