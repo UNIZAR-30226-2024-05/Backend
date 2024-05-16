@@ -9,7 +9,7 @@ const marcapaginasModel = {
             JOIN marcapaginas m ON c.id = m.capitulo
             WHERE  m.tipo = '0' AND m.usuario = $1;
             `, [user_id]);
-            if (audiolibros.rows.length === 0) {
+            if (audiolibros.rowCount == 0) {
                 return {};
             } else {
                 return audiolibros.rows[0];
@@ -151,7 +151,7 @@ const marcapaginasModel = {
         return audiolibroPorCapitulo.rows[0];
     },
 
-    async getSeguirEscichando(user_id) {
+    async getSeguirEscuchando(user_id) {
         const seguirEscuchando = await pool.query(`SELECT a.id AS id_audiolibro, a.titulo, a.img, c.id AS id_capitulo, m.fecha, m.id
             FROM audiolibros a
             JOIN capitulos c ON a.id = c.audiolibro
