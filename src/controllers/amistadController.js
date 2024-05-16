@@ -118,6 +118,9 @@ exports.cancelPeticion = async (req, res) => {
 
         await AmistadModel.cancelPeticion(user_id, other_id);
 
+        // Notificar a other_id de que la petición fue cancelada
+        sendMessageToUser(other_id, 'peticionCancelled', {user_id: user_id});
+
         res.status(200).json({ 
             message: "Canceled request"
         });
@@ -141,6 +144,10 @@ exports.removeAmistad = async (req, res) => {
         }
 
         await AmistadModel.removeAmistad(user_id, other_id);
+
+        // Notificar a other_id de que ya no hay amistad
+        sendMessageToUser(other_id, 'friendshipRemoved', {user_id: user_id});
+
         res.status(200).json({ 
             message: "Friendship removed"
         });
