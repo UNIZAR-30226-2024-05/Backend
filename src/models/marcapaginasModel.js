@@ -149,6 +149,17 @@ const marcapaginasModel = {
     async AudiolibroDelCapitulo(capitulo) {
         const audiolibroPorCapitulo = await pool.query("SELECT * FROM capitulos WHERE id = $1;", [capitulo]);
         return audiolibroPorCapitulo.rows[0];
+    },
+
+    async getSeguirEscichando(user_id) {
+        const seguirEscuchando = await pool.query(`SELECT a.id AS id_audiolibro, a.titulo, a.img, c.id AS id_capitulo, m.fecha, m.id
+            FROM audiolibros a
+            JOIN capitulos c ON a.id = c.audiolibro
+            JOIN marcapaginas m ON c.id = m.capitulo
+            WHERE  m.tipo = '1' AND m.usuario = $1;
+            `, [user_id]);
+        
+        return seguirEscuchando.rows;
     }
 };
 

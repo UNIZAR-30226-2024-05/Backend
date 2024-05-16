@@ -37,6 +37,7 @@ const io = require("socket.io")(server, {
 
 module.exports = io;
 
+const homeRoutes = require("./routes/homeRoutes");
 const userRoutes = require("./routes/userRoutes");
 const audiolibrosRoutes = require("./routes/audiolibrosRoutes");
 const coleccionesRoutes = require("./routes/coleccionesRoutes");
@@ -48,6 +49,7 @@ const clubRoutes = require("./routes/clubRoutes");
 
 const PORT = process.env.PORT || 8000;
 
+app.use("/home", homeRoutes)
 app.use("/users", userRoutes);
 app.use("/audiolibros", audiolibrosRoutes);
 app.use("/colecciones", coleccionesRoutes);
